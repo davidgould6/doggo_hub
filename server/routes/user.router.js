@@ -19,16 +19,41 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // is that the password gets encrypted before being inserted
 router.post('/register', (req, res, next) => {
   console.log(req.body);
+  console.log(req.user);
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
 
+  // Creating a query string to enter user information into user table and returning id.
+  // First Query for user table.
   const queryText = `INSERT INTO "user" (username, password, first_name, last_name)
     VALUES ($1, $2, $3, $4) RETURNING id`;
-  pool
-    .query(queryText, [username, password, firstName, lastName])
-    .then(() => res.sendStatus(201))
+  pool.query(queryText, [username, password, firstName, lastName])
+  // Then for first query
+  .then((result) => {
+    console.log('Is this our id??', result.rows[0].id);
+    const userId = result.rows[0].id;
+    const street = req.body.street;
+    const city = req.body.city;
+    const state = req.body.state;
+    const zip = req.body.zip;
+
+    // Second query for address table. 
+    let queryText = `INSERT INTO "address" ("street", "city", "state", "zip", "user_id")
+      VALUES ($1, $2, $3, $4, $5)`
+    pool.query(queryText, [street, city, state, zip, userId])
+      // Then for second query
+      .then(result => {
+        res.sendStatus(201);
+      })
+      // Catch for second query
+      .catch(error => {
+        console.log('We have an error in query for address table', error);
+        res.sendStatus(500);
+      });
+    })
+    // Catch for first query. 
     .catch(() => res.sendStatus(500));
 });
 
