@@ -9,7 +9,7 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 
 class LandingPage extends Component {
   state = {
-    heading: 'Class Component',
+    heading: 'Doggo Hub',
   };
 
   onLogin = (event) => {
