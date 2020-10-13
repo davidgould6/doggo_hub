@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 });
 
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('This is our req.body in pet.router POST', req.body);
     console.log(req.user);
     const petName = req.body.petName;

@@ -24,7 +24,7 @@ class AddPetForm extends Component {
       event.preventDefault();
       // Alerts user if dog is < 0... ie -1, -2, -3, etc...
       if(this.state.age < 0 ){
-          swal(`You're Doggo can't be younger than 0!`);
+          swal(`Your Doggo can't be younger than 0!`);
       }
       // If doggo age is valid will proceed to this code block.
       else{

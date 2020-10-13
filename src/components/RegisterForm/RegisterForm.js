@@ -53,8 +53,8 @@ class RegisterForm extends Component {
   };
 
   render() {
-    console.log(this.state);
-    console.log('these are our props', this.props);
+    // console.log(this.state);
+    // console.log('these are our props', this.props);
     return (
       <form className="formPanel" onSubmit={this.registerUser}>
         <h2>Register User</h2>
