@@ -41,7 +41,7 @@ class RegisterForm extends Component {
         });
       }
       else {
-        swal("Please correct any info that isn't incorrect");
+        swal("Please correct any info that is incorrect");
       }
     });
   }; // end registerUser
@@ -163,7 +163,7 @@ class RegisterForm extends Component {
           </label>
         </div>
         <div>
-          <input className="btn" type="submit" name="submit" value="Next" />
+          <input className="btn" type="submit" name="submit" value="Register" />
         </div>
       </form>
     );

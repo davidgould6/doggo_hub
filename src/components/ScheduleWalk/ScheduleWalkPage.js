@@ -8,7 +8,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 // component.
 class ScheduleWalkPage extends Component {
   state = {
-    heading: 'Class Component',
+    heading: 'ScheduleWalkPage',
   };
 
   render() {

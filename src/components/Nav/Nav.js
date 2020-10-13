@@ -54,6 +54,9 @@ const Nav = (props) => {
             <Link className="nav-link" to="/grooming">
               Schedule Grooming
             </Link>
+            <Link className="nav-link" to="/addpet">
+              Add Pet
+            </Link>
             <LogOutButton className="nav-link" />
           </>
         )}

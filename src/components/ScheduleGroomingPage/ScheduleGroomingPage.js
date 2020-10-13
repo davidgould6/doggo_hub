@@ -8,7 +8,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 // component.
 class ScheduleGroomingPage extends Component {
   state = {
-    heading: 'Class Component',
+    heading: 'ScheduleGroomingPage',
   };
 
   render() {
