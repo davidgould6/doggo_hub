@@ -19,6 +19,7 @@ import ScheduleGroomingPage from '../ScheduleGroomingPage/ScheduleGroomingPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import AddPetPage from '../AddPetPage/AddPetPage';
 
 import './App.css';
 
@@ -36,9 +37,8 @@ class App extends Component {
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
 
-            {/* Visiting localhost:3000/about will show the about page. */}
             <ProtectedRoute
-              // shows AboutPage at all times (logged in or not)
+              // logged in shows ScheduleWalkPage else shows LoginPage
               exact
               path="/walk"
               component={ScheduleWalkPage}
@@ -56,7 +56,7 @@ class App extends Component {
             />
 
             <ProtectedRoute
-              // logged in shows InfoPage else shows LoginPage
+              // logged in shows ScheduleGroomingPage else shows LoginPage
               exact
               path="/grooming"
               component={ScheduleGroomingPage}
@@ -92,6 +92,14 @@ class App extends Component {
               component={LandingPage}
               authRedirect="/user"
             />
+
+            <ProtectedRoute
+              // logged in shows AddPetPage else shows LoginPage
+              exact
+              path="/addpet"
+              component={AddPetPage}
+            />
+
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
