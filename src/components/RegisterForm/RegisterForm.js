@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import {withRouter} from 'react-router-dom';
+import swal from 'sweetalert';
 
 class RegisterForm extends Component {
   state = {
@@ -16,19 +18,31 @@ class RegisterForm extends Component {
 
   registerUser = (event) => {
     event.preventDefault();
-
-    this.props.dispatch({
-      type: 'REGISTER',
-      payload: {
-        username: this.state.username,
-        password: this.state.password,
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        street: this.state.street,
-        city: this.state.city,
-        state: this.state.state,
-        zip: this.state.zip,
-      },
+    swal({
+      title: "Is the submitted info correct?",
+      // text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "info",
+      buttons: true,
+      dangerMode: true,
+    }).then(isCorrect => {
+      if (isCorrect){
+        this.props.dispatch({
+          type: 'REGISTER',
+          payload: {
+            username: this.state.username,
+            password: this.state.password,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            street: this.state.street,
+            city: this.state.city,
+            state: this.state.state,
+            zip: this.state.zip,
+          },
+        });
+      }
+      else {
+        swal("Please correct any info that isn't incorrect");
+      }
     });
   }; // end registerUser
 
@@ -123,6 +137,7 @@ class RegisterForm extends Component {
         </div>
         <div>
           <label htmlFor="state">
+            State: 
             <select 
               name="state"
               value={this.state.state}
@@ -148,11 +163,11 @@ class RegisterForm extends Component {
           </label>
         </div>
         <div>
-          <input className="btn" type="submit" name="submit" value="Register" />
+          <input className="btn" type="submit" name="submit" value="Next" />
         </div>
       </form>
     );
   }
 }
 
-export default connect(mapStoreToProps)(RegisterForm);
+export default connect(mapStoreToProps)(withRouter(RegisterForm));

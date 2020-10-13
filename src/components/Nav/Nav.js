@@ -6,14 +6,22 @@ import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 const Nav = (props) => {
+  console.log('in nav.js', props);
   let loginLinkData = {
     path: '/login',
-    text: 'Login / Register',
+    text: 'Login',
   };
+
+  let registerLinkData = {
+    path: '/registration',
+    text: 'Register'
+  }
 
   if (props.store.user.id != null) {
     loginLinkData.path = '/user';
-    loginLinkData.text = 'Home';
+    loginLinkData.text = 'My Hub';
+    registerLinkData.path = '/walk'
+    registerLinkData.text = 'Schedule Walk';
   }
 
   return (
@@ -28,19 +36,27 @@ const Nav = (props) => {
           and call this link 'Login / Register' if they are not */}
           {loginLinkData.text}
         </Link>
+        
+        {props.store.user.id === null ?
+          <Link className="nav-link" to={registerLinkData.path}>
+          {registerLinkData.text}
+          </Link> :
+          null
+        }
+
+        <Link className="nav-link" to={registerLinkData.path}>
+          {registerLinkData.text}
+        </Link>
+
         {/* Show the link to the info page and the logout button if the user is logged in */}
         {props.store.user.id && (
           <>
-            <Link className="nav-link" to="/info">
-              Info Page
+            <Link className="nav-link" to="/grooming">
+              Schedule Grooming
             </Link>
             <LogOutButton className="nav-link" />
           </>
         )}
-        {/* Always show this link since the about page is not protected */}
-        <Link className="nav-link" to="/about">
-          About
-        </Link>
       </div>
     </div>
   );
