@@ -22,12 +22,13 @@ router.post('/', (req, res) => {
     const petName = req.body.petName;
     const petAge = req.body.age;
     const petSize = req.body.size;
+    const image_url = req.body.image_url
     const userId = req.user.id;
-    console.log('these are our variables', petName, petAge, petSize, userId);
+    console.log('these are our variables', petName, petAge, petSize, image_url, userId);
     const queryText = `INSERT INTO "pet" ("name", "age", "size", "image_url", "user_id")
-    VALUES ($1, $2, $3, 'https://i.imgur.com/JCKyAPl.png', $4);`
+    VALUES ($1, $2, $3, $4, $5);`
 
-    pool.query(queryText, [petName, petAge, petSize, userId])
+    pool.query(queryText, [petName, petAge, petSize, image_url, userId])
     .then(result => {
         res.sendStatus(201);
     })

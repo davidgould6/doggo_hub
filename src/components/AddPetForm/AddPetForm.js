@@ -9,7 +9,8 @@ class AddPetForm extends Component {
   state = {
     petName: '',
     age: '',
-    size: 'small',
+    image_url: '',
+    size: 'small'
   };
 
   // Function handles change for all three fields in form. 
@@ -45,6 +46,7 @@ class AddPetForm extends Component {
                             payload: {
                                 petName: this.state.petName,
                                 age: this.state.age,
+                                image_url: this.state.image_url,
                                 size: this.state.size
                             }
                         });
@@ -97,6 +99,18 @@ class AddPetForm extends Component {
               value={this.state.age}
               required
               onChange={this.handleInputChangeFor('age')}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="image_url">
+            Image Url:
+            <input
+              type="text"
+              name="image_url"
+              value={this.state.image_ur}
+              required
+              onChange={this.handleInputChangeFor('image_url')}
             />
           </label>
         </div>
