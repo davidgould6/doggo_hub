@@ -1,11 +1,23 @@
+.userContainer{
+  margin-left: auto;
+  margin-right: auto;
+}
 .userPetImage {
   height: 100px;
 }
 .userInfo {
+  margin-left: 125px;
+  margin-right: 125px;
   display: inline-block;
+  border-style: solid;
+  border-color: rebeccapurple;
+}
+.userInfo h3 {
+  text-align: center;
 }
 .imageBullets {
   display: inline-block;
+  padding-right: 20px;
 }
 .mainUserList {
   list-style-type: none;

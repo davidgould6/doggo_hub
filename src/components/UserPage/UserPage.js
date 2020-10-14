@@ -10,13 +10,14 @@ class UserPage extends Component {
   render() {
     console.log('in userpage these are our props', this.props);
     return (
-      <div>
+      <div className="userContainer">
         <h1 id="welcome">Welcome to your hub {this.props.store.user.username}!</h1>
         <p>Your ID is: {this.props.store.user.id}</p>
         <div className="userInfo"> 
           This is where the Upcoming events are
         </div>
         <div className="userInfo">
+          <h3>Your Doggos</h3>
           <ul>
             <li className="mainUserList">
               {this.props.store.petReducer.map((pet, i) =>
