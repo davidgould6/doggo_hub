@@ -2,19 +2,62 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-// Basic class component structure for React with default state
-// value setup. When making a new component be sure to replace
-// the component name TemplateClass with the name for the new
-// component.
 class ScheduleWalkPage extends Component {
+
+  componentDidMount(){
+    this.props.dispatch({ type: `FETCH_PETS`});
+    this.props.dispatch({ type: 'FETCH_ADDRESS' });
+  }
+
   state = {
-    heading: 'ScheduleWalkPage',
+    dogToWalk: 'selectDog',
+    date: '',
+    address:'selectAddress',
+  }
+
+  handleInputChangeFor = (propertyName) => (event) => {
+    this.setState({
+      [propertyName]: event.target.value,
+    });
   };
 
   render() {
+    console.log('in schedulewalkpage.js', this.props);
+    console.log(this.state);
     return (
       <div>
-        <h2>{this.state.heading}</h2>
+        <h1>Schedule a walk !</h1>
+        <div>
+          Select Doggo: 
+          <select 
+            name="dogToWalk"
+            value={this.state.dogToWalk}
+            required
+            onChange={this.handleInputChangeFor('dogToWalk')}
+          >
+            <option disabled value="selectDog"> -- Select a Doggo -- </option>
+            {this.props.store.petReducer.map((pet, i) => 
+            <option key={i}>{pet.name}</option>
+            )}
+          </select>
+          Date:  
+          <input 
+            type="date" 
+            name="date" 
+            required onChange={this.handleInputChangeFor('date')}
+          />
+          Pick Up Address: 
+          <select
+            name="address"
+            value={this.state.address}
+            required
+            onChange={this.handleInputChangeFor('address')}>
+              <option disabled value="selectAddress"> -- Select an Address -- </option>
+              {this.props.store.addressReducer.map((address, i) => 
+              <option key={i}>{address.street} {address.city}, {address.state} {address.zip}</option>
+              )}
+          </select>
+        </div>
       </div>
     );
   }

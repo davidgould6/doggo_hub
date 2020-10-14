@@ -9,7 +9,7 @@ const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-  console.log('this is req.user in pet get', req.user);
+  // console.log('this is req.user in pet get', req.user);
   const queryText = `
   SELECT * FROM "pet" WHERE "user_id" = $1;`;
   pool.query(queryText, [req.user.id])
@@ -24,8 +24,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 
 router.post('/', rejectUnauthenticated, (req, res) => {
-    console.log('This is our req.body in pet.router POST', req.body);
-    console.log(req.user);
+    // console.log('This is our req.body in pet.router POST', req.body);
+    // console.log(req.user);
     const petName = req.body.petName;
     const petAge = req.body.age;
     const petSize = req.body.size;

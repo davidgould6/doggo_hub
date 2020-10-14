@@ -54,10 +54,11 @@ class AddPetForm extends Component {
                         this.setState({
                             petName: '',
                             age: '',
+                            image_url:'',
                             size: 'small'
                         });
                         // Brings user back to home page
-                        this.props.history.push('/home');
+                        // this.props.history.push('/home');
                   });
               }
               else {

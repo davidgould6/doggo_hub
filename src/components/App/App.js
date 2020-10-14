@@ -26,7 +26,7 @@ import './App.css';
 class App extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER' });
-    this.props.dispatch({ type: 'FETCH_GALLERY' })
+    this.props.dispatch({ type: 'FETCH_GALLERY' });
   }
 
   render() {

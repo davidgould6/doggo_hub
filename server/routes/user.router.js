@@ -14,12 +14,28 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
+router.get('/address', rejectUnauthenticated, (req, res) => {
+  const userId = req.user.id;
+
+  const queryText = `
+    SELECT * FROM "address"
+    WHERE "user_id" = $1;`;
+  
+  pool.query(queryText, [userId])
+  .then(result => {
+    res.send(result.rows);
+  })
+  .catch(error => {
+    console.log('We have an error in /api/user/address GET', error);
+  });
+})
+
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
 router.post('/register', (req, res, next) => {
-  console.log(req.body);
-  console.log(req.user);
+  // console.log(req.body);
+  // console.log(req.user);
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
   const firstName = req.body.firstName;
@@ -32,7 +48,7 @@ router.post('/register', (req, res, next) => {
   pool.query(queryText, [username, password, firstName, lastName])
   // Then for first query
   .then((result) => {
-    console.log('Is this our id??', result.rows[0].id);
+    // console.log('Is this our id??', result.rows[0].id);
     const userId = result.rows[0].id;
     const street = req.body.street;
     const city = req.body.city;
