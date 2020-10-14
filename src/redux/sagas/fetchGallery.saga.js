@@ -2,7 +2,7 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 // createPet function will send post request to pet router.
-function* getGallery() {
+function* fetchGallery() {
     console.log('in getGallerySaga');
     let response = yield axios({
         method: 'GET',
@@ -16,8 +16,8 @@ function* getGallery() {
     });
 }
 
-function* getGallerySaga() {
-  yield takeLatest('FETCH_GALLERY', getGallery);
+function* fetchGallerySaga() {
+  yield takeLatest('FETCH_GALLERY', fetchGallery);
 }
 
-export default getGallerySaga;
+export default fetchGallerySaga;

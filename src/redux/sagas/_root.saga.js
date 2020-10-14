@@ -3,7 +3,8 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import createPetSaga from './createpet.saga';
-import getGallerySaga from './getGallery.saga';
+import fetchGallerySaga from './fetchGallery.saga';
+import fetchPetsSaga from './fetchPets.saga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -17,6 +18,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     createPetSaga(), // Saga listens for 'CREATE_PET'
-    getGallerySaga(), 
+    fetchGallerySaga(), // Gets all gallery items listens for 'FETCH_GALLERY
+    fetchPetsSaga(), // Saga listens for 'FETCH_PETS' gets all users pets
   ]);
 }

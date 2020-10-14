@@ -4,13 +4,16 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class UserPage extends Component {
-  // this component doesn't do much to start, just renders some user info to the DOM
+  componentDidMount(){
+    this.props.dispatch({ type: `FETCH_PETS`});
+  }
   render() {
     return (
       <div>
         <h1 id="welcome">Welcome to your hub {this.props.store.user.username}!</h1>
         <p>Your ID is: {this.props.store.user.id}</p>
-        <LogOutButton className="log-in" />
+        <div> This is where the Upcoming events are</div>
+        <div> This is where your doggos are</div>
       </div>
     );
   }

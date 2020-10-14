@@ -8,11 +8,18 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
-/**
- * GET route template
- */
-router.get('/', (req, res) => {
-  // GET route code here
+router.get('/', rejectUnauthenticated, (req, res) => {
+  console.log('this is req.user in pet get', req.user);
+  const queryText = `
+  SELECT * FROM "pet" WHERE "user_id" = $1;`;
+  pool.query(queryText, [req.user.id])
+  .then(result => {
+    res.send(result.rows);
+  })
+  .catch(error => {
+    console.log('We have an error in pets GET', error);
+    res.sendStatus(500);
+  });
 });
 
 
