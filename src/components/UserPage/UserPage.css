@@ -1,0 +1,12 @@
+.userPetImage {
+  height: 100px;
+}
+.userInfo {
+  display: inline-block;
+}
+.imageBullets {
+  display: inline-block;
+}
+.mainUserList {
+  list-style-type: none;
+}

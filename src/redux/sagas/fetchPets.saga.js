@@ -10,10 +10,10 @@ function* fetchPets() {
     });
     console.log('this is response from server', response);
 
-    // yield put({
-    //   type: 'SET_PETS',
-    //   payload: response.data
-    // });
+    yield put({
+      type: 'SET_PETS',
+      payload: response.data
+    });
 }
 
 function* fetchPetsSaga() {
