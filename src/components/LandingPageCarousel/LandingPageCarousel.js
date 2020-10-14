@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Carousel from 'react-material-ui-carousel'
-
+import './LandingPageCarousel.css';
 class LandingPageCarousel extends Component {
 
   render() {
@@ -11,7 +11,7 @@ class LandingPageCarousel extends Component {
       <div>
         <Carousel>
           {this.props.store.gallery.map((item, i) => 
-            <img src={item.path} key={i}/>
+            <img className='carouselImg' src={item.path} key={i}/>
           )}
         </Carousel>
       </div>
