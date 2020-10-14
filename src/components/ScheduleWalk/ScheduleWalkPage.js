@@ -20,6 +20,12 @@ class ScheduleWalkPage extends Component {
       [propertyName]: event.target.value,
     });
   };
+  
+  handleInputChangeForAddress = (event) => {
+    this.setState({
+      address: event.target.value
+    });
+  }
 
   render() {
     console.log('in schedulewalkpage.js', this.props);
@@ -51,10 +57,10 @@ class ScheduleWalkPage extends Component {
             name="address"
             value={this.state.address}
             required
-            onChange={this.handleInputChangeFor('address')}>
+            onChange={(event) => this.handleInputChangeForAddress(event)}>
               <option disabled value="selectAddress"> -- Select an Address -- </option>
               {this.props.store.addressReducer.map((address, i) => 
-              <option key={i}>{address.street} {address.city}, {address.state} {address.zip}</option>
+              <option value={address.id} key={i}>{address.street} {address.city}, {address.state} {address.zip}</option>
               )}
           </select>
         </div>
