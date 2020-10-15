@@ -21,7 +21,15 @@ class ScheduleWalkPage extends Component {
       [propertyName]: event.target.value,
     });
   };
+
+  // Function handles change for dogToWalk, needed it's own function to pass id
+  handleInputChangeForDogToWalk = (event) => {
+    this.setState({
+      dogToWalk: event.target.value
+    });
+  }
   
+  // Function handles change for address, needed it's own function to pass id
   handleInputChangeForAddress = (event) => {
     this.setState({
       address: event.target.value
@@ -55,6 +63,11 @@ class ScheduleWalkPage extends Component {
           swal("Your Doggo's walk has been scheduled!", {
             icon: "success"
           }).then(() => {
+            console.log('this is what we are going to send', 
+            this.state.dogToWalk,
+            this.state.date,
+            this.state.address
+            )
             this.props.dispatch({
               type: 'CREATE_WALK',
               payload: {
@@ -80,7 +93,7 @@ class ScheduleWalkPage extends Component {
   }
 
   render() {
-    // console.log('in schedulewalkpage.js', this.props);
+    console.log('in schedulewalkpage.js', this.props);
     // console.log(this.state);
     return (
       <div>
@@ -91,11 +104,11 @@ class ScheduleWalkPage extends Component {
             name="dogToWalk"
             value={this.state.dogToWalk}
             required
-            onChange={this.handleInputChangeFor('dogToWalk')}
+            onChange={(event) => this.handleInputChangeForDogToWalk(event)}
           >
             <option disabled value="selectDog"> -- Select a Doggo -- </option>
             {this.props.store.petReducer.map((pet, i) => 
-            <option key={i}>{pet.name}</option>
+            <option value={pet.id} key={i}>{pet.name}</option>
             )}
           </select>
         </div>

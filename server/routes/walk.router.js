@@ -25,24 +25,21 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('This is our req.body in walk.router POST', req.body);
-    res.sendStatus(201);
-    // console.log(req.user);
-    // const petName = req.body.petName;
-    // const petAge = req.body.age;
-    // const petSize = req.body.size;
-    // const image_url = req.body.image_url
-    // const userId = req.user.id;
-    // console.log('these are our variables', petName, petAge, petSize, image_url, userId);
-    // const queryText = `INSERT INTO "pet" ("name", "age", "size", "image_url", "user_id")
-    // VALUES ($1, $2, $3, $4, $5);`
+    const date = req.body.date;
+    const petToWalkId = req.body.dogToWalk;
+    const addressId = req.body.address;
+    console.log('these are our variables', petToWalkId, date, addressId);
+    
+    const queryText = `INSERT INTO "walk" ("time", "pet_id", "address_id")
+    VALUES ($1, $2, $3);`
 
-    // pool.query(queryText, [petName, petAge, petSize, image_url, userId])
-    // .then(result => {
-    //     res.sendStatus(201);
-    // })
-    // .catch(error => {
-    //     console.log('We have an error in pet.router POST', error);
-    // });
+    pool.query(queryText, [date, petToWalkId, addressId])
+    .then(result => {
+        res.sendStatus(201);
+    })
+    .catch(error => {
+        console.log('We have an error in walk.router POST', error);
+    });
 });
 
 module.exports = router;
