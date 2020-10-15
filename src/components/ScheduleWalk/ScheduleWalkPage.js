@@ -63,11 +63,6 @@ class ScheduleWalkPage extends Component {
           swal("Your Doggo's walk has been scheduled!", {
             icon: "success"
           }).then(() => {
-            // console.log('this is what we are going to send', 
-            // this.state.dogToWalk,
-            // this.state.date,
-            // this.state.address
-            // )
             this.props.dispatch({
               type: 'CREATE_WALK',
               payload: {

@@ -5,13 +5,11 @@ const router = express.Router();
 
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
-    SELECT "pet"."id", "pet"."name", "address"."street", "address"."city", "address"."state", "address"."zip", "address"."user_id", "walk"."time"
+    SELECT "pet"."id", "pet"."name", "pet"."user_id", "grooming"."time", "grooming"."drop_off_address"
     FROM "pet"
-    JOIN "address"
-    ON "pet"."address_id" = "address"."id"
-    JOIN "walk"
-    ON "pet"."id" = "walk"."pet_id"
-    WHERE "address"."user_id" = $1;`;
+    JOIN "grooming"
+    ON "pet"."id" = "grooming"."pet_id"
+    WHERE "pet"."user_id" = $1;`;
   pool.query(queryText, [req.user.id])
   .then(result => {
     res.send(result.rows);
@@ -26,14 +24,12 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('This is our req.body in walk.router POST', req.body);
     const date = req.body.date;
-    const petToWalkId = req.body.dogToWalk;
-    const addressId = req.body.address;
-    console.log('these are our variables', petToWalkId, date, addressId);
+    const petToGroomId = req.body.dogToGroom;
+    console.log('these are our variables', petToGroomId, date);
+    const queryText = `INSERT INTO "grooming" ("time", "pet_id")
+    VALUES ($1, $2);`;
 
-    const queryText = `INSERT INTO "walk" ("time", "pet_id", "address_id")
-    VALUES ($1, $2, $3);`
-
-    pool.query(queryText, [date, petToWalkId, addressId])
+    pool.query(queryText, [date, petToGroomId])
     .then(result => {
         res.sendStatus(201);
     })

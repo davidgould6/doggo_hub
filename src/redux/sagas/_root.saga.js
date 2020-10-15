@@ -2,6 +2,7 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
+import createGroomingSaga from './createGrooming.saga';
 import createPetSaga from './createpet.saga';
 import createWalkSaga from './createWalk.saga';
 import fetchGallerySaga from './fetchGallery.saga';
@@ -20,8 +21,9 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
-    createPetSaga(), // Saga listens for 'CREATE_PET'
-    createWalkSaga(), // Saga listens for 'CREATE_WALK'
+    createGroomingSaga(), // Saga listens for 'CREATE_GROOMING' sends post to grooming router
+    createPetSaga(), // Saga listens for 'CREATE_PET' sends post to pet router
+    createWalkSaga(), // Saga listens for 'CREATE_WALK' sends post to walk router
     fetchAddressSaga(), // Saga listens for 'FETCH_ADDRESS' fetches all user addresses 
     fetchGallerySaga(), // Saga listens for 'FETCH_GALLERY gets all gallery items 
     fetchPetsSaga(), // Saga listens for 'FETCH_PETS' gets all users pets

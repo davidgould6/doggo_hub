@@ -9,9 +9,10 @@ const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
 
 // Route includes
-const userRouter = require('./routes/user.router');
-const petRouter = require('./routes/pet.router');
 const galleryRouter = require('./routes/gallery.router');
+const groomingRouter = require('./routes/grooming.router');
+const petRouter = require('./routes/pet.router');
+const userRouter = require('./routes/user.router');
 const walkRouter = require('./routes/walk.router');
 
 // Body parser middleware
@@ -26,9 +27,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /* Routes */
-app.use('/api/user', userRouter);
-app.use('/api/pet', petRouter);
 app.use('/api/gallery', galleryRouter);
+app.use('/api/grooming', groomingRouter);
+app.use('/api/pet', petRouter);
+app.use('/api/user', userRouter);
 app.use('/api/walk', walkRouter);
 
 // Serve static files
