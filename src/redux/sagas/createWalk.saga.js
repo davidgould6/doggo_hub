@@ -2,18 +2,18 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 // createPet function will send post request to pet router.
-function* createPet(action) {
-    console.log('in createPet, this is our payload', action.payload);
+function* createWalk(action) {
+    console.log('in createWalk, this is our payload', action.payload);
     let response = yield axios({
         method: 'POST',
-        url: '/api/pet',
+        url: '/api/walk',
         data: action.payload
     });
     console.log('this is response from server', response);
 }
 
-function* createPetSaga() {
-  yield takeLatest('CREATE_PET', createPet);
+function* createWalkSaga() {
+  yield takeLatest('CREATE_WALK', createWalk);
 }
 
-export default createPetSaga;
+export default createWalkSaga;

@@ -3,6 +3,7 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import createPetSaga from './createpet.saga';
+import createWalkSaga from './createWalk.saga';
 import fetchGallerySaga from './fetchGallery.saga';
 import fetchPetsSaga from './fetchPets.saga';
 import fetchAddressSaga from './fetchAddress.saga';
@@ -19,8 +20,9 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     createPetSaga(), // Saga listens for 'CREATE_PET'
+    createWalkSaga(), // Saga listens for 'CREATE_WALK'
     fetchGallerySaga(), // Gets all gallery items listens for 'FETCH_GALLERY
     fetchPetsSaga(), // Saga listens for 'FETCH_PETS' gets all users pets
-    fetchAddressSaga(), // Fetches all user addresses
+    fetchAddressSaga(), // Fetches all user addresses listens for 'FETCH_ADDRESS'
   ]);
 }
