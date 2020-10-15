@@ -63,11 +63,11 @@ class ScheduleWalkPage extends Component {
           swal("Your Doggo's walk has been scheduled!", {
             icon: "success"
           }).then(() => {
-            console.log('this is what we are going to send', 
-            this.state.dogToWalk,
-            this.state.date,
-            this.state.address
-            )
+            // console.log('this is what we are going to send', 
+            // this.state.dogToWalk,
+            // this.state.date,
+            // this.state.address
+            // )
             this.props.dispatch({
               type: 'CREATE_WALK',
               payload: {
@@ -84,7 +84,7 @@ class ScheduleWalkPage extends Component {
             });
           });
         }
-        else {
+        else{
           // Alert tells user to correct anything that is incorrect.
           swal("Please correct any info that is incorrect");
         }
@@ -134,7 +134,7 @@ class ScheduleWalkPage extends Component {
           </select>
         </div>
         <div>
-          <button onClick={this.scheduleWalk}>Schedule</button>
+          <button onClick={this.scheduleWalk}>Schedule Walk</button>
         </div>
       </div>
     );

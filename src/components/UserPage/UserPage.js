@@ -16,7 +16,16 @@ class UserPage extends Component {
         <h1 id="welcome">Welcome to your hub {this.props.store.user.username}!</h1>
         <p>Your ID is: {this.props.store.user.id}</p>
         <div className="userInfo"> 
-          This is where the Upcoming events are
+          <h3>Upcoming Events</h3>
+              <ul className="upcomingEventUl">
+              {this.props.store.walkReducer.map((walk, i) =>
+                <div className="upcomingEventChild" key={i}>
+                  <li>{walk.name}</li>
+                  <li>{walk.time.split( 'T' )[0]}</li>
+                  <li>{walk.street} {walk.city}, {walk.state} {walk.zip}</li>
+                </div>
+              )}
+              </ul>
         </div>
         <div className="userInfo">
           <h3>Your Doggos</h3>

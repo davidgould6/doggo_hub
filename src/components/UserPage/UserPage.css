@@ -12,6 +12,15 @@
   border-style: solid;
   border-color: rebeccapurple;
 }
+.upcomingEventChild {
+  border-style: solid;
+  border-color: rebeccapurple;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+.upcomingEventUl {
+  margin-left: 0px;
+}
 .userInfo h3 {
   text-align: center;
 }
