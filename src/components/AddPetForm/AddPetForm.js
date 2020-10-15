@@ -16,7 +16,7 @@ class AddPetForm extends Component {
     petName: '',
     age: '',
     image_url: '',
-    size: 'small',
+    size: 'selectSize',
     dogAddress: 'selectAddress'
   };
 
@@ -139,6 +139,7 @@ class AddPetForm extends Component {
                 required
                 onChange={this.handleInputChangeFor('size')}
             >
+                <option disabled value="selectSize"> -- Size of Doggo -- </option>
                 <option>Small</option>
                 <option>Medium</option>
                 <option>Large</option>

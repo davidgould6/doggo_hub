@@ -9,9 +9,14 @@ const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-  // console.log('this is req.user in pet get', req.user);
   const queryText = `
-  SELECT * FROM "pet" WHERE "user_id" = $1;`;
+    SELECT "pet"."id", "pet"."name", "address"."street", "address"."city", "address"."state", "address"."zip", "address"."user_id", "walk"."time"
+    FROM "pet"
+    JOIN "address"
+    ON "pet"."address_id" = "address"."id"
+    JOIN "walk"
+    ON "pet"."id" = "walk"."pet_id"
+    WHERE "address"."user_id" = $1;`;
   pool.query(queryText, [req.user.id])
   .then(result => {
     res.send(result.rows);
@@ -29,7 +34,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     const petToWalkId = req.body.dogToWalk;
     const addressId = req.body.address;
     console.log('these are our variables', petToWalkId, date, addressId);
-    
+
     const queryText = `INSERT INTO "walk" ("time", "pet_id", "address_id")
     VALUES ($1, $2, $3);`
 

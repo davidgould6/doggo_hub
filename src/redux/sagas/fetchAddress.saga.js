@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-// createPet function will send post request to pet router.
+// fetchAddress function will send get request to user router.
 function* fetchAddress() {
-    console.log('in fetchAddress Saga');
+    // console.log('in fetchAddress Saga');
     const response = yield axios.get('/api/user/address');
-    console.log('FETCHADDRESS', response);
+    // console.log('FETCHADDRESS', response);
     yield put ({ type: 'SET_ADDRESS', payload: response.data});
 }
 

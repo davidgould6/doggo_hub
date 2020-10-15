@@ -7,6 +7,7 @@ import createWalkSaga from './createWalk.saga';
 import fetchGallerySaga from './fetchGallery.saga';
 import fetchPetsSaga from './fetchPets.saga';
 import fetchAddressSaga from './fetchAddress.saga';
+import fetchWalkSaga from './fetchWalk.saga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -21,8 +22,9 @@ export default function* rootSaga() {
     userSaga(),
     createPetSaga(), // Saga listens for 'CREATE_PET'
     createWalkSaga(), // Saga listens for 'CREATE_WALK'
-    fetchGallerySaga(), // Gets all gallery items listens for 'FETCH_GALLERY
+    fetchAddressSaga(), // Saga listens for 'FETCH_ADDRESS' fetches all user addresses 
+    fetchGallerySaga(), // Saga listens for 'FETCH_GALLERY gets all gallery items 
     fetchPetsSaga(), // Saga listens for 'FETCH_PETS' gets all users pets
-    fetchAddressSaga(), // Fetches all user addresses listens for 'FETCH_ADDRESS'
+    fetchWalkSaga(), // Saga listens for 'FETCH_WALK' gets all users scheduled walks
   ]);
 }

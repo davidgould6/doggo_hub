@@ -34,7 +34,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     const userId = req.user.id;
     console.log('these are our variables', petName, petAge, petSize, image_url, userId);
     const queryText = `INSERT INTO "pet" ("name", "age", "size", "image_url", "user_id", "address_id")
-    VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;`
+    VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;`;
 
     pool.query(queryText, [petName, petAge, petSize, image_url, userId, addressId])
     .then(result => {
