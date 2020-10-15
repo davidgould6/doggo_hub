@@ -31,7 +31,6 @@ class AddPetForm extends Component {
         console.log('in add pet here is our state we are going to send', this.state);
         swal({
             title: "Is the submitted info correct?",
-            // text: "Once deleted, you will not be able to recover this imaginary file!",
             icon: "info",
             buttons: true,
             dangerMode: true,
@@ -58,7 +57,7 @@ class AddPetForm extends Component {
                             size: 'small'
                         });
                         // Brings user back to home page
-                        // this.props.history.push('/home');
+                        this.props.history.push('/home');
                   });
               }
               else {

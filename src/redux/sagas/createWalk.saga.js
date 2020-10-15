@@ -9,10 +9,6 @@ function* createPet(action) {
         url: '/api/pet',
         data: action.payload
     });
-
-    yield put({
-      type: 'FETCH_PETS'
-    });
     console.log('this is response from server', response);
 }
 
