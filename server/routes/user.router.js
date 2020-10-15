@@ -44,7 +44,7 @@ router.post('/register', (req, res, next) => {
   // Creating a query string to enter user information into user table and returning id.
   // First Query for user table.
   const queryText = `INSERT INTO "user" (username, password, first_name, last_name)
-    VALUES ($1, $2, $3, $4) RETURNING id`;
+    VALUES ($1, $2, $3, $4) RETURNING id;`;
   pool.query(queryText, [username, password, firstName, lastName])
   // Then for first query
   .then((result) => {

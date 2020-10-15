@@ -30,14 +30,16 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     const petAge = req.body.age;
     const petSize = req.body.size;
     const image_url = req.body.image_url
+    const addressId = req.body.dogAddress
     const userId = req.user.id;
     console.log('these are our variables', petName, petAge, petSize, image_url, userId);
-    const queryText = `INSERT INTO "pet" ("name", "age", "size", "image_url", "user_id")
-    VALUES ($1, $2, $3, $4, $5);`
+    const queryText = `INSERT INTO "pet" ("name", "age", "size", "image_url", "user_id", "address_id")
+    VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;`
 
-    pool.query(queryText, [petName, petAge, petSize, image_url, userId])
+    pool.query(queryText, [petName, petAge, petSize, image_url, userId, addressId])
     .then(result => {
-        res.sendStatus(201);
+      console.log(result.rows[0].id);
+      res.sendStatus(201);
     })
     .catch(error => {
         console.log('We have an error in pet.router POST', error);

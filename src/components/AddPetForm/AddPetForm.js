@@ -5,12 +5,19 @@ import swal from 'sweetalert';
 import {withRouter} from "react-router-dom";
 
 class AddPetForm extends Component {
+
+  componentDidMount(){
+    // Having this dispatch on page load in case user refreshes page still has access to users address.
+    this.props.dispatch({ type: 'FETCH_ADDRESS' });
+  }
+
   // Created local state to hold data from form locally on page.
   state = {
     petName: '',
     age: '',
     image_url: '',
-    size: 'small'
+    size: 'small',
+    dogAddress: 'selectAddress'
   };
 
   // Function handles change for all three fields in form. 
@@ -46,7 +53,8 @@ class AddPetForm extends Component {
                                 petName: this.state.petName,
                                 age: this.state.age,
                                 image_url: this.state.image_url,
-                                size: this.state.size
+                                size: this.state.size,
+                                dogAddress: this.state.dogAddress
                             }
                         });
                       // Sets state back to default
@@ -68,8 +76,16 @@ class AddPetForm extends Component {
       }      
   }
 
+  // Function handles change for address, needed it's own function to pass id
+  handleInputChangeForDogAddress = (event) => {
+    this.setState({
+      dogAddress: event.target.value
+    });
+  }
+
   render() {
     // console.log('this is our state addpetform', this.state);
+    // console.log('these are our props in addpetform', this.props);
     return (
         <form className="formPanel" onSubmit={this.addPet}>
             <h2>Add a Doggo!</h2>
@@ -127,8 +143,22 @@ class AddPetForm extends Component {
                 <option>Medium</option>
                 <option>Large</option>
             </select>
-
-
+          </label>
+        </div>
+        <div>
+          <label htmlFor="dogAddress">
+            Home Address:
+            <select
+              name="dogAddress"
+              value={this.state.dogAddress}
+              required
+              onChange={(event) => this.handleInputChangeForDogAddress(event)}
+            >
+              <option disabled value="selectAddress"> -- Select Home Address For Doggo -- </option>
+              {this.props.store.addressReducer.map((address, i) => 
+              <option value={address.id} key={i}>{address.street} {address.city}, {address.state} {address.zip}</option>
+              )}
+            </select>
           </label>
         </div>
         <div>
