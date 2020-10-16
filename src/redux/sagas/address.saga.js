@@ -6,7 +6,7 @@ function* fetchAddress() {
     // console.log('in fetchAddress Saga');
     const response = yield axios.get('/api/user/address');
     // console.log('FETCHADDRESS', response);
-    yield put ({ type: 'SET_ADDRESS', payload: response.data});
+    yield put({ type: 'SET_ADDRESS', payload: response.data});
 }
 
 function* addressSaga() {
