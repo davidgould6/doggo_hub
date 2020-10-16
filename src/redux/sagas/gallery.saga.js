@@ -9,8 +9,8 @@ function* fetchGallery() {
     yield put({type: 'SET_GALLERY', payload: response.data});
 }
 
-function* fetchGallerySaga() {
+function* gallerySaga() {
   yield takeLatest('FETCH_GALLERY', fetchGallery);
 }
 
-export default fetchGallerySaga;
+export default gallerySaga;

@@ -9,10 +9,8 @@ function* fetchAddress() {
     yield put ({ type: 'SET_ADDRESS', payload: response.data});
 }
 
-function* fetchAddressSaga() {
+function* addressSaga() {
   yield takeLatest('FETCH_ADDRESS', fetchAddress);
 }
 
-export default fetchAddressSaga;
-
-
+export default addressSaga;
