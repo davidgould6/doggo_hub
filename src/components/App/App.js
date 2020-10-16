@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
-import {
-  HashRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from 'react-router-dom';
-
+import {HashRouter as Router, Route, Redirect, Switch, } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import ScheduleWalkPage from '../ScheduleWalk/ScheduleWalkPage';
-import UserPage from '../UserPage/UserPage';
-import ScheduleGroomingPage from '../ScheduleGroomingPage/ScheduleGroomingPage';
+// Import components
+import AddPetPage from '../AddPetPage/AddPetPage';
+import Footer from '../Footer/Footer';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
+import Nav from '../Nav/Nav';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import AddPetPage from '../AddPetPage/AddPetPage';
+import ScheduleGroomingPage from '../ScheduleGroomingPage/ScheduleGroomingPage';
+import ScheduleWalkPage from '../ScheduleWalk/ScheduleWalkPage';
+import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
+import UserDoggos from '../UserDoggos/UserDoggos';
+import UserPage from '../UserPage/UserPage';
 
+// Import Css
 import './App.css';
 
 class App extends Component {
@@ -99,6 +95,20 @@ class App extends Component {
               exact
               path="/addpet"
               component={AddPetPage}
+            />
+
+            <ProtectedRoute
+              // logged in shows UpcomingEvents else shows LoginPage
+              exact
+              path="/upcomingevents"
+              component={UpcomingEvents}
+            />
+
+            <ProtectedRoute
+              // logged in shows UserDoggos else shows LoginPage
+              exact
+              path="/userdoggos"
+              component={UserDoggos}
             />
 
 
