@@ -5,11 +5,11 @@ const router = express.Router();
 
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
-    SELECT "pet"."id", "pet"."name", "pet"."user_id", "grooming"."time", "grooming"."drop_off_address"
-    FROM "pet"
-    JOIN "grooming"
-    ON "pet"."id" = "grooming"."pet_id"
-    WHERE "pet"."user_id" = $1;`;
+    SELECT "grooming"."id", "grooming"."time", "grooming"."drop_off_address", "pet"."name", "pet"."user_id"
+    FROM "grooming"
+    JOIN "pet"
+    ON "grooming"."pet_id" = "pet"."id"
+    WHERE "pet"."user_id" = 1;`;
   pool.query(queryText, [req.user.id])
   .then(result => {
     res.send(result.rows);

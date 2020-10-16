@@ -5,13 +5,13 @@ const router = express.Router();
 
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
-    SELECT "pet"."id", "pet"."name", "address"."street", "address"."city", "address"."state", "address"."zip", "address"."user_id", "walk"."time"
-    FROM "pet"
+    SELECT "walk"."id", "walk"."time", "address"."street", "address"."city", "address"."state", "address"."zip", "pet"."name", "pet"."user_id"
+    FROM "walk"
     JOIN "address"
-    ON "pet"."address_id" = "address"."id"
-    JOIN "walk"
-    ON "pet"."id" = "walk"."pet_id"
-    WHERE "address"."user_id" = $1;`;
+    ON "walk"."address_id" = "address"."id"
+    JOIN "pet"
+    ON "walk"."pet_id" = "pet"."id"
+    WHERE "pet"."user_id" = $1;`;
   pool.query(queryText, [req.user.id])
   .then(result => {
     res.send(result.rows);
@@ -40,6 +40,19 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     .catch(error => {
         console.log('We have an error in walk.router POST', error);
     });
+});
+
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  console.log('this is req.params', req.params.id);
+  const queryText = `
+    DELETE FROM "walk" WHERE "id" = $1;`;
+  pool.query(queryText, [req.params.id])
+  .then(result =>{
+    res.sendStatus(200);
+  })
+  .catch(error => {
+    console.log('We have an error in /walk DELETE', error);
+  });
 });
 
 module.exports = router;

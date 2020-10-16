@@ -4,6 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import Switch from '@material-ui/core/Switch';
 
 
+
 class UserDoggos extends Component {
   state = {
     checkedA: false,
@@ -20,15 +21,15 @@ class UserDoggos extends Component {
     console.log('this is state', this.state);
     return (
       <div>
-        <h2>User Doggos</h2>
+        <h2>Upcoming Events</h2>
         <Switch 
           checked={this.state.checkedA}
           onChange={this.handleChangeForSwitch}
           name="checkedA"
         />
         {this.state.checkedA === false ?
-          <p>state is false</p> :
-          <p>state is true</p>
+        <p>Doggos</p> :
+        <p>Edit Doggos</p>
       }
       </div>
     );

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
-class DoggosList extends Component {
+class DoggosListUD extends Component {
   componentDidMount(){
     this.props.dispatch({ type: `FETCH_PETS`});
     this.props.dispatch({ type: `FETCH_ADDRESS` });
@@ -10,10 +13,10 @@ class DoggosList extends Component {
   render() {
     return (
       <div>
-        Doggos List
+        Doggos List UD
       </div>
     );
   }
 }
 
-export default connect(mapStoreToProps)(DoggosList);
+export default connect(mapStoreToProps)(DoggosListUD);

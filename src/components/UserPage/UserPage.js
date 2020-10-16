@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import './UserPage.css';
-import DoggosList from '../DoggosList/DoggosList';
+import WalkList from '../WalkList/WalkList';
 
 class UserPage extends Component {
 
   componentDidMount(){
     this.props.dispatch({ type: `FETCH_PETS`});
     this.props.dispatch({ type: `FETCH_ADDRESS` });
-    this.props.dispatch({ type: `FETCH_WALK`});
-    this.props.dispatch({ type: `FETCH_GROOMING`});
+    // this.props.dispatch({ type: `FETCH_WALK`});
+    // this.props.dispatch({ type: `FETCH_GROOMING`});
   }
 
   render() {
@@ -31,15 +31,8 @@ class UserPage extends Component {
                   </div>
                 )}
               </ul>
-              <ul className="upcomingEventUl">
-                Walks
-                {this.props.store.walkReducer.map((walk, i) =>
-                <DoggosList 
-                  key={i}
-                  walk={walk}
-                />
-                )}
-              </ul>
+
+                <WalkList />
 
         </div>
         <div className="userInfo">
