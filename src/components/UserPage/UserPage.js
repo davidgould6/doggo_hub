@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import './UserPage.css';
+import DoggosList from '../DoggosList/DoggosList';
 
 class UserPage extends Component {
 
@@ -33,11 +34,10 @@ class UserPage extends Component {
               <ul className="upcomingEventUl">
                 Walks
                 {this.props.store.walkReducer.map((walk, i) =>
-                  <div className="upcomingEventChild" key={i}>
-                    <li>{walk.name}</li>
-                    <li>{walk.time.split( 'T' )[0]}</li>
-                    <li>{walk.street} {walk.city}, {walk.state} {walk.zip}</li>
-                  </div>
+                <DoggosList 
+                  key={i}
+                  walk={walk}
+                />
                 )}
               </ul>
 
