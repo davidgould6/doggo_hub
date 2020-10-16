@@ -11,7 +11,7 @@ const router = express.Router();
 router.get('/', rejectUnauthenticated, (req, res) => {
   // console.log('this is req.user in pet get', req.user);
   const queryText = `
-  SELECT * FROM "pet" WHERE "user_id" = $1;`;
+  SELECT * FROM "pet" WHERE "user_id" = $1 ORDER BY "id" ASC;`;
   pool.query(queryText, [req.user.id])
   .then(result => {
     res.send(result.rows);
