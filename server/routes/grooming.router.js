@@ -9,7 +9,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     FROM "grooming"
     JOIN "pet"
     ON "grooming"."pet_id" = "pet"."id"
-    WHERE "pet"."user_id" = $1;`;
+    WHERE "pet"."user_id" = $1
+    ORDER BY "grooming"."id" ASC`;
   pool.query(queryText, [req.user.id])
   .then(result => {
     res.send(result.rows);
@@ -48,6 +49,22 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
   })
   .catch(error => {
     console.log('We have an error in /grooming DELETE', error);
+  });
+});
+
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  console.log('this is req.params', req.params.id);
+  console.log('this is req.body', req.body);
+  const id = req.params.id;
+  const date = req.body.date;
+  const queryText = `UPDATE "grooming" SET "time" = $1 WHERE "id" = $2;`;
+  pool.query(queryText, [date, id])
+  .then(result => {
+    res.sendStatus(200);
+  })
+  .catch(error => {
+    console.log('We have an error in /grooming PUT', error);
+    res.sendStatus(500);
   });
 });
 

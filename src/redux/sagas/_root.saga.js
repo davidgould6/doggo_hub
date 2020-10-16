@@ -12,6 +12,7 @@ import fetchGroomingSaga from './fetchGrooming.saga';
 import fetchPetsSaga from './fetchPets.saga';
 import fetchAddressSaga from './fetchAddress.saga';
 import fetchWalkSaga from './fetchWalk.saga';
+import updateGroomingSaga from './updateGrooming.saga';
 import updateWalkSaga from './updateWalk.saga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -35,6 +36,7 @@ export default function* rootSaga() {
     fetchGroomingSaga(), // Saga listens for 'FETCH_GROOMING' gets all users scheduled groomings
     fetchPetsSaga(), // Saga listens for 'FETCH_PETS' gets all users pets
     fetchWalkSaga(), // Saga listens for 'FETCH_WALK' gets all users scheduled walks
+    updateGroomingSaga(), // Saga listens for 'UPDATE_GROOMING' sends put request to grooming saga
     updateWalkSaga(), // Saga listens for 'UPDATE_WALK' sends put request to walk saga
   ]);
 }

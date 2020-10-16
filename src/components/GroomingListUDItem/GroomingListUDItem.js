@@ -10,6 +10,7 @@ class GroomingListUDItem extends Component {
 
   state = {
     isEdit: false,
+    date: this.props.grooming.time.split( 'T' )[0]
   }
 
   delete = (idToDelete) => {
@@ -38,6 +39,39 @@ class GroomingListUDItem extends Component {
     });
   }
 
+  handleInputChangeFor = (propertyName) => (event) => {
+    this.setState({
+      [propertyName]: event.target.value,
+    });
+  }; 
+
+  submitChangeForDate = () => {
+    console.log('in submitchangefordate click function');
+    swal({
+      title: "Is the selected date correct?",
+      icon: "info",
+      buttons: true,
+      dangerMode: true,
+    }).then(isCorrect => {
+      if(isCorrect){
+        let objectToUpdate = {
+          id: this.props.grooming.id,
+          date: this.state.date
+        }
+        this.props.dispatch({type: 'UPDATE_GROOMING', payload: objectToUpdate});
+        this.setState({
+          isEdit: false
+        });
+        swal("Your Doggo's grooming has been updated!", {
+          icon: "success"
+        })
+      }
+      else{
+        swal("Please select the correct date");
+      }
+    });
+  }
+
   render() {
     return (
       <div>
@@ -47,7 +81,24 @@ class GroomingListUDItem extends Component {
           <li>{this.props.grooming.time.split( 'T' )[0]}</li>
           <li>{this.props.grooming.drop_off_address}</li>
         </div> :
-        <p>hello</p>
+        <div className="upcomingEventChild">
+          <li>{this.props.grooming.name}</li>
+          <li>
+            <input 
+              type="date" 
+              name="date" 
+              value={this.state.date}
+              onChange={this.handleInputChangeFor('date')}
+              >
+            </input>
+            <button
+              onClick={this.submitChangeForDate}
+            >
+              Submit Change
+            </button>
+          </li>
+          <li>{this.props.grooming.drop_off_address}</li>
+        </div>
       }
         <div>
         <IconButton 

@@ -11,7 +11,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     ON "walk"."address_id" = "address"."id"
     JOIN "pet"
     ON "walk"."pet_id" = "pet"."id"
-    WHERE "pet"."user_id" = $1;`;
+    WHERE "pet"."user_id" = $1
+    ORDER BY "walk"."id" ASC;`;
   pool.query(queryText, [req.user.id])
   .then(result => {
     res.send(result.rows);
