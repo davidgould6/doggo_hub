@@ -38,7 +38,7 @@ class UpcomingEvents extends Component {
         {this.state.checkedA === false ?
           <WalkList /> :
           <WalkListUD />
-      }
+        }
       </div>
     );
   }

@@ -9,7 +9,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     FROM "grooming"
     JOIN "pet"
     ON "grooming"."pet_id" = "pet"."id"
-    WHERE "pet"."user_id" = 1;`;
+    WHERE "pet"."user_id" = $1;`;
   pool.query(queryText, [req.user.id])
   .then(result => {
     res.send(result.rows);

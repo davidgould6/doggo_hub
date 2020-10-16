@@ -115,7 +115,8 @@ class ScheduleWalkPage extends Component {
           <input 
             type="date" 
             name="date" 
-            required onChange={this.handleInputChangeFor('date')}
+            required 
+            onChange={this.handleInputChangeFor('date')}
           />
         </div>
         <div>

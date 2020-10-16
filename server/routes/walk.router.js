@@ -43,7 +43,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
-  console.log('this is req.params', req.params.id);
+  // console.log('this is req.params', req.params.id);
   const queryText = `
     DELETE FROM "walk" WHERE "id" = $1;`;
   pool.query(queryText, [req.params.id])
@@ -52,6 +52,22 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
   })
   .catch(error => {
     console.log('We have an error in /walk DELETE', error);
+  });
+});
+
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  console.log('this is req.params', req.params.id);
+  console.log('this is req.body', req.body);
+  const id = req.params.id;
+  const date = req.body.date;
+  const queryText =`UPDATE "walk" SET "time" = $1 WHERE "id" = $2;`
+  pool.query(queryText, [date, id])
+  .then(results =>{
+    res.sendStatus(200);
+  })
+  .catch(error => {
+    console.log('We have an error in /walk put', error);
+    res.sendStatus(500);
   });
 });
 

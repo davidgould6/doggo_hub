@@ -43,20 +43,22 @@ class AddPetForm extends Component {
             dangerMode: true,
           }).then(isCorrect => {
               if(isCorrect){
+                this.props.dispatch({
+                  type: 'CREATE_PET',
+                  payload: {
+                      petName: this.state.petName,
+                      age: this.state.age,
+                      image_url: this.state.image_url,
+                      size: this.state.size,
+                      dogAddress: this.state.dogAddress
+                  }
+                });
                   // Alerts user that their doggo has been added.
-                  swal("Your Doggo has been added!", {
-                      icon: "success"
+                  swal({
+                    title: "Your Doggo has been added!",
+                    text: "Now taking you back to your hub.",
+                    icon: "success"
                   }).then(() => {
-                        this.props.dispatch({
-                            type: 'CREATE_PET',
-                            payload: {
-                                petName: this.state.petName,
-                                age: this.state.age,
-                                image_url: this.state.image_url,
-                                size: this.state.size,
-                                dogAddress: this.state.dogAddress
-                            }
-                        });
                       // Sets state back to default
                         this.setState({
                             petName: '',
