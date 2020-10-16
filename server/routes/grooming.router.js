@@ -21,7 +21,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   });
 });
 
-
 router.post('/', rejectUnauthenticated, (req, res) => {
     // console.log('This is our req.body in walk.router POST', req.body);
     const date = req.body.date;

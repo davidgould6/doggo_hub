@@ -1,10 +1,6 @@
 const express = require('express');
-const {
-  rejectUnauthenticated,
-} = require('../modules/authentication-middleware');
-const encryptLib = require('../modules/encryption');
+const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
-const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
@@ -21,7 +17,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     res.sendStatus(500);
   });
 });
-
 
 router.post('/', rejectUnauthenticated, (req, res) => {
     // console.log('This is our req.body in pet.router POST', req.body);
