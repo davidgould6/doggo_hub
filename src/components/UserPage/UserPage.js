@@ -4,11 +4,14 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import './UserPage.css';
 
 class UserPage extends Component {
+
   componentDidMount(){
     this.props.dispatch({ type: `FETCH_PETS`});
     this.props.dispatch({ type: `FETCH_ADDRESS` });
     this.props.dispatch({ type: `FETCH_WALK`});
+    this.props.dispatch({ type: `FETCH_GROOMING`});
   }
+
   render() {
     console.log('in userpage these are our props', this.props);
     return (
@@ -18,14 +21,26 @@ class UserPage extends Component {
         <div className="userInfo"> 
           <h3>Upcoming Events</h3>
               <ul className="upcomingEventUl">
-              {this.props.store.walkReducer.map((walk, i) =>
-                <div className="upcomingEventChild" key={i}>
-                  <li>{walk.name}</li>
-                  <li>{walk.time.split( 'T' )[0]}</li>
-                  <li>{walk.street} {walk.city}, {walk.state} {walk.zip}</li>
-                </div>
-              )}
+                Groomings
+                {this.props.store.groomingReducer.map((grooming, i) =>
+                  <div className="upcomingEventChild" key={i}>
+                    <li>{grooming.name}</li>
+                    <li>{grooming.time.split( 'T' )[0]}</li>
+                    <li>{grooming.drop_off_address}</li>
+                  </div>
+                )}
               </ul>
+              <ul className="upcomingEventUl">
+                Walks
+                {this.props.store.walkReducer.map((walk, i) =>
+                  <div className="upcomingEventChild" key={i}>
+                    <li>{walk.name}</li>
+                    <li>{walk.time.split( 'T' )[0]}</li>
+                    <li>{walk.street} {walk.city}, {walk.state} {walk.zip}</li>
+                  </div>
+                )}
+              </ul>
+
         </div>
         <div className="userInfo">
           <h3>Your Doggos</h3>

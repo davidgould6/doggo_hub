@@ -6,7 +6,7 @@ function* createGrooming(action) {
     // console.log('in createGrooming, this is our payload', action.payload);
     yield axios.post('/api/grooming', action.payload);
 
-    // yield put({type: 'FETCH_PETS'});
+    yield put({type: 'FETCH_GROOMING'});
 }
 
 function* createGroomingSaga() {

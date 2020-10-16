@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import swal from 'sweetalert';
+import {withRouter} from 'react-router-dom'
 
 
 class ScheduleGroomingPage extends Component {
@@ -62,6 +63,14 @@ class ScheduleGroomingPage extends Component {
                   date: this.state.date
                 }
               });
+
+              this.setState({
+                dogToGroom: 'selectDog',
+                date: '',
+                address: 'selectAddress'
+              });
+              
+              setTimeout(() => { this.props.history.push('/'); }, 250);
             });
           }
           else{
@@ -119,4 +128,4 @@ class ScheduleGroomingPage extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(ScheduleGroomingPage);
+export default connect(mapStoreToProps)(withRouter(ScheduleGroomingPage));

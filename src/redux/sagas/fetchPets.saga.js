@@ -6,7 +6,7 @@ function* fetchPets() {
     // console.log('in fetchPets Saga');
     const response = yield axios.get('/api/pet');
     // console.log('this is response from server', response);
-    yield put({type: 'SET_PETS',payload: response.data});
+    yield put({type: 'SET_PETS', payload: response.data});
 }
 
 function* fetchPetsSaga() {

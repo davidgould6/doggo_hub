@@ -6,6 +6,7 @@ import createGroomingSaga from './createGrooming.saga';
 import createPetSaga from './createpet.saga';
 import createWalkSaga from './createWalk.saga';
 import fetchGallerySaga from './fetchGallery.saga';
+import fetchGroomingSaga from './fetchGrooming.saga';
 import fetchPetsSaga from './fetchPets.saga';
 import fetchAddressSaga from './fetchAddress.saga';
 import fetchWalkSaga from './fetchWalk.saga';
@@ -25,7 +26,8 @@ export default function* rootSaga() {
     createPetSaga(), // Saga listens for 'CREATE_PET' sends post to pet router
     createWalkSaga(), // Saga listens for 'CREATE_WALK' sends post to walk router
     fetchAddressSaga(), // Saga listens for 'FETCH_ADDRESS' fetches all user addresses 
-    fetchGallerySaga(), // Saga listens for 'FETCH_GALLERY gets all gallery items 
+    fetchGallerySaga(), // Saga listens for 'FETCH_GALLERY' gets all gallery items 
+    fetchGroomingSaga(), // Saga listens for 'FETCH_GROOMING' gets all users scheduled groomings
     fetchPetsSaga(), // Saga listens for 'FETCH_PETS' gets all users pets
     fetchWalkSaga(), // Saga listens for 'FETCH_WALK' gets all users scheduled walks
   ]);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import swal from 'sweetalert';
+import {withRouter} from 'react-router-dom'
 
 class ScheduleWalkPage extends Component {
 
@@ -77,6 +78,8 @@ class ScheduleWalkPage extends Component {
               date: '',
               address: 'selectAddress'
             });
+
+            setTimeout(() => { this.props.history.push('/'); }, 250);
           });
         }
         else{
@@ -136,4 +139,4 @@ class ScheduleWalkPage extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(ScheduleWalkPage);
+export default connect(mapStoreToProps)(withRouter(ScheduleWalkPage));
