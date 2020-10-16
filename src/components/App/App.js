@@ -20,9 +20,10 @@ import UserPage from '../UserPage/UserPage';
 import './App.css';
 
 class App extends Component {
+
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_USER' });
     this.props.dispatch({ type: 'FETCH_GALLERY' });
+    this.props.dispatch({ type: 'FETCH_USER' });
   }
 
   render() {
@@ -71,6 +72,7 @@ class App extends Component {
               component={LoginPage}
               authRedirect="/user"
             />
+
             <ProtectedRoute
               // with authRedirect:
               // - if logged in, redirects to "/user"
@@ -80,6 +82,7 @@ class App extends Component {
               component={RegisterPage}
               authRedirect="/user"
             />
+
             <ProtectedRoute
               // with authRedirect:
               // - if logged in, redirects to "/user"
@@ -110,7 +113,6 @@ class App extends Component {
               path="/userdoggos"
               component={UserDoggos}
             />
-
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

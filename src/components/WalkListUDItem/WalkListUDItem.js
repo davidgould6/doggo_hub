@@ -8,11 +8,13 @@ import swal from 'sweetalert';
 
 class WalkListUDItem extends Component {
 
+  // Local state to hold date prior to dispatch if disired change, also holds boolean for toggle feature.
   state = {
     isEdit: false,
     date: this.props.walk.time.split( 'T' )[0]
-  }
+  };
 
+  // Function sends dispatch for delete to grooming saga with confirmations.
   delete = (idToDelete) => {
     swal({
       title: "Are you sure?",
@@ -31,22 +33,25 @@ class WalkListUDItem extends Component {
         swal("Your walk is still scheduled!");
       }
     });
-  } 
+  };
 
+  // Function sets state of isEdit to opposite of current state on click of the Switch component
   editOnClick = () =>{
     this.setState({
       isEdit: !this.state.isEdit
     });
-  }
+  };
 
+  // Function handles changes of state for the date and potentially for any additional fields in the future.
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
     });
   }; 
 
+  // Function sends dispatch to walk saga for update/put with confirmations and sets isEdit state back to false
   submitChangeForDate = () => {
-    console.log('in submitchangefordate click function');
+    // console.log('in submitchangefordate click function');
     swal({
       title: "Is the selected date correct?",
       icon: "info",
@@ -70,7 +75,7 @@ class WalkListUDItem extends Component {
         swal("Please select the correct date");
       }
     });
-  }
+  };
 
   render() {
     return (

@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Switch from '@material-ui/core/Switch';
 
-
-
 class UserDoggos extends Component {
+
   state = {
     checkedA: false,
   };

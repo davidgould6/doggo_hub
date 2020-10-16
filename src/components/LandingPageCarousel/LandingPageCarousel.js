@@ -5,8 +5,9 @@ import Carousel from 'react-material-ui-carousel'
 import './LandingPageCarousel.css';
 class LandingPageCarousel extends Component {
 
+  // Component uses a carousel to carousel through a gallery of photos.
+
   render() {
-    console.log('this is our props in landing carousel .js', this.props);
     return (
       <div>
         <Carousel>

@@ -5,12 +5,9 @@ import LandingPageCarousel from '../LandingPageCarousel/LandingPageCarousel';
 import './LandingPage.css';
 
 class LandingPage extends Component {
+
   state = {
     heading: 'About Doggo Hub',
-  };
-
-  onLogin = (event) => {
-    this.props.history.push('/login');
   };
 
   render() {

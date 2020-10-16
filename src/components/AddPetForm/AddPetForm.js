@@ -9,7 +9,7 @@ class AddPetForm extends Component {
   componentDidMount(){
     // Having this dispatch on page load in case user refreshes page still has access to users address.
     this.props.dispatch({ type: 'FETCH_ADDRESS' });
-  }
+  };
 
   // Created local state to hold data from form locally on page.
   state = {
@@ -27,6 +27,7 @@ class AddPetForm extends Component {
     });
   };
 
+  // Function adds a pet, goes through multiple conditionals for confirmations for the user
   addPet = (event) => {
       event.preventDefault();
       // Alerts user if dog is < 0... ie -1, -2, -3, etc...
@@ -43,6 +44,7 @@ class AddPetForm extends Component {
             dangerMode: true,
           }).then(isCorrect => {
               if(isCorrect){
+                // if ok/yes/confirm/iscorrect runs this code block, sends dispatch to create pet.
                 this.props.dispatch({
                   type: 'CREATE_PET',
                   payload: {
@@ -76,14 +78,14 @@ class AddPetForm extends Component {
               }
           });
       }      
-  }
+  };
 
   // Function handles change for address, needed it's own function to pass id
   handleInputChangeForDogAddress = (event) => {
     this.setState({
       dogAddress: event.target.value
     });
-  }
+  };
 
   render() {
     // console.log('this is our state addpetform', this.state);

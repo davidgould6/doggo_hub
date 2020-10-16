@@ -7,15 +7,15 @@ import {withRouter} from 'react-router-dom'
 class ScheduleWalkPage extends Component {
 
   componentDidMount(){
-    this.props.dispatch({ type: `FETCH_PETS`});
     this.props.dispatch({ type: 'FETCH_ADDRESS' });
-  }
+    this.props.dispatch({ type: `FETCH_PETS`});
+  };
 
   state = {
     dogToWalk: 'selectDog',
     date: '',
     address:'selectAddress',
-  }
+  };
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
@@ -28,14 +28,14 @@ class ScheduleWalkPage extends Component {
     this.setState({
       dogToWalk: event.target.value
     });
-  }
+  };
   
   // Function handles change for address, needed it's own function to pass id
   handleInputChangeForAddress = (event) => {
     this.setState({
       address: event.target.value
     });
-  }
+  };
 
   scheduleWalk = () => {
     // if user does not change value of select alert will prompt
@@ -88,11 +88,9 @@ class ScheduleWalkPage extends Component {
         }
       });
     }
-  }
+  };
 
   render() {
-    console.log('in schedulewalkpage.js', this.props);
-    // console.log(this.state);
     return (
       <div>
         <h1>Schedule a walk !</h1>

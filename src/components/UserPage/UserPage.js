@@ -8,9 +8,9 @@ import GroomingList from'../GroomingList/GroomingList';
 class UserPage extends Component {
 
   componentDidMount(){
-    this.props.dispatch({ type: `FETCH_PETS`});
     this.props.dispatch({ type: `FETCH_ADDRESS` });
-  }
+    this.props.dispatch({ type: `FETCH_PETS`});
+  };
 
   render() {
     console.log('in userpage these are our props', this.props);

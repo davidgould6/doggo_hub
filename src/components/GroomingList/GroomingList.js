@@ -5,10 +5,10 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 class GroomingList extends Component {
 
   componentDidMount(){
-    this.props.dispatch({ type: `FETCH_PETS`});
     this.props.dispatch({ type: `FETCH_ADDRESS` });
     this.props.dispatch({ type: `FETCH_GROOMING`});
-  }
+    this.props.dispatch({ type: `FETCH_PETS`});
+  };
 
   render() {
     return (

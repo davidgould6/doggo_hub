@@ -10,12 +10,14 @@ import WalkListUD from '../WalkListUD/WalkListUD';
 
 
 class UpcomingEvents extends Component {
+
   componentDidMount(){
     this.props.dispatch({ type: `FETCH_PETS`});
     this.props.dispatch({ type: `FETCH_ADDRESS` });
     this.props.dispatch({ type: `FETCH_WALK`});
     this.props.dispatch({ type: `FETCH_GROOMING`});
-  }
+  };
+
   state = {
     checkedA: false,
   };
@@ -25,10 +27,9 @@ class UpcomingEvents extends Component {
       ...this.state,
       [event.target.name]: event.target.checked
     });
-  }
+  };
 
   render() {
-    console.log('this is state', this.state);
     return (
       <div>
         <h2>Upcoming Events</h2>

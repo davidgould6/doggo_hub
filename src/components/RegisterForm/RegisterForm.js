@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 import swal from 'sweetalert';
 
 class RegisterForm extends Component {
+
   state = {
     username: '',
     password: '',
@@ -52,8 +53,6 @@ class RegisterForm extends Component {
   };
 
   render() {
-    // console.log(this.state);
-    // console.log('these are our props', this.props);
     return (
       <form className="formPanel" onSubmit={this.registerUser}>
         <h2>Register User</h2>

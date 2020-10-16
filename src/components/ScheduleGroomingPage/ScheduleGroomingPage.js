@@ -10,7 +10,7 @@ class ScheduleGroomingPage extends Component {
   componentDidMount(){
     this.props.dispatch({ type: `FETCH_PETS`});
     this.props.dispatch({ type: 'FETCH_ADDRESS' });
-  }
+  };
 
   state = {
     dogToGroom: 'selectDog',
@@ -29,7 +29,7 @@ class ScheduleGroomingPage extends Component {
     this.setState({
       dogToGroom: event.target.value
     });
-  }
+  };
 
   scheduleGrooming = () => {
       // if user does not change value of select alert will prompt
@@ -79,10 +79,9 @@ class ScheduleGroomingPage extends Component {
           }
         });
       }
-  }
+  };
 
   render() {
-    console.log('this is state', this.state);
     return (
       <div>
         <h1>Schedule Grooming!</h1>
