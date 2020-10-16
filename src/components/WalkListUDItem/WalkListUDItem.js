@@ -7,12 +7,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import swal from 'sweetalert';
 
 class WalkListUDItem extends Component {
-  componentDidMount(){
-    this.props.dispatch({ type: `FETCH_PETS`});
-    this.props.dispatch({ type: `FETCH_ADDRESS` });
-    this.props.dispatch({ type: `FETCH_WALK`});
-    this.props.dispatch({ type: `FETCH_GROOMING`});
-  }
 
   state = {
     isEdit: false,

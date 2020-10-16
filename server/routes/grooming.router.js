@@ -22,7 +22,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 
 router.post('/', rejectUnauthenticated, (req, res) => {
-    console.log('This is our req.body in walk.router POST', req.body);
+    // console.log('This is our req.body in walk.router POST', req.body);
     const date = req.body.date;
     const petToGroomId = req.body.dogToGroom;
     console.log('these are our variables', petToGroomId, date);
@@ -36,6 +36,19 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     .catch(error => {
         console.log('We have an error in walk.router POST', error);
     });
+});
+
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  console.log('this is our req.params', req.params.id);
+  const queryText = `
+  DELETE FROM "grooming" WHERE "id" = $1;`;
+  pool.query(queryText, [req.params.id])
+  .then(result => {
+    res.sendStatus(200);
+  })
+  .catch(error => {
+    console.log('We have an error in /grooming DELETE', error);
+  });
 });
 
 module.exports = router;

@@ -5,6 +5,7 @@ import userSaga from './user.saga';
 import createGroomingSaga from './createGrooming.saga';
 import createPetSaga from './createpet.saga';
 import createWalkSaga from './createWalk.saga';
+import deleteGroomingSaga from './deleteGrooming.saga';
 import deleteWalkSaga from './deleteWalk.saga';
 import fetchGallerySaga from './fetchGallery.saga';
 import fetchGroomingSaga from './fetchGrooming.saga';
@@ -27,6 +28,7 @@ export default function* rootSaga() {
     createGroomingSaga(), // Saga listens for 'CREATE_GROOMING' sends post to grooming router
     createPetSaga(), // Saga listens for 'CREATE_PET' sends post to pet router
     createWalkSaga(), // Saga listens for 'CREATE_WALK' sends post to walk router
+    deleteGroomingSaga(), // Saga listens for 'DELETE_WALK' sends delete request to grooming router
     deleteWalkSaga(), // Saga listens for 'DELETE_WALK' sends delete request to walk router
     fetchAddressSaga(), // Saga listens for 'FETCH_ADDRESS' fetches all user addresses 
     fetchGallerySaga(), // Saga listens for 'FETCH_GALLERY' gets all gallery items 

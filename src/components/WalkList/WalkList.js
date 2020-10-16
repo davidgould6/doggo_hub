@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class WalkList extends Component {
+
   componentDidMount(){
     this.props.dispatch({ type: `FETCH_PETS`});
     this.props.dispatch({ type: `FETCH_ADDRESS` });
     this.props.dispatch({ type: `FETCH_WALK`});
-    this.props.dispatch({ type: `FETCH_GROOMING`});
   }
+  
   render() {
     return (
       <div>

@@ -3,14 +3,13 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import './UserPage.css';
 import WalkList from '../WalkList/WalkList';
+import GroomingList from'../GroomingList/GroomingList';
 
 class UserPage extends Component {
 
   componentDidMount(){
     this.props.dispatch({ type: `FETCH_PETS`});
     this.props.dispatch({ type: `FETCH_ADDRESS` });
-    // this.props.dispatch({ type: `FETCH_WALK`});
-    // this.props.dispatch({ type: `FETCH_GROOMING`});
   }
 
   render() {
@@ -21,19 +20,8 @@ class UserPage extends Component {
         <p>Your ID is: {this.props.store.user.id}</p>
         <div className="userInfo"> 
           <h3>Upcoming Events</h3>
-              <ul className="upcomingEventUl">
-                Groomings
-                {this.props.store.groomingReducer.map((grooming, i) =>
-                  <div className="upcomingEventChild" key={i}>
-                    <li>{grooming.name}</li>
-                    <li>{grooming.time.split( 'T' )[0]}</li>
-                    <li>{grooming.drop_off_address}</li>
-                  </div>
-                )}
-              </ul>
-
-                <WalkList />
-
+          <GroomingList />
+          <WalkList />
         </div>
         <div className="userInfo">
           <h3>Your Doggos</h3>

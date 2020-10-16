@@ -20,7 +20,6 @@ class RegisterForm extends Component {
     event.preventDefault();
     swal({
       title: "Is the submitted info correct?",
-      // text: "Once deleted, you will not be able to recover this imaginary file!",
       icon: "info",
       buttons: true,
       dangerMode: true,
