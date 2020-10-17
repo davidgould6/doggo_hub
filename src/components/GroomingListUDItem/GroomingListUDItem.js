@@ -74,7 +74,7 @@ class GroomingListUDItem extends Component {
       }
       else{
         swal("Please select the correct date");
-      }
+      };
     });
   };
 

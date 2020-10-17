@@ -12,8 +12,7 @@ function* createWalk(action) {
 // deleteWalk function will send delete request to pet router.
 function* deleteWalk(action) {
   // console.log('in deleteWalk, this is our payload', action.payload);
-  let response = yield axios.delete(`/api/walk/${action.payload}`);
-  // console.log('this is response from server', response);
+  yield axios.delete(`/api/walk/${action.payload}`);
   yield put({type: 'FETCH_WALK'});
 }
 

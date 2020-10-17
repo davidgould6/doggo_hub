@@ -10,9 +10,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
+import SaveIcon from '@material-ui/icons/Save';
 import swal from 'sweetalert';
 
-import DoggosList from '../DoggosList/DoggosList';
 
 class DoggosListUDItem extends Component {
 
@@ -24,6 +25,27 @@ class DoggosListUDItem extends Component {
     size: this.props.pet.size
   };
 
+  // Function sends dispatch for delete to grooming saga with confirmations.
+  delete = (idToDelete) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, your doggo will be removed!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Your doggo has been successfully removed", {
+          icon: "success",
+        });
+        this.props.dispatch({type: 'DELETE_PET', payload: idToDelete});
+      } else {
+        swal("Your doggo is safe!");
+      }
+    });
+  };
+
   // Function sets state of isEdit to opposite of current state on click of the Switch component
   editOnClick = () =>{
     this.setState({
@@ -31,14 +53,47 @@ class DoggosListUDItem extends Component {
     });
   };
 
+  // Function handles input changes for editing name, age, && size.
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
     });
   }; 
 
+  // Function sends dispatch to pet router to update in the database with confirmations.
+  submitChangeForPet = () => {
+    swal({
+      text: "Is the information you'd like to update correct?",
+      buttons: {
+        cancel: "No",
+        yes: true,
+      }
+    }).then(isCorrect => {
+      if(isCorrect){
+        // creating an object to send as payload in dispatch
+        const objectToChange = {
+          petName: this.state.petName,
+          age: this.state.age,
+          size: this.state.size,
+          id: this.props.pet.id
+        }
+        // Sends dispatch to pet router for put request to server
+        this.props.dispatch({
+          type: 'UPDATE_PET',
+          payload: objectToChange
+        });
+        // Setting state to false upon complete of change to show change
+        this.setState({
+          isEdit: false
+        });
+      }
+      else{
+        swal("Please update to the correct information.");
+      };
+    });
+  };
+
   render() {
-    console.log('this is our current state', this.state);
     return (
       <div>
         {this.state.isEdit === false ?
@@ -51,7 +106,7 @@ class DoggosListUDItem extends Component {
               <li>Size: {this.props.pet.size}</li>
             </ul>
           </div>
-        </div> :
+        </div>:
         <div className="doggoList">
           <img className="userPetImage" src={this.props.pet.image_url} />
           <div className="imageBullets">
@@ -71,6 +126,14 @@ class DoggosListUDItem extends Component {
                   <FormHelperText>
                       Please Select a size
                   </FormHelperText>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    startIcon={<SaveIcon />}
+                    onClick={this.submitChangeForPet}
+                  >
+                    Save
+                  </Button>
                 </FormControl>
               </li>
             </ul>
@@ -86,7 +149,7 @@ class DoggosListUDItem extends Component {
         </IconButton>
         <IconButton 
           aria-label="delete"
-          onClick={() => this.delete(this.props.doggo.id)}
+          onClick={() => this.delete(this.props.pet.id)}
         >
             <DeleteIcon />
         </IconButton>

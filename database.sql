@@ -12,7 +12,7 @@ CREATE TABLE "address" (
 "city" VARCHAR (80) NOT NULL,
 "state" VARCHAR (2) NOT NULL,
 "zip" INT NOT NULL,
-"user_id" INT REFERENCES "user"
+"user_id" INT
 );
 
 CREATE TABLE "pet" (
@@ -21,20 +21,20 @@ CREATE TABLE "pet" (
 "age" INT NOT NULL,
 "size" VARCHAR (30) NOT NULL,
 "image_url" VARCHAR (500),
-"user_id" INT REFERENCES "user",
-"address_id" INT REFERENCES "address"
+"user_id" INT,
+"address_id" INT
 );
 
 CREATE TABLE "walk" (
 "id" SERIAL PRIMARY KEY,
 "time" DATE NOT NULL,
-"pet_id" INT REFERENCES "pet",
-"address_id" INT REFERENCES "address"
+"pet_id" INT,
+"address_id" INT
 );
 
 CREATE TABLE "grooming" (
 "id" SERIAL PRIMARY KEY,
 "time" DATE NOT NULL,
-"pet_id" INT REFERENCES "pet",
+"pet_id" INT,
 "drop_off_address" VARCHAR (300) DEFAULT '101 Doggo ln Blaine, MN 55449'
 );
