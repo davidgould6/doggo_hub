@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Switch from '@material-ui/core/Switch';
 import DoggoList from '../DoggosList/DoggosList';
+import DoggoListUD from '../DoggosListUD/DoggosListUD';
 
 class UserDoggos extends Component {
 
@@ -21,7 +22,7 @@ class UserDoggos extends Component {
     console.log('this is state', this.state);
     return (
       <div>
-        <h2>Upcoming Events</h2>
+        <h2>Your Doggos</h2>
         <Switch 
           checked={this.state.checkedA}
           onChange={this.handleChangeForSwitch}
@@ -29,7 +30,7 @@ class UserDoggos extends Component {
         />
         {this.state.checkedA === false ?
         <DoggoList /> :
-        <p>Edit Doggos</p>
+        <DoggoListUD />
       }
       </div>
     );

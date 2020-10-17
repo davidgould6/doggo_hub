@@ -49,8 +49,10 @@ class ScheduleGroomingPage extends Component {
         swal({
           title: "Is the submitted info correct?",
           icon: "info",
-          buttons: true,
-          dangerMode: true,
+          buttons: {
+            cancel: "No",
+            yes: true,
+          }
         }).then(isCorrect => {
           if(isCorrect){
             swal("Your Doggo's grooming has been scheduled!", {

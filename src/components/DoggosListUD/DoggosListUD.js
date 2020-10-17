@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import EditIcon from '@material-ui/icons/Edit';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
+import DoggosListUDItem from '../DoggosListUDItem/DoggosListUDItem';
 
 class DoggosListUD extends Component {
 
@@ -15,7 +13,14 @@ class DoggosListUD extends Component {
   render() {
     return (
       <div>
-        Doggos List UD
+        <ul>
+          {this.props.store.petReducer.map((pet, i) =>
+          <DoggosListUDItem 
+            key={i}
+            pet={pet}
+          />
+          )}
+        </ul>
       </div>
     );
   }

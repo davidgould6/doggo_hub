@@ -53,10 +53,11 @@ class GroomingListUDItem extends Component {
   submitChangeForDate = () => {
     // console.log('in submitchangefordate click function');
     swal({
-      title: "Is the selected date correct?",
-      icon: "info",
-      buttons: true,
-      dangerMode: true,
+      text: "Is the selected date correct?",
+      buttons: {
+        cancel: "No",
+        yes: true,
+      }
     }).then(isCorrect => {
       if(isCorrect){
         let objectToUpdate = {
@@ -104,7 +105,7 @@ class GroomingListUDItem extends Component {
           </li>
           <li>{this.props.grooming.drop_off_address}</li>
         </div>
-      }
+        }
         <div>
         <IconButton 
           aria-label="edit"

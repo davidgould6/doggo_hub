@@ -55,9 +55,11 @@ class ScheduleWalkPage extends Component {
     // Will ask user if info is correct if isCorrect will run code block if not will trigger else statement
       swal({
         title: "Is the submitted info correct?",
-        icon: "info",
-        buttons: true,
-        dangerMode: true,
+          icon: "info",
+          buttons: {
+            cancel: "No",
+            yes: true,
+          }
       }).then(isCorrect => {
         if(isCorrect){
           // prompts user that walk has been scheduled upon success will dispatch local state info
