@@ -19,7 +19,7 @@ class UpcomingEvents extends Component {
   };
 
   state = {
-    checkedA: false,
+    // checkedA: false,
   };
 
   handleChangeForSwitch = (event) => {

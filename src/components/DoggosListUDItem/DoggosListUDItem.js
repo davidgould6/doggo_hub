@@ -12,6 +12,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
+import Tooltip from '@material-ui/core/Tooltip';
 import swal from 'sweetalert';
 
 
@@ -86,6 +87,9 @@ class DoggosListUDItem extends Component {
         this.setState({
           isEdit: false
         });
+        swal("Your Doggo's information has been updated!", {
+          icon: "success"
+        });
       }
       else{
         swal("Please update to the correct information.");
@@ -95,7 +99,7 @@ class DoggosListUDItem extends Component {
 
   render() {
     return (
-      <div>
+      <div className="outsideDivLists">
         {this.state.isEdit === false ?
         <div className="doggoList">
           <img className="userPetImage" src={this.props.pet.image_url} />
@@ -140,19 +144,23 @@ class DoggosListUDItem extends Component {
           </div>
         </div>
         }
-        <div>
-        <IconButton 
-          aria-label="edit"
-          onClick={this.editOnClick}
+        <div className="editDeleteTools">
+        <Tooltip title="Edit" placement="left">
+          <IconButton 
+            aria-label="edit"
+            onClick={this.editOnClick}
+            >
+            <EditIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Delete" placement="right">
+          <IconButton 
+            aria-label="delete"
+            onClick={() => this.delete(this.props.pet.id)}
           >
-          <EditIcon />
-        </IconButton>
-        <IconButton 
-          aria-label="delete"
-          onClick={() => this.delete(this.props.pet.id)}
-        >
-            <DeleteIcon />
-        </IconButton>
+              <DeleteIcon />
+          </IconButton>
+        </Tooltip>
         </div>
       </div>
     );

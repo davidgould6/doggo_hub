@@ -12,14 +12,14 @@ class WalkList extends Component {
   
   render() {
     return (
-      <div>
+      <div className="outsideDivLists">
           <ul className="upcomingEventUl">
             Walks
             {this.props.store.walkReducer.map((walk, i) =>
             <div className="upcomingEventChild" key={i}>
-              <li>{walk.name}</li>
+              <li className="topListItem">{walk.name}</li>
               <li>{walk.time.split( 'T' )[0]}</li>
-              <li>{walk.street} {walk.city}, {walk.state} {walk.zip}</li>
+              <li className="bottomListItem">{walk.street} {walk.city}, {walk.state} {walk.zip}</li>
             </div>
             )}
           </ul>

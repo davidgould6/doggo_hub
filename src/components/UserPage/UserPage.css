@@ -15,7 +15,6 @@
 .upcomingEventChild {
   border-style: solid;
   border-color: rebeccapurple;
-  margin-right: 15px;
   margin-bottom: 10px;
 }
 .upcomingEventUl {
@@ -30,4 +29,20 @@
 }
 .mainUserList {
   list-style-type: none;
+}
+.outsideDivLists {
+  margin-left: 25px;
+}
+.editDeleteTools {
+  display: inline-block;
+}
+li {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.topListItem {
+  padding-top: 10px;
+}
+.bottomListItem {
+  padding-bottom: 10px;
 }

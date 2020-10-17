@@ -4,6 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Tooltip from '@material-ui/core/Tooltip';
 import swal from 'sweetalert';
 
 class WalkListUDItem extends Component {
@@ -70,7 +71,7 @@ class WalkListUDItem extends Component {
         });
         swal("Your Doggo's walk has been updated!", {
           icon: "success"
-        })
+        });
       }
       else{
         swal("Please select the correct date");
@@ -80,7 +81,7 @@ class WalkListUDItem extends Component {
 
   render() {
     return (
-      <div>
+      <div className="outsideDivLists">
         {this.state.isEdit === false ? 
         <div className="upcomingEventChild">
           <li>{this.props.walk.name}</li>
@@ -107,19 +108,23 @@ class WalkListUDItem extends Component {
       </div>  
       }
 
-        <div>
-        <IconButton 
-          aria-label="edit"
-          onClick={this.editOnClick}
+        <div className="editDeleteTools">
+        <Tooltip title="Edit" placement="left">
+          <IconButton 
+            aria-label="edit"
+            onClick={this.editOnClick}
+            >
+            <EditIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Delete" placement="right">
+          <IconButton 
+            aria-label="delete"
+            onClick={() => this.delete(this.props.walk.id)}
           >
-          <EditIcon />
-        </IconButton>
-        <IconButton 
-          aria-label="delete"
-          onClick={() => this.delete(this.props.walk.id)}
-        >
-            <DeleteIcon />
-        </IconButton>
+              <DeleteIcon />
+          </IconButton>
+        </Tooltip>
         </div>
       </div>
     );

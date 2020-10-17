@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import {withRouter} from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
 import swal from 'sweetalert';
 import './UserPage.css';
 import DoggoList from '../DoggosList/DoggosList';
@@ -51,12 +52,13 @@ class UserPage extends Component {
     return (
       <div className="userContainer">
         <h1 id="welcome">Welcome to your hub {this.props.store.user.first_name} {this.props.store.user.last_name}!</h1>
-        <p>Your ID is: {this.props.store.user.id}</p>
         <div 
           className="userInfo"
           onClick={this.goToUpcomingEvents}
         > 
-          <h3>Upcoming Events</h3>
+          <Typography variant="h5" gutterBottom>
+            Upcoming Events
+          </Typography>
           <GroomingList />
           <WalkList />
         </div>

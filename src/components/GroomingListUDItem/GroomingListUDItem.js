@@ -4,6 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Tooltip from '@material-ui/core/Tooltip';
 import swal from 'sweetalert';
 
 class GroomingListUDItem extends Component {
@@ -80,7 +81,7 @@ class GroomingListUDItem extends Component {
 
   render() {
     return (
-      <div>
+      <div className="outsideDivLists">
         {this.state.isEdit === false ?
         <div className="upcomingEventChild">
           <li>{this.props.grooming.name}</li>
@@ -106,19 +107,23 @@ class GroomingListUDItem extends Component {
           <li>{this.props.grooming.drop_off_address}</li>
         </div>
         }
-        <div>
-        <IconButton 
-          aria-label="edit"
-          onClick={this.editOnClick}
+        <div className="editDeleteTools">
+        <Tooltip title="Edit" placement="left">
+          <IconButton 
+            aria-label="edit"
+            onClick={this.editOnClick}
+            >
+            <EditIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Delete" placement="right">
+          <IconButton 
+            aria-label="delete"
+            onClick={() => this.delete(this.props.grooming.id)}
           >
-          <EditIcon />
-        </IconButton>
-        <IconButton 
-          aria-label="delete"
-          onClick={() => this.delete(this.props.grooming.id)}
-        >
-            <DeleteIcon />
-        </IconButton>
+              <DeleteIcon />
+          </IconButton>
+        </Tooltip>
         </div>
       </div>
     );
