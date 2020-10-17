@@ -40,8 +40,10 @@ class AddPetForm extends Component {
         swal({
             title: "Is the submitted info correct?",
             icon: "info",
-            buttons: true,
-            dangerMode: true,
+            buttons: {
+              cancel: "No",
+              yes: true,
+            }
           }).then(isCorrect => {
               if(isCorrect){
                 // if ok/yes/confirm/iscorrect runs this code block, sends dispatch to create pet.
