@@ -4,6 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import {withRouter} from 'react-router-dom';
 import './UserPage.css';
 import WalkList from '../WalkList/WalkList';
+import DoggoList from '../DoggosList/DoggosList';
 import GroomingList from'../GroomingList/GroomingList';
 
 class UserPage extends Component {
@@ -33,22 +34,7 @@ class UserPage extends Component {
         </div>
         <div className="userInfo">
           <h3>Your Doggos</h3>
-          <ul>
-            <li className="mainUserList">
-              {this.props.store.petReducer.map((pet, i) =>
-              <div key={i}>
-                <img className="userPetImage" src={pet.image_url} />
-                <div className="imageBullets">
-                  <ul>
-                    <li>Name: {pet.name}</li>
-                    <li>Age: {pet.age}</li>
-                    <li>Size: {pet.size}</li>
-                  </ul>
-                </div>
-              </div>
-              )}
-            </li>
-          </ul>
+          <DoggoList />
         </div>
       </div>
     );
