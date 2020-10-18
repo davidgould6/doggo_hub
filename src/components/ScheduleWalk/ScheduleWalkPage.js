@@ -3,6 +3,13 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import swal from 'sweetalert';
 import {withRouter} from 'react-router-dom'
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
+
 
 class ScheduleWalkPage extends Component {
 
@@ -97,8 +104,7 @@ class ScheduleWalkPage extends Component {
       <div>
         <h1>Schedule a walk !</h1>
         <div>
-          Select Doggo: 
-          <select 
+          {/* <select 
             name="dogToWalk"
             value={this.state.dogToWalk}
             required
@@ -108,7 +114,20 @@ class ScheduleWalkPage extends Component {
             {this.props.store.petReducer.map((pet, i) => 
             <option value={pet.id} key={i}>{pet.name}</option>
             )}
-          </select>
+          </select> */}
+          <FormControl>
+          <InputLabel shrink id="selectDoggoToWalk">
+              Select a Doggo to walk:
+          </InputLabel>
+          <Select value={this.state.dogToWalk} labelId="selectDoggoToWalk" name="dogToWalk" onChange={this.handleInputChangeFor("dogToWalk")}>
+            {this.props.store.petReducer.map((pet, i) =>
+            <MenuItem key={i} value={pet.id}>{pet.name}</MenuItem>
+            )}
+          </Select>
+          <FormHelperText>
+              Please select a doggo to walk.
+          </FormHelperText>
+          </FormControl>
         </div>
         <div>
           Date:  
