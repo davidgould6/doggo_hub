@@ -9,8 +9,6 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
-
-
 class ScheduleWalkPage extends Component {
 
   componentDidMount(){
@@ -19,7 +17,7 @@ class ScheduleWalkPage extends Component {
   };
 
   state = {
-    dogToWalk: 'selectDog',
+    dogToWalk: '',
     date: '',
     address:'selectAddress',
   };
@@ -62,15 +60,17 @@ class ScheduleWalkPage extends Component {
     // Will ask user if info is correct if isCorrect will run code block if not will trigger else statement
       swal({
         title: "Is the submitted info correct?",
-          icon: "info",
-          buttons: {
-            cancel: "No",
-            yes: true,
-          }
+        icon: "info",
+        buttons: {
+          cancel: "No",
+          yes: true,
+        }
       }).then(isCorrect => {
         if(isCorrect){
           // prompts user that walk has been scheduled upon success will dispatch local state info
-          swal("Your Doggo's walk has been scheduled!", {
+          swal({
+            title:"Your Doggo's walk has been scheduled!",
+            text:"Now taking you to your hub!",
             icon: "success"
           }).then(() => {
             this.props.dispatch({
@@ -83,9 +83,9 @@ class ScheduleWalkPage extends Component {
             });
             // Sets state back to default
             this.setState({
-              dogToWalk: 'selectDog',
+              dogToWalk: '',
               date: '',
-              address: 'selectAddress'
+              address: ''
             });
 
             setTimeout(() => { this.props.history.push('/'); }, 250);
@@ -104,29 +104,22 @@ class ScheduleWalkPage extends Component {
       <div>
         <h1>Schedule a walk !</h1>
         <div>
-          {/* <select 
-            name="dogToWalk"
-            value={this.state.dogToWalk}
-            required
-            onChange={(event) => this.handleInputChangeForDogToWalk(event)}
-          >
-            <option disabled value="selectDog"> -- Select a Doggo -- </option>
-            {this.props.store.petReducer.map((pet, i) => 
-            <option value={pet.id} key={i}>{pet.name}</option>
-            )}
-          </select> */}
           <FormControl>
-          <InputLabel shrink id="selectDoggoToWalk">
-              Select a Doggo to walk:
-          </InputLabel>
-          <Select value={this.state.dogToWalk} labelId="selectDoggoToWalk" name="dogToWalk" onChange={this.handleInputChangeFor("dogToWalk")}>
-            {this.props.store.petReducer.map((pet, i) =>
-            <MenuItem key={i} value={pet.id}>{pet.name}</MenuItem>
-            )}
-          </Select>
-          <FormHelperText>
-              Please select a doggo to walk.
-          </FormHelperText>
+            <InputLabel shrink id="selectDoggoToWalk">
+                Select a Doggo to walk:
+            </InputLabel>
+            <Select 
+              value={this.state.dogToWalk} 
+              labelId="selectDoggoToWalk" 
+              name="dogToWalk" 
+              onChange={this.handleInputChangeFor("dogToWalk")}>
+                {this.props.store.petReducer.map((pet, i) =>
+                <MenuItem key={i} value={pet.id}>{pet.name}</MenuItem>
+                )}
+            </Select>
+            <FormHelperText>
+                Please select a doggo to walk.
+            </FormHelperText>
           </FormControl>
         </div>
         <div>
@@ -139,20 +132,29 @@ class ScheduleWalkPage extends Component {
           />
         </div>
         <div>
-          Pick Up: 
-          <select
-            name="address"
-            value={this.state.address}
-            required
-            onChange={(event) => this.handleInputChangeForAddress(event)}>
-              <option disabled value="selectAddress"> -- Select an Address -- </option>
-              {this.props.store.addressReducer.map((address, i) => 
-              <option value={address.id} key={i}>{address.street} {address.city}, {address.state} {address.zip}</option>
-              )}
-          </select>
+          <FormControl>
+            <InputLabel shrink id="selectDoggoToWalk">
+              Pickup address:
+            </InputLabel>
+            <Select 
+              value={this.state.address} 
+              labelId="selectAdress" 
+              name="address" 
+              onChange={this.handleInputChangeFor("address")}>
+                {this.props.store.addressReducer.map((address, i) =>
+                <MenuItem key={i} value={address.id}>{address.street} {address.city}, {address.state} {address.zip}</MenuItem>
+                )}
+            </Select>
+            <FormHelperText>
+                Please select an address for doggo pick up.
+            </FormHelperText>
+          </FormControl>
         </div>
         <div>
-          <button onClick={this.scheduleWalk}>Schedule Walk</button>
+          <Button
+            variant="contained"
+            color="primary" 
+            onClick={this.scheduleWalk}>Schedule Walk</Button>
         </div>
       </div>
     );

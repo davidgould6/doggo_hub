@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import Switch from '@material-ui/core/Switch';
+import {Switch, FormControlLabel, Tooltip} from '@material-ui/core';
 import DoggoList from '../DoggosList/DoggosList';
 import DoggoListUD from '../DoggosListUD/DoggosListUD';
 
@@ -23,11 +23,13 @@ class UserDoggos extends Component {
     return (
       <div>
         <h2>Your Doggos</h2>
-        <Switch 
-          checked={this.state.checkedA}
-          onChange={this.handleChangeForSwitch}
-          name="checkedA"
-        />
+        <Tooltip title="Toggle to edit." placement="right">
+          <Switch 
+            checked={this.state.checkedA}
+            onChange={this.handleChangeForSwitch}
+            name="checkedA"
+          />
+        </Tooltip>
         {this.state.checkedA === false ?
         <DoggoList /> :
         <DoggoListUD />

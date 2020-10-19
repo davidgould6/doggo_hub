@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import Switch from '@material-ui/core/Switch';
+import {Switch, FormControlLabel} from '@material-ui/core';
 
 import GroomingList from '../GroomingList/GroomingList';
 import GroomingListUD from '../GroomingListUD/GroomingListUD';
@@ -19,7 +19,7 @@ class UpcomingEvents extends Component {
   };
 
   state = {
-    // checkedA: false,
+    checkedA: false,
   };
 
   handleChangeForSwitch = (event) => {
@@ -33,10 +33,15 @@ class UpcomingEvents extends Component {
     return (
       <div>
         <h2>Upcoming Events</h2>
-        <Switch 
-          checked={this.state.checkedA}
-          onChange={this.handleChangeForSwitch}
-          name="checkedA"
+        <FormControlLabel 
+        control={
+          <Switch 
+            checked={this.state.checkedA}
+            onChange={this.handleChangeForSwitch}
+            name="checkedA"
+          />
+        }
+        label="Toggle to edit"
         />
         {this.state.checkedA === false ?
           <div>
