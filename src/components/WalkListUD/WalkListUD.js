@@ -8,8 +8,8 @@ class WalkListUD extends Component {
   render() {
     return (
       <div>
-        <h2>Edit Walks</h2>
         <ul>
+          Edit Walks
           {this.props.store.walkReducer.map((walk, i) =>
           <WalkListUDItem 
             key={i}

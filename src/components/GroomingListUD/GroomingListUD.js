@@ -8,8 +8,8 @@ class GroomingListUD extends Component {
   render() {
     return (
       <div>
-        <h2>Edit Groomings</h2>
         <ul>
+          Edit Groomings
           {this.props.store.groomingReducer.map((grooming, i) =>
           <GroomingListUDItem 
             key={i}

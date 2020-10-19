@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import {Switch, FormControlLabel, Tooltip} from '@material-ui/core';
+import {Switch, Tooltip} from '@material-ui/core';
 import DoggoList from '../DoggosList/DoggosList';
 import DoggoListUD from '../DoggosListUD/DoggosListUD';
 

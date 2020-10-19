@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import {Switch, FormControlLabel} from '@material-ui/core';
+import {Switch, Tooltip} from '@material-ui/core';
 
 import GroomingList from '../GroomingList/GroomingList';
 import GroomingListUD from '../GroomingListUD/GroomingListUD';
@@ -33,16 +33,13 @@ class UpcomingEvents extends Component {
     return (
       <div>
         <h2>Upcoming Events</h2>
-        <FormControlLabel 
-        control={
+        <Tooltip title="Toggle to edit." placement="right">
           <Switch 
             checked={this.state.checkedA}
             onChange={this.handleChangeForSwitch}
             name="checkedA"
           />
-        }
-        label="Toggle to edit"
-        />
+        </Tooltip>
         {this.state.checkedA === false ?
           <div>
             <WalkList />
