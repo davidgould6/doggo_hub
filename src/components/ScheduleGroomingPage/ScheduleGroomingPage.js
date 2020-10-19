@@ -55,7 +55,9 @@ class ScheduleGroomingPage extends Component {
           }
         }).then(isCorrect => {
           if(isCorrect){
-            swal("Your Doggo's grooming has been scheduled!", {
+            swal({
+              title: "Your Doggo's grooming has been scheduled!",
+              text:"Now taking you to your hub!",
               icon: "success"
             }).then(() => {
               this.props.dispatch({
