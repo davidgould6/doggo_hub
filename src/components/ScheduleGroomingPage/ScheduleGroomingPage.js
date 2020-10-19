@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import swal from 'sweetalert';
 import {withRouter} from 'react-router-dom'
-
+import {Button, FormControl, FormHelperText, InputLabel, MenuItem, Select} from '@material-ui/core/'
 
 class ScheduleGroomingPage extends Component {
   
@@ -13,9 +13,9 @@ class ScheduleGroomingPage extends Component {
   };
 
   state = {
-    dogToGroom: 'selectDog',
+    dogToGroom: '',
     date: '',
-    address: 'selectAddress'
+    address: '101 Doggo Lane Blaine, MN 55449'
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -67,9 +67,8 @@ class ScheduleGroomingPage extends Component {
               });
 
               this.setState({
-                dogToGroom: 'selectDog',
+                dogToGroom: '',
                 date: '',
-                address: 'selectAddress'
               });
               
               setTimeout(() => { this.props.history.push('/'); }, 250);
@@ -88,18 +87,22 @@ class ScheduleGroomingPage extends Component {
       <div>
         <h1>Schedule Grooming!</h1>
         <div>
-          Select Doggo:
-          <select 
-            name="dogToGroom"
-            value={this.state.dogToGroom}
-            required
-            onChange={(event) => this.handleInputChangeForDogToGroom(event)}
-          >
-            <option disabled value="selectDog"> -- Select a Doggo -- </option>
-            {this.props.store.petReducer.map((pet, i) => 
-            <option value={pet.id} key={i}>{pet.name}</option>
-            )}
-          </select>
+        <FormControl>
+            <InputLabel shrink id="selectDoggoToGroom">
+                Select a Doggo for grooming:
+            </InputLabel>
+            <Select 
+              value={this.state.dogToGroom} 
+              labelId="selectDoggoToGroom" 
+              onChange={this.handleInputChangeFor("dogToGroom")}>
+                {this.props.store.petReducer.map((pet, i) =>
+                <MenuItem key={i} value={pet.id}>{pet.name}</MenuItem>
+                )}
+            </Select>
+            <FormHelperText>
+                Please select a doggo for the grooming.
+            </FormHelperText>
+          </FormControl>
         </div>
         <div>
           Date:  
@@ -109,7 +112,7 @@ class ScheduleGroomingPage extends Component {
             required onChange={this.handleInputChangeFor('date')}
           />
         </div>
-        <div>
+        {/* <div>
           Drop Off: 
           <select
             name="address"
@@ -120,6 +123,23 @@ class ScheduleGroomingPage extends Component {
               <option disabled value="selectAddress"> -- Select an Address -- </option>
               <option>101 Doggo Lane Blaine, MN 55449</option>
           </select>
+        </div> */}
+        <div>
+          <FormControl>
+            <InputLabel shrink id="selectDoggoToWalk">
+              Drop off location:
+            </InputLabel>
+            <Select 
+              value={this.state.address} 
+              labelId="selectDropOff" 
+              
+              onChange={this.handleInputChangeFor("address")}>
+                <MenuItem value={1}>101 Doggo Lane Blaine, MN 55449</MenuItem>
+            </Select>
+            <FormHelperText>
+                Please select a grooming location.
+            </FormHelperText>
+          </FormControl>
         </div>
         <div>
           <button onClick={this.scheduleGrooming}>Schedule Grooming</button>

@@ -3,12 +3,8 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import swal from 'sweetalert';
 import {withRouter} from 'react-router-dom'
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+import {Button, FormControl, FormHelperText, InputLabel, MenuItem, Select} from '@material-ui/core/'
+
 class ScheduleWalkPage extends Component {
 
   componentDidMount(){
@@ -19,7 +15,7 @@ class ScheduleWalkPage extends Component {
   state = {
     dogToWalk: '',
     date: '',
-    address:'selectAddress',
+    address:'',
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -138,7 +134,7 @@ class ScheduleWalkPage extends Component {
             </InputLabel>
             <Select 
               value={this.state.address} 
-              labelId="selectAdress" 
+              labelId="selectAddress" 
               name="address" 
               onChange={this.handleInputChangeFor("address")}>
                 {this.props.store.addressReducer.map((address, i) =>
