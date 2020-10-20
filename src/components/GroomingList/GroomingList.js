@@ -12,7 +12,7 @@ class GroomingList extends Component {
 
   render() {
     return (
-      <div className="outsideDivLists">
+      <div>
         <ul className="upcomingEventUl">
           Groomings
           {this.props.store.groomingReducer.map((grooming, i) =>

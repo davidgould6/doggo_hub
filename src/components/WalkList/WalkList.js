@@ -12,7 +12,7 @@ class WalkList extends Component {
   
   render() {
     return (
-      <div className="outsideDivLists">
+      <div>
           <ul className="upcomingEventUl">
             Walks
             {this.props.store.walkReducer.map((walk, i) =>

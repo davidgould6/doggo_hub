@@ -13,16 +13,12 @@
   border-color: rebeccapurple;
 }
 .upcomingEventChild {
-  border-style: solid;
-  border-color: rebeccapurple;
   margin-bottom: 10px;
 }
 .upcomingEventUl {
-  margin-left: 0px;
+  margin-left: 10px;
 }
-.userInfo h3 {
-  text-align: center;
-}
+
 .imageBullets {
   display: inline-block;
   padding-right: 20px;
@@ -31,6 +27,7 @@
   list-style-type: none;
 }
 .outsideDivLists {
+  margin-top: 17px;
   margin-left: 25px;
 }
 .editDeleteTools {

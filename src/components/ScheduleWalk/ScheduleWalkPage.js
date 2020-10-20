@@ -1,9 +1,29 @@
+// react.js imports
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+
+// import styling library components
 import swal from 'sweetalert';
-import {withRouter} from 'react-router-dom'
-import {Button, FormControl, FormHelperText, InputLabel, MenuItem, Select} from '@material-ui/core/'
+import {FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField} from '@material-ui/core/';
+import { makeStyles } from '@material-ui/core/styles';
+
+// import custom styles material ui
+import StyledButton from '../MaterialUiStyles/StyledButton';
+
+// Styling for date input. 
+const classes = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+}));
 
 class ScheduleWalkPage extends Component {
 
@@ -13,7 +33,7 @@ class ScheduleWalkPage extends Component {
   };
 
   state = {
-    dogToWalk: '',
+    dogToWalk: 'Please select a Doggo',
     date: '',
     address:'',
   };
@@ -97,7 +117,7 @@ class ScheduleWalkPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="scheduleContainer">
         <h1>Schedule a walk !</h1>
         <div>
           <FormControl>
@@ -118,16 +138,21 @@ class ScheduleWalkPage extends Component {
             </FormHelperText>
           </FormControl>
         </div>
-        <div>
-          Date:  
-          <input 
-            type="date" 
-            name="date" 
-            required 
+        <div className="scheduleContainerItem">
+          <TextField
+            id="date"
+            label="Date"
+            type="date"
+            name="date"
+            defaultValue="2020-10-26"
+            className={classes.textField}
             onChange={this.handleInputChangeFor('date')}
+            InputLabelProps={{
+              shrink: true,
+            }}
           />
         </div>
-        <div>
+        <div className="scheduleContainerItem">
           <FormControl>
             <InputLabel shrink id="selectDoggoToWalk">
               Pickup address:
@@ -146,12 +171,13 @@ class ScheduleWalkPage extends Component {
             </FormHelperText>
           </FormControl>
         </div>
-        <div>
-          <Button
+        <div className="scheduleContainerItem">
+          <StyledButton
             variant="contained"
-            color="primary" 
-            onClick={this.scheduleWalk}>Schedule Walk</Button>
+            onClick={this.scheduleWalk}>Schedule Walk
+          </StyledButton>
         </div>
+
       </div>
     );
   }

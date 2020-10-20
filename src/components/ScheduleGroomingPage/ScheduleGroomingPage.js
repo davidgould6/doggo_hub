@@ -3,7 +3,24 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import swal from 'sweetalert';
 import {withRouter} from 'react-router-dom'
-import {Button, FormControl, FormHelperText, InputLabel, MenuItem, Select} from '@material-ui/core/'
+import {FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField} from '@material-ui/core/'
+import { makeStyles } from '@material-ui/core/styles';
+
+// import custom styles material ui
+import StyledButton from '../MaterialUiStyles/StyledButton';
+
+// Styling for date input. 
+const classes = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+}));
 
 class ScheduleGroomingPage extends Component {
   
@@ -86,7 +103,7 @@ class ScheduleGroomingPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="scheduleContainer">
         <h1>Schedule Grooming!</h1>
         <div>
         <FormControl>
@@ -106,27 +123,21 @@ class ScheduleGroomingPage extends Component {
             </FormHelperText>
           </FormControl>
         </div>
-        <div>
-          Date:  
-          <input 
-            type="date" 
-            name="date" 
-            required onChange={this.handleInputChangeFor('date')}
+        <div className="scheduleContainerItem">
+          <TextField
+              id="date"
+              label="Date"
+              type="date"
+              name="date"
+              defaultValue="2020-10-26"
+              className={classes.textField}
+              onChange={this.handleInputChangeFor('date')}
+              InputLabelProps={{
+                shrink: true,
+              }}
           />
         </div>
-        {/* <div>
-          Drop Off: 
-          <select
-            name="address"
-            value={this.state.address}
-            required
-            onChange={this.handleInputChangeFor('address')}
-            >
-              <option disabled value="selectAddress"> -- Select an Address -- </option>
-              <option>101 Doggo Lane Blaine, MN 55449</option>
-          </select>
-        </div> */}
-        <div>
+        <div className="scheduleContainerItem">
           <FormControl>
             <InputLabel shrink id="selectDoggoToWalk">
               Drop off location:
@@ -143,8 +154,10 @@ class ScheduleGroomingPage extends Component {
             </FormHelperText>
           </FormControl>
         </div>
-        <div>
-          <button onClick={this.scheduleGrooming}>Schedule Grooming</button>
+        <div className="scheduleContainerItem">
+          <StyledButton onClick={this.scheduleGrooming}>
+            Schedule Grooming
+          </StyledButton>
         </div>
       </div>
     );

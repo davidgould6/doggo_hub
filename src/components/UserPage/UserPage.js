@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import {withRouter} from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
+import {Typography, Grid, Paper} from '@material-ui/core/';
 import swal from 'sweetalert';
 import './UserPage.css';
 import DoggoList from '../DoggosList/DoggosList';
 import GroomingList from'../GroomingList/GroomingList';
 import WalkList from '../WalkList/WalkList';
+
+import ClassesShorthand from '../TestButton/TestButton';
 
 class UserPage extends Component {
 
@@ -51,24 +53,31 @@ class UserPage extends Component {
     console.log('in userpage these are our props', this.props);
     return (
       <div className="userContainer">
-        <h1 id="welcome">Welcome to your hub {this.props.store.user.first_name} {this.props.store.user.last_name}!</h1>
-        <div 
-          className="userInfo"
+        <Typography variant="h3">Welcome to your hub {this.props.store.user.first_name} {this.props.store.user.last_name}!</Typography>
+        <Grid container spacing={4}>
+          <Grid item xs={6} 
           onClick={this.goToUpcomingEvents}
-        > 
-          <Typography variant="h5" gutterBottom>
-            Upcoming Events
-          </Typography>
-          <GroomingList />
-          <WalkList />
-        </div>
-        <div 
-          className="userInfo"
+          >
+            <Typography variant="h5" gutterBottom>
+              Upcoming Events
+            </Typography>
+            <Paper >
+              <GroomingList />
+              <WalkList />
+            </Paper>
+          </Grid>
+          <Grid item xs={6} 
           onClick={this.goToUserDoggos}
-        >
-          <h3>Your Doggos</h3>
-          <DoggoList />
-        </div>
+          >
+            <Typography variant="h5" gutterBottom>
+              Your Doggos
+            </Typography>
+            <Paper>
+              <DoggoList />
+            </Paper>
+          </Grid>
+        </Grid>
+        {ClassesShorthand()}
       </div>
     );
   }
