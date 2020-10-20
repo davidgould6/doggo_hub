@@ -35,3 +35,8 @@
 .nav-right {
   float: right;
 }
+
+.links {
+  color: inherit;
+  text-decoration: inherit;
+}

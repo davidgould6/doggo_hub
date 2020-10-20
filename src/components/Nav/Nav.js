@@ -5,6 +5,11 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+
 const Nav = (props) => {
   let loginLinkData = {
     path: '/login',
@@ -24,44 +29,48 @@ const Nav = (props) => {
   }
 
   return (
-    <div className="nav">
-      <Link to="/home">
-        <h2 className="nav-title">Doggo Hub</h2>
-      </Link>
-      <div className="nav-right">
-        <Link className="nav-link" to={loginLinkData.path}>
-          {/* Show this link if they are logged in or not,
-          but call this link 'Home' if they are logged in,
-          and call this link 'Login / Register' if they are not */}
-          {loginLinkData.text}
-        </Link>
-        
-        {props.store.user.id === null ?
-          <Link className="nav-link" to={registerLinkData.path}>
-          {registerLinkData.text}
-          </Link> :
-          null
-        }
+    <div>
+      <AppBar position="static" style={{background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'}}>
+        <Toolbar>
+          <Typography variant="h6" style={{ flexGrow: 1 }}>
+            <Link to="/home" className="links">Doggo Hub</Link>
+          </Typography>
 
-        <Link className="nav-link" to={registerLinkData.path}>
-          {registerLinkData.text}
-        </Link>
+          <Button color="inherit">
+            <Link className="links" to={loginLinkData.path}>
+              {loginLinkData.text}
+            </Link>
+          </Button>
 
-        {/* Show the link to the info page and the logout button if the user is logged in */}
-        {props.store.user.id && (
-          <>
-            <Link className="nav-link" to="/grooming">
-              Schedule Grooming
+          <Button color="inherit">
+            <Link className="links" to={registerLinkData.path}>
+              {registerLinkData.text}
             </Link>
-            <Link className="nav-link" to="/addpet">
-              Add Pet
-            </Link>
-            <LogOutButton className="nav-link" />
-          </>
-        )}
-      </div>
+          </Button>
+          {props.store.user.id && (
+            <>
+            <Button color="inherit">
+              <Link className="links" to="/grooming">
+                Schedule Grooming
+              </Link>
+            </Button>
+            <Button color="inherit">
+              <Link className="links" to="/addpet">
+                Add Pet
+              </Link>
+            </Button>
+            <LogOutButton className="links" />
+            </>
+          )}
+        </Toolbar>
+      </AppBar>
     </div>
   );
 };
 
 export default connect(mapStoreToProps)(Nav);
+
+
+{/* <Button color="inherit">
+              <Link className="links" to={registerLinkData.path}>{registerLinkData.text}</Link>
+            </Button> */}

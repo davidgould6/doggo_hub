@@ -9,8 +9,6 @@ import DoggoList from '../DoggosList/DoggosList';
 import GroomingList from'../GroomingList/GroomingList';
 import WalkList from '../WalkList/WalkList';
 
-import ClassesShorthand from '../TestButton/TestButton';
-
 class UserPage extends Component {
 
   componentDidMount(){
@@ -77,7 +75,6 @@ class UserPage extends Component {
             </Paper>
           </Grid>
         </Grid>
-        {ClassesShorthand()}
       </div>
     );
   }

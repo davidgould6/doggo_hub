@@ -6,11 +6,11 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // import styling library components
 import swal from 'sweetalert';
-import {FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField} from '@material-ui/core/';
+import {FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField, Typography} from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
 
 // import custom styles material ui
-import StyledButton from '../MaterialUiStyles/StyledButton';
+import StyledButton from '../../MaterialUiStyles/StyledButton';
 
 // Styling for date input. 
 const classes = makeStyles((theme) => ({
@@ -118,7 +118,9 @@ class ScheduleWalkPage extends Component {
   render() {
     return (
       <div className="scheduleContainer">
-        <h1>Schedule a walk !</h1>
+        <Typography variant="h4" gutterBottom>
+           Schedule a walk !
+        </Typography>
         <div>
           <FormControl>
             <InputLabel shrink id="selectDoggoToWalk">
