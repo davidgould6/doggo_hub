@@ -32,7 +32,7 @@ class ScheduleGroomingPage extends Component {
   state = {
     dogToGroom: '',
     date: '',
-    address: '101 Doggo Lane Blaine, MN 55449'
+    address: ''
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -103,65 +103,61 @@ class ScheduleGroomingPage extends Component {
 
   render() {
     return (
-        <div className="scheduleContainer">
-            <Typography variant="h4" gutterBottom>
-              Schedule a grooming!
-            </Typography>
-            <div>
-              <FormControl>
-                <InputLabel shrink id="selectDoggoToGroom">
-                    Select a Doggo for grooming:
-                </InputLabel>
-                <Select 
-                  value={this.state.dogToGroom} 
-                  labelId="selectDoggoToGroom" 
-                  onChange={this.handleInputChangeFor("dogToGroom")}>
-                    {this.props.store.petReducer.map((pet, i) =>
-                    <MenuItem key={i} value={pet.id}>{pet.name}</MenuItem>
-                    )}
-                </Select>
-                <FormHelperText>
-                    Please select a doggo for the grooming.
-                </FormHelperText>
-              </FormControl>
-            </div>
-            <div className="scheduleContainerItem">
-              <TextField
-                  id="date"
-                  label="Date"
-                  type="date"
-                  name="date"
-                  defaultValue="2020-10-26"
-                  className={classes.textField}
-                  onChange={this.handleInputChangeFor('date')}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-              />
-            </div>
-            <div className="scheduleContainerItem">
-              <FormControl>
-                <InputLabel shrink id="selectDoggoToWalk">
-                  Drop off location:
-                </InputLabel>
-                <Select 
-                  value={this.state.address} 
-                  labelId="selectDropOff" 
-                  
-                  onChange={this.handleInputChangeFor("address")}>
-                    <MenuItem value={1}>101 Doggo Lane Blaine, MN 55449</MenuItem>
-                </Select>
-                <FormHelperText>
-                    Please select a grooming location.
-                </FormHelperText>
-              </FormControl>
-            </div>
-            <div className="scheduleContainerItem">
-              <StyledButton onClick={this.scheduleGrooming}>
-                Schedule Grooming
-              </StyledButton>
-            </div>
-          </div>
+      <form className="formPanel" onSubmit={this.scheduleGrooming}>
+        <Typography variant="h4" gutterBottom>
+          Schedule a grooming!
+        </Typography>
+        <div>
+          <FormControl>
+            <InputLabel>
+                Your Doggo
+            </InputLabel>
+            <Select 
+              value={this.state.dogToGroom} 
+              onChange={this.handleInputChangeFor("dogToGroom")}>
+                {this.props.store.petReducer.map((pet, i) =>
+                <MenuItem key={i} value={pet.id}>{pet.name}</MenuItem>
+                )}
+            </Select>
+            <FormHelperText>
+                Please select a doggo for the grooming.
+            </FormHelperText>
+          </FormControl>
+        </div>
+        <div className="scheduleContainerItem">
+          <TextField
+              id="date"
+              label="Date"
+              type="date"
+              defaultValue={this.state.date}
+              className={classes.textField}
+              onChange={this.handleInputChangeFor('date')}
+              InputLabelProps={{
+                shrink: true,
+              }}
+          />
+        </div>
+        <div className="scheduleContainerItem">
+          <FormControl>
+            <InputLabel>
+              Drop off location:
+            </InputLabel>
+            <Select 
+              value={this.state.address} 
+              onChange={this.handleInputChangeFor("address")}>
+                <MenuItem value={1}>101 Doggo Lane Blaine, MN 55449</MenuItem>
+            </Select>
+            <FormHelperText>
+                Please select a grooming location.
+            </FormHelperText>
+          </FormControl>
+        </div>
+        <div className="scheduleContainerItem">
+          <StyledButton onClick={this.scheduleGrooming}>
+            Schedule Grooming
+          </StyledButton>
+        </div>
+      </form>
     );
   }
 }

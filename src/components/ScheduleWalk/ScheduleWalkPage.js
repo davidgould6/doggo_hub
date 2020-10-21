@@ -6,7 +6,10 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // import styling library components
 import swal from 'sweetalert';
-import {FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField, Typography} from '@material-ui/core/';
+import {
+  FormControl, FormHelperText, InputLabel, 
+  MenuItem, Select, TextField, Typography} 
+from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
 
 // import custom styles material ui
@@ -33,7 +36,7 @@ class ScheduleWalkPage extends Component {
   };
 
   state = {
-    dogToWalk: 'Please select a Doggo',
+    dogToWalk: '',
     date: '',
     address:'',
   };
@@ -117,19 +120,17 @@ class ScheduleWalkPage extends Component {
 
   render() {
     return (
-      <div className="scheduleContainer">
+      <form className="formPanel" onSubmit={this.scheduleWalk}>
         <Typography variant="h4" gutterBottom>
-           Schedule a walk !
+          Schedule a walk !
         </Typography>
         <div>
           <FormControl>
-            <InputLabel shrink id="selectDoggoToWalk">
-                Select a Doggo to walk:
+            <InputLabel>
+                Your Doggo
             </InputLabel>
             <Select 
               value={this.state.dogToWalk} 
-              labelId="selectDoggoToWalk" 
-              name="dogToWalk" 
               onChange={this.handleInputChangeFor("dogToWalk")}>
                 {this.props.store.petReducer.map((pet, i) =>
                 <MenuItem key={i} value={pet.id}>{pet.name}</MenuItem>
@@ -145,8 +146,7 @@ class ScheduleWalkPage extends Component {
             id="date"
             label="Date"
             type="date"
-            name="date"
-            defaultValue="2020-10-26"
+            defaultValue={this.state.date}
             className={classes.textField}
             onChange={this.handleInputChangeFor('date')}
             InputLabelProps={{
@@ -156,13 +156,11 @@ class ScheduleWalkPage extends Component {
         </div>
         <div className="scheduleContainerItem">
           <FormControl>
-            <InputLabel shrink id="selectDoggoToWalk">
+            <InputLabel>
               Pickup address:
             </InputLabel>
             <Select 
               value={this.state.address} 
-              labelId="selectAddress" 
-              name="address" 
               onChange={this.handleInputChangeFor("address")}>
                 {this.props.store.addressReducer.map((address, i) =>
                 <MenuItem key={i} value={address.id}>{address.street} {address.city}, {address.state} {address.zip}</MenuItem>
@@ -179,8 +177,7 @@ class ScheduleWalkPage extends Component {
             onClick={this.scheduleWalk}>Schedule Walk
           </StyledButton>
         </div>
-
-      </div>
+      </form>
     );
   }
 }

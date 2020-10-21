@@ -6,9 +6,8 @@ import {withRouter} from "react-router-dom";
 import swal from 'sweetalert';
 
 import {
-  Button, FormControl, FormHelperText, 
-  IconButton, InputLabel, MenuItem, 
-  Select, TextField, Tooltip, Typography} 
+  FormControl, FormHelperText, InputLabel, 
+  MenuItem, Select, TextField, Typography} 
 from '@material-ui/core/';
 
 import StyledButton from '../../MaterialUiStyles/StyledButton';
@@ -25,8 +24,8 @@ class AddPetForm extends Component {
     petName: '',
     age: '',
     image_url: '',
-    size: 'selectSize',
-    dogAddress: 'selectAddress'
+    size: '',
+    dogAddress: ''
   };
 
   // Function handles change for all three fields in form. 
@@ -92,8 +91,6 @@ class AddPetForm extends Component {
   };
 
   render() {
-    console.log('this is our state addpetform', this.state);
-    // console.log('these are our props in addpetform', this.props);
     return (
         <form className="formPanel" onSubmit={this.addPet}>
             <Typography variant="h4">Add a Doggo!</Typography>
@@ -102,7 +99,7 @@ class AddPetForm extends Component {
                 {this.props.store.errors.registrationMessage}
             </h3>
         )}
-        <div>
+        <div className="scheduleContainerItem">
           <label htmlFor="petName">
             <TextField
               id="outlined-basic"
@@ -114,7 +111,7 @@ class AddPetForm extends Component {
             />
           </label>
         </div>
-        <div>
+        <div className="scheduleContainerItem">
           <label htmlFor="age">
             <TextField
               id="outlined-basic"
@@ -126,7 +123,7 @@ class AddPetForm extends Component {
             />
           </label>
         </div>
-        <div>
+        <div className="scheduleContainerItem">
           <label htmlFor="image_url">
             <TextField
               id="outlined-basic"
@@ -144,7 +141,7 @@ class AddPetForm extends Component {
               <InputLabel>
                   Size:
               </InputLabel>
-              <Select onChange={this.handleInputChangeFor("size")}>   
+              <Select value={this.state.size} onChange={this.handleInputChangeFor("size")}>   
                 <MenuItem value="Small">Small</MenuItem>
                 <MenuItem value="Medium">Medium</MenuItem>
                 <MenuItem value="Large">Large</MenuItem>
@@ -162,7 +159,7 @@ class AddPetForm extends Component {
               Home Address:
               </InputLabel>
               <Select
-                name="dogAddress" 
+                value={this.state.dogAddress}
                 onChange={this.handleInputChangeFor("dogAddress")}>
                 {this.props.store.addressReducer.map((address, i) => 
                 <MenuItem value={address.id} key={i}>{address.street} {address.city}, {address.state} {address.zip}</MenuItem>
