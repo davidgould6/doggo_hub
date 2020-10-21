@@ -97,6 +97,7 @@ class AddPetForm extends Component {
     return (
         <form className="formPanel" onSubmit={this.addPet}>
             <Typography variant="h4">Add a Doggo!</Typography>
+            <Typography variant="body2">fields with * are required</Typography>
             {this.props.store.errors.registrationMessage && (
             <h3 className="alert" role="alert">
                 {this.props.store.errors.registrationMessage}
@@ -141,7 +142,7 @@ class AddPetForm extends Component {
         <div>
           <label htmlFor="size">
             <FormControl>
-              <InputLabel>
+              <InputLabel required>
                   Size:
               </InputLabel>
               <Select value={this.state.size} onChange={this.handleInputChangeFor("size")}>   
@@ -158,7 +159,7 @@ class AddPetForm extends Component {
         <div>
           <label htmlFor="dogAddress">
             <FormControl>
-              <InputLabel>
+              <InputLabel required>
               Home Address:
               </InputLabel>
               <Select

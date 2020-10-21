@@ -54,7 +54,7 @@ class ScheduleWalkPage extends Component {
   // Function dispatches to saga which goes to server to create a walk request with confirmation
   scheduleWalk = () => {
     // if user does not change value of select alert will prompt
-    if(this.state.dogToWalk === 'selectDog'){
+    if(this.state.dogToWalk === ''){
       swal(`Please select a doggo for the walk.`);
     }
     // if user does not change value of select alert will prompt
@@ -62,7 +62,7 @@ class ScheduleWalkPage extends Component {
       swal(`Please select the date for the walk.`);
     }
     // if user does not change value of select alert will prompt
-    else if(this.state.address === 'selectAddress'){
+    else if(this.state.address === ''){
       swal(`Please select and address for your doggo to be picked up at.`);
     }
     // If all conditions are met will run this code block
@@ -111,12 +111,11 @@ class ScheduleWalkPage extends Component {
   render() {
     return (
       <form className="formPanel" onSubmit={this.scheduleWalk}>
-        <Typography variant="h4" gutterBottom>
-          Schedule a walk !
-        </Typography>
+        <Typography variant="h4">Schedule a walk!</Typography>
+        <Typography variant="body2">fields with * are required</Typography>
         <div>
           <FormControl>
-            <InputLabel>
+            <InputLabel required>
                 Your Doggo
             </InputLabel>
             <Select 
@@ -136,6 +135,7 @@ class ScheduleWalkPage extends Component {
             id="date"
             label="Date"
             type="date"
+            required
             defaultValue={this.state.date}
             className={classes.textField}
             onChange={this.handleInputChangeFor('date')}
@@ -146,7 +146,7 @@ class ScheduleWalkPage extends Component {
         </div>
         <div className="scheduleContainerItem">
           <FormControl>
-            <InputLabel>
+            <InputLabel required>
               Pickup address:
             </InputLabel>
             <Select 
