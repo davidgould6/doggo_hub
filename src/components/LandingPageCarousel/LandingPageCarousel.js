@@ -14,7 +14,7 @@ class LandingPageCarousel extends Component {
       <div>
         <Carousel>
           {this.props.store.gallery.map((item, i) => 
-            <img className='carouselImg' src={item.path} key={i}/>
+            <img className='carouselImg' src={item.path} key={i} alt="oops"/>
           )}
         </Carousel>
       </div>

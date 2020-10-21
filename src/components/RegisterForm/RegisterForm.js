@@ -3,6 +3,15 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import {withRouter} from 'react-router-dom';
 
+// Import material ui components from library core
+import {
+  FormControl, InputLabel, MenuItem,
+  Select, TextField, Typography} 
+from '@material-ui/core/';
+
+// Import custom material ui styled button.
+import StyledButton from '../../MaterialUiStyles/StyledButton';
+
 // Import sweet alert
 import swal from 'sweetalert';
 
@@ -15,7 +24,7 @@ class RegisterForm extends Component {
     lastName: '',
     street: '',
     city: '',
-    state: 'AL',
+    state: '',
     zip: '',
   };
 
@@ -55,115 +64,122 @@ class RegisterForm extends Component {
   };
 
   render() {
+    console.log(this.state);
     return (
-      <form className="formPanel" onSubmit={this.registerUser}>
-        <h2>Register User</h2>
+      <form className="formPanelReg" onSubmit={this.registerUser}>
+        <center>
+          <Typography variant="h4">Register User</Typography>
+          <Typography variant="body2" >fields with * are required</Typography>
+        </center>
         {this.props.store.errors.registrationMessage && (
           <h3 className="alert" role="alert">
             {this.props.store.errors.registrationMessage}
           </h3>
         )}
-        <div>
-          <label htmlFor="username">
-            Username:
-            <input
+        <div className="inputContainer1">
+          <FormControl style={{margin: 3}}>
+            <TextField
+              label="Username"
+              id="outlined-size-small"
+              variant="outlined"
+              size="small"
               type="text"
-              name="username"
-              value={this.state.username}
               required
               onChange={this.handleInputChangeFor('username')}
             />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="password">
-            Password:
-            <input
+          </FormControl>
+          <FormControl style={{margin: 3}}>
+            <TextField
+              label="Password"
+              id="outlined-size-small"
+              variant="outlined"
+              size="small"
               type="password"
-              name="password"
-              value={this.state.password}
               required
               onChange={this.handleInputChangeFor('password')}
             />
-          </label>
+          </FormControl>
         </div>
-        <div>
-          <label htmlFor="firstName">
-            First Name:
-            <input
+        <div className="inputContainer">
+          <FormControl style={{margin: 3}}>
+            <TextField
+              label="First Name"
+              id="outlined-size-small"
+              variant="outlined"
+              size="small"
               type="text"
-              name="firstName"
-              value={this.state.firstName}
               required
               onChange={this.handleInputChangeFor('firstName')}
             />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="lastName">
-            Last Name:
-            <input
+          </FormControl>
+          <FormControl style={{margin: 3}}>
+            <TextField
+              label="Last Name"
+              id="outlined-size-small"
+              variant="outlined"
+              size="small"
               type="text"
-              name="lastName"
-              value={this.state.lastName}
               required
               onChange={this.handleInputChangeFor('lastName')}
             />
-          </label>
+          </FormControl>
         </div>
-        <div>
-          <label htmlFor="street">
-            Street Address:
-            <input
+        <div className="inputContainer">
+        <FormControl style={{margin: 3}}>
+            <TextField
+              label="Street Address"
+              id="outlined-size-small"
+              variant="outlined"
+              size="small"
               type="text"
-              name="street"
-              value={this.state.street}
               required
               onChange={this.handleInputChangeFor('street')}
             />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="city">
-            City:
-            <input
+          </FormControl>
+          <FormControl style={{margin: 3}}>
+            <TextField
+              label="City"
+              id="outlined-size-small"
+              variant="outlined"
+              size="small"
               type="text"
-              name="city"
-              value={this.state.city}
               required
               onChange={this.handleInputChangeFor('city')}
             />
-          </label>
+          </FormControl>
         </div>
-        <div>
-          <label htmlFor="state">
-            State: 
-            <select 
-              name="state"
-              value={this.state.state}
-              required
-              onChange={this.handleInputChangeFor('state')}
-            >
-                {this.props.store.stateAbbr.map((state, i) => 
-                <option key={i}>{state}</option>
-                )}
-            </select>
-          </label>
-        </div>
-        <div>
-          <label htmlFor="zip">
-            Zip:
-            <input
+        <div >
+          <FormControl style={{marginLeft: 27, marginTop: 3, marginRight: 3}}>
+            <TextField
+              label="Zip Code"
+              id="outlined-size-small"
+              variant="outlined"
+              size="small"
               type="number"
-              name="zip"
-              value={this.state.zip}
               required
               onChange={this.handleInputChangeFor('zip')}
             />
-          </label>
+          </FormControl>
+          <FormControl variant="outlined" style={{minWidth: 90, margin: 3}}>
+            <InputLabel className="state" required style={{}}>
+              State
+            </InputLabel>
+            <Select value={this.state.state}
+            onChange={this.handleInputChangeFor("state")}
+            style={{height: 40}}
+            >
+              {this.props.store.stateAbbr.map(state => 
+              <MenuItem value={state}>{state}</MenuItem>
+              )}
+            </Select>
+          </FormControl>
         </div>
-        <div>
-          <input className="btn" type="submit" name="submit" value="Register" />
+        <div className="loginInputs">
+          <center>
+            <StyledButton type="submit" name="submit">
+              Register
+            </StyledButton>
+          </center>
         </div>
       </form>
     );

@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 // Customs styling for the button for this page. 
 const StyledButton = withStyles({
   root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    background: 'linear-gradient(45deg, #FF8E53 30%, #FE6B8B 90%)',
     borderRadius: 3,
     border: 0,
     color: 'white',

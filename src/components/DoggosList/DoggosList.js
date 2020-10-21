@@ -17,7 +17,7 @@ class DoggosList extends Component {
       <div className="outsideDivLists">
         {this.props.store.petReducer.map((pet, i) =>
         <div className="doggoList" key={i}>
-          <img className="userPetImage" src={pet.image_url} />
+          <img className="userPetImage" src={pet.image_url} alt="oops"/>
           <div className="imageBullets">
             <ul>
               <li>Name: {pet.name}</li>

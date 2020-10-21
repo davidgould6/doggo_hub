@@ -104,7 +104,7 @@ class DoggosListUDItem extends Component {
       <div className="outsideDivLists">
         {this.state.isEdit === false ?
         <div className="doggoList">
-          <img className="userPetImage" src={this.props.pet.image_url} />
+          <img className="userPetImage" src={this.props.pet.image_url} alt="oops"/>
           <div className="imageBullets">
             <ul>
               <li>Name: {this.props.pet.name}</li>
@@ -114,7 +114,7 @@ class DoggosListUDItem extends Component {
           </div>
         </div>:
         <div className="doggoList">
-          <img className="userPetImage" src={this.props.pet.image_url} />
+          <img className="userPetImage" src={this.props.pet.image_url} alt="oops"/>
           <div className="imageBullets">
             <ul>
               <div>

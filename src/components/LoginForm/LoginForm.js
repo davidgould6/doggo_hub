@@ -57,7 +57,6 @@ class LoginForm extends Component {
             id="outlined-basic"
             label="Username"
             variant="outlined"
-            name="username"
             required
             onChange={this.handleInputChangeFor('username')}
             />
