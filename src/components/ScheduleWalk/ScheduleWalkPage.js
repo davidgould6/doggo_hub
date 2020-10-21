@@ -11,7 +11,7 @@ import swal from 'sweetalert';
 import {
   FormControl, FormHelperText, InputLabel, 
   makeStyles, MenuItem, Select, TextField, 
-  Typography} 
+  Typography, Slide} 
 from '@material-ui/core/';
 
 // Import custom material ui styled button.
@@ -42,6 +42,7 @@ class ScheduleWalkPage extends Component {
     dogToWalk: '',
     date: '',
     address:'',
+    isChecked: true
   };
 
   // Function handles change for all forms.
@@ -110,6 +111,7 @@ class ScheduleWalkPage extends Component {
 
   render() {
     return (
+      <Slide direction="up" in={this.state.isChecked}>
       <form className="formPanel" onSubmit={this.scheduleWalk}>
         <Typography variant="h4">Schedule a walk!</Typography>
         <Typography variant="body2">fields with * are required</Typography>
@@ -168,6 +170,7 @@ class ScheduleWalkPage extends Component {
           </StyledButton>
         </div>
       </form>
+      </Slide>
     );
   }
 }
