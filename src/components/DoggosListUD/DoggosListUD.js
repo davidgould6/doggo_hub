@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+
+// Import custom component
 import DoggosListUDItem from '../DoggosListUDItem/DoggosListUDItem';
 
 class DoggosListUD extends Component {

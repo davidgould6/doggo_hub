@@ -4,15 +4,17 @@ import {withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-// import styling library components
+// Import sweet alert
 import swal from 'sweetalert';
+
+// Import material ui components from library core
 import {
   FormControl, FormHelperText, InputLabel, 
-  MenuItem, Select, TextField, Typography} 
+  makeStyles, MenuItem, Select, TextField, 
+  Typography} 
 from '@material-ui/core/';
-import { makeStyles } from '@material-ui/core/styles';
 
-// import custom styles material ui
+// Import custom material ui styled button.
 import StyledButton from '../../MaterialUiStyles/StyledButton';
 
 // Styling for date input. 
@@ -35,32 +37,21 @@ class ScheduleWalkPage extends Component {
     this.props.dispatch({ type: `FETCH_PETS`});
   };
 
+  // Created local state to hold data from form locally on page.
   state = {
     dogToWalk: '',
     date: '',
     address:'',
   };
 
+  // Function handles change for all forms.
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
     });
   };
 
-  // Function handles change for dogToWalk, needed it's own function to pass id
-  handleInputChangeForDogToWalk = (event) => {
-    this.setState({
-      dogToWalk: event.target.value
-    });
-  };
-  
-  // Function handles change for address, needed it's own function to pass id
-  handleInputChangeForAddress = (event) => {
-    this.setState({
-      address: event.target.value
-    });
-  };
-
+  // Function dispatches to saga which goes to server to create a walk request with confirmation
   scheduleWalk = () => {
     // if user does not change value of select alert will prompt
     if(this.state.dogToWalk === 'selectDog'){
@@ -106,7 +97,6 @@ class ScheduleWalkPage extends Component {
               date: '',
               address: ''
             });
-
             setTimeout(() => { this.props.history.push('/'); }, 250);
           });
         }

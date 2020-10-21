@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+
+// Import css
 import './LoginForm.css';
+
+// Import material ui library from core
 import {TextField, Typography} from '@material-ui/core/';
 
+// Import custom material ui styled button.
 import StyledButton from '../../MaterialUiStyles/StyledButton';
 
 class LoginForm extends Component {

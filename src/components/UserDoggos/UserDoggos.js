@@ -7,16 +7,17 @@ import DoggoListUD from '../DoggosListUD/DoggosListUD';
 
 class UserDoggos extends Component {
 
+  // Local state to hold a boolean value for the toggle featue for edit.
   state = {
     checkedA: false,
   };
 
-  handleChangeForSwitch = (event) => {
+  // Function handles switch for the Switch to set to opposite of current state
+  handleChangeForSwitch = () => {
     this.setState({
-      ...this.state,
-      [event.target.name]: event.target.checked
+      checkedA: !this.state.checkedA
     });
-  }
+  };
 
   render() {
     console.log('this is state', this.state);

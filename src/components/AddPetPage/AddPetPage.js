@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+
+// Import custom components
 import AddPetForm from '../AddPetForm/AddPetForm';
 
 class AddPetPage extends Component {

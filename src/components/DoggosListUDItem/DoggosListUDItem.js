@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+
+// Import sweet alert
+import swal from 'sweetalert';
+
+// Import Icons from material ui
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
-import swal from 'sweetalert';
 
+// Import material ui components from library core
 import {
   Button, FormControl, FormHelperText, 
   IconButton, InputLabel, MenuItem, 

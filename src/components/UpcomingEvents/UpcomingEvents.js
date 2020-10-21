@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+
+// Import material ui components from library core
 import {Switch, Tooltip} from '@material-ui/core';
 
+// Import custom components
 import GroomingList from '../GroomingList/GroomingList';
 import GroomingListUD from '../GroomingListUD/GroomingListUD';
 import WalkList from '../WalkList/WalkList';
@@ -18,14 +21,15 @@ class UpcomingEvents extends Component {
     this.props.dispatch({ type: `FETCH_GROOMING`});
   };
 
+  // Local state to hold a boolean value for the toggle featue for edit.
   state = {
     checkedA: false,
   };
 
-  handleChangeForSwitch = (event) => {
+  // Function handles switch for the Switch to set to opposite of current state
+  handleChangeForSwitch = () => {
     this.setState({
-      ...this.state,
-      [event.target.name]: event.target.checked
+      checkedA: !this.state.checkedA
     });
   };
 

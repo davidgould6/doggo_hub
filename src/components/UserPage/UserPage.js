@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import {withRouter} from 'react-router-dom';
-import {Typography, Grid, Paper} from '@material-ui/core/';
+import { withRouter } from 'react-router-dom';
+
+// Import material ui components from library core
+import { Typography, Grid, Paper } from '@material-ui/core/';
+
+// Import sweet alert
 import swal from 'sweetalert';
+
+// Import css
 import './UserPage.css';
+
+// Import custom components
 import DoggoList from '../DoggosList/DoggosList';
 import GroomingList from'../GroomingList/GroomingList';
 import WalkList from '../WalkList/WalkList';

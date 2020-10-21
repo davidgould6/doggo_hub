@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+
+// Import sweet alert
+import swal from 'sweetalert';
+
+// Import Icons from material ui
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+
+// Import material ui components from library core
 import Tooltip from '@material-ui/core/Tooltip';
-import swal from 'sweetalert';
 
 class GroomingListUDItem extends Component {
 

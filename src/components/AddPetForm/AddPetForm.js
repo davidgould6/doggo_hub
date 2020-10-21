@@ -3,13 +3,16 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import {withRouter} from "react-router-dom";
 
+// Import sweet alert
 import swal from 'sweetalert';
 
+// Import material ui components from library core
 import {
   FormControl, FormHelperText, InputLabel, 
   MenuItem, Select, TextField, Typography} 
 from '@material-ui/core/';
 
+// Import custom material ui styled button.
 import StyledButton from '../../MaterialUiStyles/StyledButton';
 
 class AddPetForm extends Component {

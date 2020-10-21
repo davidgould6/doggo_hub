@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+
+// Import custom component
 import GroomingListUDItem from '../GroomingListUDItem/GroomingListUDItem';
 
 class GroomingListUD extends Component {

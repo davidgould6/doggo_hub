@@ -5,10 +5,8 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+// Import material ui components from library core
+import { AppBar, Button, Toolbar, Typography } from '@material-ui/core/';
 
 const Nav = (props) => {
   let loginLinkData = {
@@ -47,6 +45,7 @@ const Nav = (props) => {
               {registerLinkData.text}
             </Link>
           </Button>
+
           {props.store.user.id && (
             <>
             <Button color="inherit">
@@ -54,11 +53,13 @@ const Nav = (props) => {
                 Schedule Grooming
               </Link>
             </Button>
+
             <Button color="inherit">
               <Link className="links" to="/addpet">
                 Add Pet
               </Link>
             </Button>
+            
             <LogOutButton className="links" />
             </>
           )}

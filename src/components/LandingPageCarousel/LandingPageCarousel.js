@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+
+// Import Carousel from react material ui
 import Carousel from 'react-material-ui-carousel'
+
+// Import css
 import './LandingPageCarousel.css';
+
 class LandingPageCarousel extends Component {
-
-  // Component uses a carousel to carousel through a gallery of photos.
-
   render() {
     return (
       <div>

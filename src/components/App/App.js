@@ -3,7 +3,7 @@ import {HashRouter as Router, Route, Redirect, Switch, } from 'react-router-dom'
 import { connect } from 'react-redux';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-// Import components
+// Import custom components
 import AddPetPage from '../AddPetPage/AddPetPage';
 import Footer from '../Footer/Footer';
 import LandingPage from '../LandingPage/LandingPage';

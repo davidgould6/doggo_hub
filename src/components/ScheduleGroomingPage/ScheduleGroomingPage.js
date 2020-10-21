@@ -6,7 +6,7 @@ import {withRouter} from 'react-router-dom'
 import {FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField, Typography} from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles';
 
-// import custom styles material ui
+// Import custom material ui styled button.
 import StyledButton from '../../MaterialUiStyles/StyledButton';
 
 // Styling for date input. 
@@ -29,25 +29,21 @@ class ScheduleGroomingPage extends Component {
     this.props.dispatch({ type: 'FETCH_ADDRESS' });
   };
 
+  // Created local state to hold data from form locally on page.
   state = {
     dogToGroom: '',
     date: '',
     address: ''
   };
 
+  // Function handles change for all forms.
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
     });
   };
 
-  // Function handles change for dogToGroom, needed it's own function to pass id
-  handleInputChangeForDogToGroom = (event) => {
-    this.setState({
-      dogToGroom: event.target.value
-    });
-  };
-
+  // Function dispatches to saga which goes to server to create a grooming request with confirmation
   scheduleGrooming = () => {
       // if user does not change value of select alert will prompt
       if(this.state.dogToGroom === 'selectDog'){
@@ -84,12 +80,10 @@ class ScheduleGroomingPage extends Component {
                   date: this.state.date
                 }
               });
-
               this.setState({
                 dogToGroom: '',
                 date: '',
               });
-              
               setTimeout(() => { this.props.history.push('/'); }, 250);
             });
           }

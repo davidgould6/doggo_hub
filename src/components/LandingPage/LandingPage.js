@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+
+// Import custom component
 import LandingPageCarousel from '../LandingPageCarousel/LandingPageCarousel';
+
+// Import css
 import './LandingPage.css';
 
 class LandingPage extends Component {
