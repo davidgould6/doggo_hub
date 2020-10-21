@@ -8,7 +8,7 @@ import {
   Accordion, AccordionDetails, AccordionSummary,
   Typography, Grid, Card, 
   CardActionArea, CardContent,CardMedia, 
-  Container, makeStyles, Slide} 
+  Container, Slide, Tooltip} 
 from '@material-ui/core/';
 
 // Import material ui icon
@@ -22,15 +22,6 @@ import './UserPage.css';
 
 // Import Carousel from react material ui
 import Carousel from 'react-material-ui-carousel'
-
-const classes = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-  },
-});
 
 class UserPage extends Component {
 
@@ -87,33 +78,38 @@ class UserPage extends Component {
               <Typography variant="h5" gutterBottom onClick={this.goToUpcomingEvents}>
                 Upcoming Events
               </Typography>
-
-
+                <Accordion>
+                  <AccordionSummary
+                    expandIcon={ 
+                      <Tooltip title="Click to expand" placement="right">
+                        <ExpandMoreIcon />
+                      </Tooltip>}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography>Groomings</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <ul>
+                  {this.props.store.groomingReducer.map((grooming, i) =>
+                    <Tooltip key={i} title="Click to go to upcoming events">
+                      <Card key={i} variant="outlined" style={{marginBottom: 12}} onClick={this.goToUpcomingEvents}>
+                      <li><Typography>{grooming.name}</Typography></li>
+                      <li><Typography>{grooming.time.split( 'T' )[0]}</Typography></li>
+                      <li><Typography>{grooming.drop_off_address}</Typography></li>
+                      </Card>
+                    </Tooltip> 
+                  )}
+                  </ul>
+                  </AccordionDetails>
+                </Accordion>
+              
               <Accordion>
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                  <Typography>Groomings</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <ul>
-                {this.props.store.groomingReducer.map((grooming, i) => 
-                  <Card key={i} variant="outlined" style={{marginBottom: 12}} onClick={this.goToUpcomingEvents}>
-                  <li><Typography>{grooming.name}</Typography></li>
-                  <li><Typography>{grooming.time.split( 'T' )[0]}</Typography></li>
-                  <li><Typography>{grooming.drop_off_address}</Typography></li>
-                  </Card>
-                )}
-                </ul>
-                </AccordionDetails>
-              </Accordion>
-
-
-              <Accordion>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
+                  expandIcon={ 
+                    <Tooltip title="Click to expand" placement="right">
+                      <ExpandMoreIcon />
+                    </Tooltip>}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
@@ -122,11 +118,13 @@ class UserPage extends Component {
                 <AccordionDetails>
                   <ul>
                 {this.props.store.walkReducer.map((walk, i) => 
-                  <Card key={i} variant="outlined" style={{marginBottom: 12}} onClick={this.goToUpcomingEvents}>
-                  <li><Typography>{walk.name}</Typography></li>
-                  <li><Typography>{walk.time.split( 'T' )[0]}</Typography></li>
-                  <li><Typography>{walk.street} {walk.city}, {walk.state} {walk.zip}</Typography></li>
-                  </Card>
+                  <Tooltip key={i} title="Click to go to upcoming events">
+                    <Card variant="outlined" style={{marginBottom: 12}} onClick={this.goToUpcomingEvents}>
+                    <li><Typography>{walk.name}</Typography></li>
+                    <li><Typography>{walk.time.split( 'T' )[0]}</Typography></li>
+                    <li><Typography>{walk.street} {walk.city}, {walk.state} {walk.zip}</Typography></li>
+                    </Card>
+                  </Tooltip>
                 )}
                 </ul>
                 </AccordionDetails>
@@ -137,23 +135,25 @@ class UserPage extends Component {
               <Typography variant="h5" gutterBottom style={{marginBottom: 7}}>
                 Your Doggos
               </Typography>
+              
                 <Carousel
                 autoPlay={false}
                 navButtonsAlwaysVisible={true}>
                   {this.props.store.petReducer.map((pet, i) => 
                   <Card key={i}>
-                    <CardActionArea onClick={this.goToUserDoggos}>
-                      <CardMedia
-                        className={classes.media}
-                        image={pet.image_url}
-                        style={{height:430}}
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h4" color="textPrimary" component="p">
-                          {pet.name}
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
+                    <Tooltip title="Click to go see your doggos">
+                      <CardActionArea onClick={this.goToUserDoggos}>
+                        <CardMedia
+                          image={pet.image_url}
+                          style={{height:430}}
+                        />
+                        <CardContent>
+                          <Typography gutterBottom variant="h4" color="textPrimary" component="p">
+                            {pet.name}
+                          </Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Tooltip>
                   </Card>
                   )}
                 </Carousel>
