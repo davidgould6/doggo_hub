@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-
+import './LoginForm.css';
 import {TextField, Typography} from '@material-ui/core/';
 
 import StyledButton from '../../MaterialUiStyles/StyledButton';
@@ -46,7 +46,7 @@ class LoginForm extends Component {
             {this.props.store.errors.loginMessage}
           </h3>
         )}
-        <div>
+        <div className="loginInputs">
           <label htmlFor="username">
             <TextField
             id="outlined-basic"
@@ -58,19 +58,20 @@ class LoginForm extends Component {
             />
           </label>
         </div>
-        <div>
+        <div className="loginInputs">
           <label htmlFor="password">
             <TextField 
             id="outlined-basic"
             label="Password"
             variant="outlined"
             name="password"
+            type="password"
             required
             onChange={this.handleInputChangeFor('password')}
             />
           </label>
         </div>
-        <div>
+        <div className="loginInputs">
           <StyledButton type="submit" name="submit">
             Log In
           </StyledButton>

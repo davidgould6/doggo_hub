@@ -2,19 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import EditIcon from '@material-ui/icons/Edit';
-import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
-import Tooltip from '@material-ui/core/Tooltip';
 import swal from 'sweetalert';
 
+import {
+  Button, FormControl, FormHelperText, 
+  IconButton, InputLabel, MenuItem, 
+  Select, TextField, Tooltip, } 
+from '@material-ui/core/';
 
 class DoggosListUDItem extends Component {
 
@@ -115,14 +111,28 @@ class DoggosListUDItem extends Component {
           <img className="userPetImage" src={this.props.pet.image_url} />
           <div className="imageBullets">
             <ul>
-              <li><TextField id="standard-basic" name="petName" type="text" label="Name:" value={this.state.petName} onChange={this.handleInputChangeFor("petName")}/></li>
-              <li><TextField id="standard-basic" name="age" type="number" label="Age:" value={this.state.age} onChange={this.handleInputChangeFor("age")}/></li>
-              <li>
+              <div>
+                <TextField 
+                  id="standard-basic"  
+                  type="text" 
+                  label="Name:" 
+                  value={this.state.petName} 
+                  onChange={this.handleInputChangeFor("petName")}/>
+              </div>
+              <div>
+                <TextField 
+                  id="standard-basic" 
+                  type="number" 
+                  label="Age:" 
+                  value={this.state.age} 
+                  onChange={this.handleInputChangeFor("age")}/>
+              </div>
+              <div>
                 <FormControl>
                   <InputLabel>
                       Size:
                   </InputLabel>
-                  <Select value={this.state.size} name="size" onChange={this.handleInputChangeFor("size")}>   
+                  <Select value={this.state.size} onChange={this.handleInputChangeFor("size")}>   
                     <MenuItem value="Small">Small</MenuItem>
                     <MenuItem value="Medium">Medium</MenuItem>
                     <MenuItem value="Large">Large</MenuItem>
@@ -139,7 +149,7 @@ class DoggosListUDItem extends Component {
                     Save
                   </Button>
                 </FormControl>
-              </li>
+                </div>
             </ul>
           </div>
         </div>

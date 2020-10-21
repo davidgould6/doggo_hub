@@ -53,24 +53,20 @@ class UserPage extends Component {
       <div className="userContainer">
         <Typography variant="h3">Welcome to your hub {this.props.store.user.first_name} {this.props.store.user.last_name}!</Typography>
         <Grid container spacing={4}>
-          <Grid item xs={6} 
-          onClick={this.goToUpcomingEvents}
-          >
-            <Typography variant="h5" gutterBottom>
+          <Grid item xs={6} >
+            <Typography variant="h5" gutterBottom onClick={this.goToUpcomingEvents}>
               Upcoming Events
             </Typography>
-            <Paper >
+            <Paper onClick={this.goToUpcomingEvents}>
               <GroomingList />
               <WalkList />
             </Paper>
           </Grid>
-          <Grid item xs={6} 
-          onClick={this.goToUserDoggos}
-          >
-            <Typography variant="h5" gutterBottom>
+          <Grid item xs={6} >
+            <Typography variant="h5" gutterBottom onClick={this.goToUserDoggos}>
               Your Doggos
             </Typography>
-            <Paper>
+            <Paper onClick={this.goToUserDoggos}>
               <DoggoList />
             </Paper>
           </Grid>

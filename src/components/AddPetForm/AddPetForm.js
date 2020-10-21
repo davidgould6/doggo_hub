@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import swal from 'sweetalert';
 import {withRouter} from "react-router-dom";
+
+import swal from 'sweetalert';
+
+import {
+  Button, FormControl, FormHelperText, 
+  IconButton, InputLabel, MenuItem, 
+  Select, TextField, Tooltip, Typography} 
+from '@material-ui/core/';
+
+import StyledButton from '../../MaterialUiStyles/StyledButton';
 
 class AddPetForm extends Component {
 
@@ -82,19 +91,12 @@ class AddPetForm extends Component {
       }      
   };
 
-  // Function handles change for address, needed it's own function to pass id
-  handleInputChangeForDogAddress = (event) => {
-    this.setState({
-      dogAddress: event.target.value
-    });
-  };
-
   render() {
-    // console.log('this is our state addpetform', this.state);
+    console.log('this is our state addpetform', this.state);
     // console.log('these are our props in addpetform', this.props);
     return (
         <form className="formPanel" onSubmit={this.addPet}>
-            <h2>Add a Doggo!</h2>
+            <Typography variant="h4">Add a Doggo!</Typography>
             {this.props.store.errors.registrationMessage && (
             <h3 className="alert" role="alert">
                 {this.props.store.errors.registrationMessage}
@@ -102,11 +104,11 @@ class AddPetForm extends Component {
         )}
         <div>
           <label htmlFor="petName">
-            Name:
-            <input
+            <TextField
+              id="outlined-basic"
+              label="Pet Name"
+              variant="outlined"
               type="text"
-              name="petName"
-              value={this.state.petName}
               required
               onChange={this.handleInputChangeFor('petName')}
             />
@@ -114,11 +116,11 @@ class AddPetForm extends Component {
         </div>
         <div>
           <label htmlFor="age">
-            Age:
-            <input
+            <TextField
+              id="outlined-basic"
+              label="Age"
+              variant="outlined"
               type="number"
-              name="age"
-              value={this.state.age}
               required
               onChange={this.handleInputChangeFor('age')}
             />
@@ -126,11 +128,11 @@ class AddPetForm extends Component {
         </div>
         <div>
           <label htmlFor="image_url">
-            Image Url:
-            <input
+            <TextField
+              id="outlined-basic"
+              label="Image Url"
+              variant="outlined"
               type="text"
-              name="image_url"
-              value={this.state.image_ur}
               required
               onChange={this.handleInputChangeFor('image_url')}
             />
@@ -138,38 +140,46 @@ class AddPetForm extends Component {
         </div>
         <div>
           <label htmlFor="size">
-            Size:
-            <select
-                name="size"
-                value={this.state.size}
-                required
-                onChange={this.handleInputChangeFor('size')}
-            >
-                <option disabled value="selectSize"> -- Size of Doggo -- </option>
-                <option>Small</option>
-                <option>Medium</option>
-                <option>Large</option>
-            </select>
+            <FormControl>
+              <InputLabel>
+                  Size:
+              </InputLabel>
+              <Select onChange={this.handleInputChangeFor("size")}>   
+                <MenuItem value="Small">Small</MenuItem>
+                <MenuItem value="Medium">Medium</MenuItem>
+                <MenuItem value="Large">Large</MenuItem>
+              </Select>
+              <FormHelperText>
+                  Please select a size
+              </FormHelperText>
+            </FormControl>
           </label>
         </div>
         <div>
           <label htmlFor="dogAddress">
-            Home Address:
-            <select
-              name="dogAddress"
-              value={this.state.dogAddress}
-              required
-              onChange={(event) => this.handleInputChangeForDogAddress(event)}
-            >
-              <option disabled value="selectAddress"> -- Select Home Address For Doggo -- </option>
-              {this.props.store.addressReducer.map((address, i) => 
-              <option value={address.id} key={i}>{address.street} {address.city}, {address.state} {address.zip}</option>
-              )}
-            </select>
+            <FormControl>
+              <InputLabel>
+              Home Address:
+              </InputLabel>
+              <Select
+                name="dogAddress" 
+                onChange={this.handleInputChangeFor("dogAddress")}>
+                {this.props.store.addressReducer.map((address, i) => 
+                <MenuItem value={address.id} key={i}>{address.street} {address.city}, {address.state} {address.zip}</MenuItem>
+                )}
+              </Select>
+              <FormHelperText>
+                Please select a home address
+              </FormHelperText>
+            </FormControl>
           </label>
         </div>
         <div>
-          <input className="btn" type="submit" name="submit" value="Add Doggo" />
+          <StyledButton 
+            type="submit" 
+            name="submit">
+              Add Doggo
+          </StyledButton>
         </div>
       </form>
     );
