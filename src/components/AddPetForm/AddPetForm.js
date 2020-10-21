@@ -9,7 +9,9 @@ import swal from 'sweetalert';
 // Import material ui components from library core
 import {
   FormControl, FormHelperText, InputLabel, 
-  MenuItem, Select, TextField, Typography} 
+  MenuItem, Select, TextField, Typography,
+  Slide,
+} 
 from '@material-ui/core/';
 
 // Import custom material ui styled button.
@@ -28,7 +30,8 @@ class AddPetForm extends Component {
     age: '',
     image_url: '',
     size: '',
-    dogAddress: ''
+    dogAddress: '',
+    isChecked: true
   };
 
   // Function handles change for all three fields in form. 
@@ -95,6 +98,7 @@ class AddPetForm extends Component {
 
   render() {
     return (
+      <Slide direction="up" in={this.state.isChecked}>
         <form className="formPanel" onSubmit={this.addPet}>
             <Typography variant="h4">Add a Doggo!</Typography>
             <Typography variant="body2">fields with * are required</Typography>
@@ -103,86 +107,81 @@ class AddPetForm extends Component {
                 {this.props.store.errors.registrationMessage}
             </h3>
         )}
-        <div className="scheduleContainerItem">
-          <label htmlFor="petName">
-            <TextField
-              id="outlined-basic"
-              label="Pet Name"
-              variant="outlined"
-              type="text"
-              required
-              onChange={this.handleInputChangeFor('petName')}
-            />
-          </label>
-        </div>
-        <div className="scheduleContainerItem">
-          <label htmlFor="age">
-            <TextField
-              id="outlined-basic"
-              label="Age"
-              variant="outlined"
-              type="number"
-              required
-              onChange={this.handleInputChangeFor('age')}
-            />
-          </label>
-        </div>
-        <div className="scheduleContainerItem">
-          <label htmlFor="image_url">
-            <TextField
-              id="outlined-basic"
-              label="Image Url"
-              variant="outlined"
-              type="text"
-              required
-              onChange={this.handleInputChangeFor('image_url')}
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="size">
-            <FormControl>
-              <InputLabel required>
-                  Size:
-              </InputLabel>
-              <Select value={this.state.size} onChange={this.handleInputChangeFor("size")}>   
-                <MenuItem value="Small">Small</MenuItem>
-                <MenuItem value="Medium">Medium</MenuItem>
-                <MenuItem value="Large">Large</MenuItem>
-              </Select>
-              <FormHelperText>
-                  Please select a size
-              </FormHelperText>
-            </FormControl>
-          </label>
-        </div>
-        <div>
-          <label htmlFor="dogAddress">
-            <FormControl>
-              <InputLabel required>
-              Home Address:
-              </InputLabel>
-              <Select
-                value={this.state.dogAddress}
-                onChange={this.handleInputChangeFor("dogAddress")}>
-                {this.props.store.addressReducer.map((address, i) => 
-                <MenuItem value={address.id} key={i}>{address.street} {address.city}, {address.state} {address.zip}</MenuItem>
-                )}
-              </Select>
-              <FormHelperText>
-                Please select a home address
-              </FormHelperText>
-            </FormControl>
-          </label>
-        </div>
-        <div>
-          <StyledButton 
-            type="submit" 
-            name="submit">
-              Add Doggo
-          </StyledButton>
-        </div>
-      </form>
+          <div className="scheduleContainerItem">
+            <label htmlFor="petName">
+              <TextField
+                id="outlined-basic"
+                label="Pet Name"
+                variant="outlined"
+                type="text"
+                required
+                onChange={this.handleInputChangeFor('petName')}
+              />
+            </label>
+          </div>
+          <div className="scheduleContainerItem">
+            <label htmlFor="age">
+              <TextField
+                id="outlined-basic"
+                label="Age"
+                variant="outlined"
+                type="number"
+                required
+                onChange={this.handleInputChangeFor('age')}
+              />
+            </label>
+          </div>
+          <div className="scheduleContainerItem">
+              <TextField
+                id="outlined-basic"
+                label="Image Url"
+                variant="outlined"
+                type="text"
+                required
+                onChange={this.handleInputChangeFor('image_url')}
+              />
+          </div>
+          <div>
+              <FormControl>
+                <InputLabel required>
+                    Size:
+                </InputLabel>
+                <Select value={this.state.size} onChange={this.handleInputChangeFor("size")}>   
+                  <MenuItem value="Small">Small</MenuItem>
+                  <MenuItem value="Medium">Medium</MenuItem>
+                  <MenuItem value="Large">Large</MenuItem>
+                </Select>
+                <FormHelperText>
+                    Please select a size
+                </FormHelperText>
+              </FormControl>
+          </div>
+          <div>
+              <FormControl>
+                <InputLabel required>
+                Home Address:
+                </InputLabel>
+                <Select
+                  value={this.state.dogAddress}
+                  onChange={this.handleInputChangeFor("dogAddress")}>
+                  {this.props.store.addressReducer.map((address, i) => 
+                  <MenuItem value={address.id} key={i}>{address.street} {address.city}, {address.state} {address.zip}</MenuItem>
+                  )}
+                </Select>
+                <FormHelperText>
+                  Please select a home address
+                </FormHelperText>
+              </FormControl>
+          </div>
+          <div>
+            <StyledButton 
+              type="submit" 
+              name="submit">
+                Add Doggo
+            </StyledButton>
+          </div>
+        </form>
+      </Slide>
     );
   }
 }

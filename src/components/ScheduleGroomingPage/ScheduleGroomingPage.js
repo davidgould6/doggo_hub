@@ -3,24 +3,16 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import swal from 'sweetalert';
 import {withRouter} from 'react-router-dom'
-import {FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField, Typography} from '@material-ui/core/'
-import { makeStyles } from '@material-ui/core/styles';
+
+// Import material ui components from library core
+import {
+  FormControl, FormHelperText, InputLabel, 
+  MenuItem, Select, TextField, 
+  Typography, Slide} 
+from '@material-ui/core/'
 
 // Import custom material ui styled button.
 import StyledButton from '../../MaterialUiStyles/StyledButton';
-
-// Styling for date input. 
-const classes = makeStyles((theme) => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-  },
-}));
 
 class ScheduleGroomingPage extends Component {
   
@@ -33,7 +25,8 @@ class ScheduleGroomingPage extends Component {
   state = {
     dogToGroom: '',
     date: '',
-    address: ''
+    address: '',
+    isChecked: true
   };
 
   // Function handles change for all forms.
@@ -97,61 +90,62 @@ class ScheduleGroomingPage extends Component {
 
   render() {
     return (
-      <form className="formPanel" onSubmit={this.scheduleGrooming}>
-        <Typography variant="h4">Schedule a grooming!</Typography>
-        <Typography variant="body2">fields with * are required</Typography>
-        <div>
-          <FormControl>
-            <InputLabel required>
-                Your Doggo
-            </InputLabel>
-            <Select 
-              value={this.state.dogToGroom} 
-              onChange={this.handleInputChangeFor("dogToGroom")}>
-                {this.props.store.petReducer.map((pet, i) =>
-                <MenuItem key={i} value={pet.id}>{pet.name}</MenuItem>
-                )}
-            </Select>
-            <FormHelperText>
-                Please select a doggo for the grooming.
-            </FormHelperText>
-          </FormControl>
-        </div>
-        <div className="scheduleContainerItem">
-          <TextField
-              id="date"
-              label="Date"
-              type="date"
-              required
-              defaultValue={this.state.date}
-              className={classes.textField}
-              onChange={this.handleInputChangeFor('date')}
-              InputLabelProps={{
-                shrink: true,
-              }}
-          />
-        </div>
-        <div className="scheduleContainerItem">
-          <FormControl>
-            <InputLabel required>
-              Drop off location:
-            </InputLabel>
-            <Select 
-              value={this.state.address} 
-              onChange={this.handleInputChangeFor("address")}>
-                <MenuItem value={1}>101 Doggo Lane Blaine, MN 55449</MenuItem>
-            </Select>
-            <FormHelperText>
-                Please select a grooming location.
-            </FormHelperText>
-          </FormControl>
-        </div>
-        <div className="scheduleContainerItem">
-          <StyledButton onClick={this.scheduleGrooming}>
-            Schedule Grooming
-          </StyledButton>
-        </div>
-      </form>
+      <Slide direction="up" in={this.state.isChecked}>
+        <form className="formPanel" onSubmit={this.scheduleGrooming}>
+          <Typography variant="h4">Schedule a grooming!</Typography>
+          <Typography variant="body2">fields with * are required</Typography>
+          <div>
+            <FormControl>
+              <InputLabel required>
+                  Your Doggo
+              </InputLabel>
+              <Select 
+                value={this.state.dogToGroom} 
+                onChange={this.handleInputChangeFor("dogToGroom")}>
+                  {this.props.store.petReducer.map((pet, i) =>
+                  <MenuItem key={i} value={pet.id}>{pet.name}</MenuItem>
+                  )}
+              </Select>
+              <FormHelperText>
+                  Please select a doggo for the grooming.
+              </FormHelperText>
+            </FormControl>
+          </div>
+          <div className="scheduleContainerItem">
+            <TextField
+                id="date"
+                label="Date"
+                type="date"
+                required
+                value={this.state.date}
+                onChange={this.handleInputChangeFor('date')}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+            />
+          </div>
+          <div className="scheduleContainerItem">
+            <FormControl>
+              <InputLabel required>
+                Drop off location:
+              </InputLabel>
+              <Select 
+                value={this.state.address} 
+                onChange={this.handleInputChangeFor("address")}>
+                  <MenuItem value={1}>101 Doggo Lane Blaine, MN 55449</MenuItem>
+              </Select>
+              <FormHelperText>
+                  Please select a grooming location.
+              </FormHelperText>
+            </FormControl>
+          </div>
+          <div className="scheduleContainerItem">
+            <StyledButton onClick={this.scheduleGrooming}>
+              Schedule Grooming
+            </StyledButton>
+          </div>
+        </form>
+      </Slide>
     );
   }
 }
