@@ -58,31 +58,55 @@ class UserPage extends Component {
   render() {
     console.log('in userpage these are our props', this.props);
     return (
-      <div className="userContainer">
-        <Typography variant="h3">Welcome to your hub {this.props.store.user.first_name} {this.props.store.user.last_name}!</Typography>
-        <Grid container spacing={4}>
-          <Grid item xs={6} >
-            <Typography variant="h5" gutterBottom onClick={this.goToUpcomingEvents}>
-              Upcoming Events
-            </Typography>
-            <Paper onClick={this.goToUpcomingEvents}>
-              <GroomingList />
-              <WalkList />
-            </Paper>
-          </Grid>
-          <Grid item xs={6} >
-            <Typography variant="h5" gutterBottom onClick={this.goToUserDoggos}>
-              Your Doggos
-            </Typography>
-            <Paper onClick={this.goToUserDoggos}>
-              <DoggoList />
-            </Paper>
-          </Grid>
-        </Grid>
-      </div>
+<div className="userContainer">
+<Typography variant="h3">Welcome to your hub {this.props.store.user.first_name} {this.props.store.user.last_name}!</Typography>
+<Grid container spacing={4}>
+  <Grid item xs={6} >
+    <Typography variant="h5" gutterBottom onClick={this.goToUpcomingEvents}>
+      Upcoming Events
+    </Typography>
+    <Paper onClick={this.goToUpcomingEvents}>
+      <GroomingList />
+      <WalkList />
+    </Paper>
+  </Grid>
+  <Grid item xs={6} >
+    <Typography variant="h5" gutterBottom onClick={this.goToUserDoggos}>
+      Your Doggos
+    </Typography>
+    <Paper onClick={this.goToUserDoggos}>
+      <DoggoList />
+    </Paper>
+  </Grid>
+</Grid>
+</div>
     );
   }
 }
 
 // this allows us to use <App /> in index.js
 export default connect(mapStoreToProps)(withRouter(UserPage));
+
+
+{/* <div className="userContainer">
+<Typography variant="h3">Welcome to your hub {this.props.store.user.first_name} {this.props.store.user.last_name}!</Typography>
+<Grid container spacing={4}>
+  <Grid item xs={6} >
+    <Typography variant="h5" gutterBottom onClick={this.goToUpcomingEvents}>
+      Upcoming Events
+    </Typography>
+    <Paper onClick={this.goToUpcomingEvents}>
+      <GroomingList />
+      <WalkList />
+    </Paper>
+  </Grid>
+  <Grid item xs={6} >
+    <Typography variant="h5" gutterBottom onClick={this.goToUserDoggos}>
+      Your Doggos
+    </Typography>
+    <Paper onClick={this.goToUserDoggos}>
+      <DoggoList />
+    </Paper>
+  </Grid>
+</Grid>
+</div> */}

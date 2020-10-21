@@ -19,7 +19,8 @@ from '@material-ui/core/';
 
 class DoggosListUDItem extends Component {
 
-  // Local state to hold date prior to dispatch if disired change, also holds boolean for toggle feature.
+  // Local state to for this specific doggo has it's name, age, and size to keep same values on edit click
+  // dispatch if disired change, also holds boolean for toggle feature.
   state = {
     isEdit: false,
     petName: this.props.pet.name,
