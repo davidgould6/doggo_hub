@@ -14,7 +14,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import {
   IconButton, Tooltip, Card, 
   Container, Grid, Typography,
-  TextField} 
+  TextField, Slide} 
 from '@material-ui/core'
 
 class GroomingListUDItem extends Component {
@@ -22,7 +22,8 @@ class GroomingListUDItem extends Component {
   // Local state to hold date prior to dispatch if disired change, also holds boolean for toggle feature.
   state = {
     isEdit: false,
-    date: this.props.grooming.time.split( 'T' )[0]
+    date: this.props.grooming.time.split( 'T' )[0],
+    isChecked: true
   };
 
   // Function sends dispatch for delete to grooming saga with confirmations.
@@ -91,102 +92,104 @@ class GroomingListUDItem extends Component {
 
   render() {
     return (
-      <Container>
-        {this.state.isEdit === false ?
-        <Grid container spacing={0}>
-          <Grid item md={12}>
-            <Card variant="outlined" style={{marginBottom: 10}}>
-              <li 
-              className="removeBullets">
-                <Typography>
-                  {this.props.grooming.name}
-                </Typography>
-              </li>
-              <li 
-              className="removeBullets">
-                <Typography>
-                  {this.props.grooming.time.split( 'T' )[0]}
-                </Typography>
-              </li>
-              <li 
-              className="removeBullets">
-                <Typography>
-                  {this.props.grooming.drop_off_address}
-                  <Tooltip 
-                  title="Edit" 
-                  placement="left">
-                    <IconButton 
-                      aria-label="edit"
-                      onClick={this.editOnClick}
+      <Slide direction="up" in={this.state.isChecked}>
+        <Container>
+          {this.state.isEdit === false ?
+          <Grid container spacing={0}>
+            <Grid item md={12}>
+              <Card variant="outlined" style={{marginBottom: 10}}>
+                <li 
+                className="removeBullets">
+                  <Typography>
+                    {this.props.grooming.name}
+                  </Typography>
+                </li>
+                <li 
+                className="removeBullets">
+                  <Typography>
+                    {this.props.grooming.time.split( 'T' )[0]}
+                  </Typography>
+                </li>
+                <li 
+                className="removeBullets">
+                  <Typography>
+                    {this.props.grooming.drop_off_address}
+                    <Tooltip 
+                    title="Edit" 
+                    placement="left">
+                      <IconButton 
+                        aria-label="edit"
+                        onClick={this.editOnClick}
+                      >
+                        <EditIcon fontSize="small"/>
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Delete" placement="right">
+                      <IconButton 
+                        aria-label="delete"
+                        onClick={() => this.delete(this.props.grooming.id)}
+                      >
+                        <DeleteIcon fontSize="small"/>
+                      </IconButton>
+                    </Tooltip>
+                  </Typography>
+                </li>
+              </Card>
+            </Grid>
+          </Grid>: 
+          // End Ternary
+          <Grid container spacing={0}>
+            <Grid item md={12}>
+              <Card variant="outlined" style={{marginBottom: 10}}>
+                <li 
+                className="removeBullets">
+                  <Typography>
+                    {this.props.grooming.name}
+                  </Typography>
+                </li>
+                <li className="editDateInput">
+                  <TextField
+                    id="date"
+                    label="Date"
+                    type="date"
+                    variant="outlined"
+                    size="small"
+                    required
+                    value={this.state.date}
+                    onChange={this.handleInputChangeFor('date')}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                  <Tooltip title="Click to submit change">
+                    <IconButton
+                      onClick={this.submitChangeForDate}
                     >
-                      <EditIcon fontSize="small"/>
+                      <CheckCircleIcon/>
                     </IconButton>
                   </Tooltip>
-                  <Tooltip title="Delete" placement="right">
-                    <IconButton 
-                      aria-label="delete"
-                      onClick={() => this.delete(this.props.grooming.id)}
-                    >
-                      <DeleteIcon fontSize="small"/>
-                    </IconButton>
-                  </Tooltip>
-                </Typography>
-              </li>
-            </Card>
+                </li>
+                <li className="removeBullets">
+                  <Typography>
+                    {this.props.grooming.drop_off_address}
+                    <Tooltip 
+                    title="Edit" 
+                    placement="left">
+                      <IconButton 
+                        aria-label="edit"
+                        onClick={this.editOnClick}
+                      >
+                        <EditIcon fontSize="small"/>
+                      </IconButton>
+                    </Tooltip>
+                  </Typography>
+                </li>
+              </Card>
+            </Grid>
           </Grid>
-        </Grid>: 
-        // End Ternary
-        <Grid container spacing={0}>
-          <Grid item md={12}>
-            <Card variant="outlined" style={{marginBottom: 10}}>
-              <li 
-              className="removeBullets">
-                <Typography>
-                  {this.props.grooming.name}
-                </Typography>
-              </li>
-              <li className="editDateInput">
-                <TextField
-                  id="date"
-                  label="Date"
-                  type="date"
-                  variant="outlined"
-                  size="small"
-                  required
-                  value={this.state.date}
-                  onChange={this.handleInputChangeFor('date')}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-                <Tooltip title="Click to submit change">
-                  <IconButton
-                    onClick={this.submitChangeForDate}
-                  >
-                    <CheckCircleIcon/>
-                  </IconButton>
-                </Tooltip>
-              </li>
-              <li className="removeBullets">
-                <Typography>
-                  {this.props.grooming.drop_off_address}
-                  <Tooltip 
-                  title="Edit" 
-                  placement="left">
-                    <IconButton 
-                      aria-label="edit"
-                      onClick={this.editOnClick}
-                    >
-                      <EditIcon fontSize="small"/>
-                    </IconButton>
-                  </Tooltip>
-                </Typography>
-              </li>
-            </Card>
-          </Grid>
-        </Grid>
-        }
-      </Container>
+          }
+        </Container>
+      </Slide>
     );
   }
 }

@@ -14,7 +14,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import {
   IconButton, Tooltip, Card, 
   Container, Grid, Typography,
-  TextField} 
+  TextField, Slide} 
 from '@material-ui/core'
 
 
@@ -24,6 +24,7 @@ class WalkListUDItem extends Component {
   state = {
     isEdit: false,
     date: this.props.walk.time.split( 'T' )[0],
+    isChecked: true
   };
 
   // Function sends dispatch for delete to grooming saga with confirmations.
@@ -92,101 +93,103 @@ class WalkListUDItem extends Component {
 
   render() {
     return (
-      <Container>
-        {this.state.isEdit === false ? 
+      <Slide direction="up" in={this.state.isChecked}>
+        <Container>
+          {this.state.isEdit === false ? 
+            <Grid container spacing={0}>
+                <Grid item md={12}>
+                <Card variant="outlined" style={{marginBottom: 10}}>
+                  <li 
+                  className="removeBullets">
+                    <Typography>
+                      {this.props.walk.name}
+                    </Typography>
+                  </li>
+                  <li 
+                  className="removeBullets">
+                    <Typography>
+                      {this.props.walk.time.split( 'T' )[0]}
+                    </Typography>
+                  </li>
+                  <li 
+                  className="removeBullets">
+                    <Typography>
+                      {this.props.walk.street} {this.props.walk.city}, {this.props.walk.state} {this.props.walk.zip}
+                      <Tooltip 
+                      title="Edit" 
+                      placement="left">
+                        <IconButton 
+                          aria-label="edit"
+                          onClick={this.editOnClick}
+                        >
+                          <EditIcon fontSize="small"/>
+                        </IconButton>
+                      </Tooltip>
+                      <Tooltip title="Delete" placement="right">
+                        <IconButton 
+                          aria-label="delete"
+                          onClick={() => this.delete(this.props.walk.id)}
+                        >
+                          <DeleteIcon fontSize="small"/>
+                        </IconButton>
+                      </Tooltip>
+                    </Typography>
+                  </li>
+                </Card>
+              </Grid>
+            </Grid> :
           <Grid container spacing={0}>
-              <Grid item md={12}>
+            <Grid item md={12}>
               <Card variant="outlined" style={{marginBottom: 10}}>
-                <li 
-                className="removeBullets">
-                  <Typography>
-                    {this.props.walk.name}
-                  </Typography>
-                </li>
-                <li 
-                className="removeBullets">
-                  <Typography>
-                    {this.props.walk.time.split( 'T' )[0]}
-                  </Typography>
-                </li>
-                <li 
-                className="removeBullets">
-                  <Typography>
-                    {this.props.walk.street} {this.props.walk.city}, {this.props.walk.state} {this.props.walk.zip}
-                    <Tooltip 
-                    title="Edit" 
-                    placement="left">
-                      <IconButton 
-                        aria-label="edit"
-                        onClick={this.editOnClick}
-                      >
-                        <EditIcon fontSize="small"/>
-                      </IconButton>
-                    </Tooltip>
-                    <Tooltip title="Delete" placement="right">
-                      <IconButton 
-                        aria-label="delete"
-                        onClick={() => this.delete(this.props.walk.id)}
-                      >
-                        <DeleteIcon fontSize="small"/>
-                      </IconButton>
-                    </Tooltip>
-                  </Typography>
-                </li>
-              </Card>
-            </Grid>
-          </Grid> :
-        <Grid container spacing={0}>
-          <Grid item md={12}>
-            <Card variant="outlined" style={{marginBottom: 10}}>
-          <li 
-          className="removeBullets">
-            <Typography>
-              {this.props.walk.name}
-            </Typography>
-          </li>
-          <li className="editDateInput">
-            <TextField
-              id="date"
-              label="Date"
-              type="date"
-              variant="outlined"
-              size="small"
-              required
-              value={this.state.date}
-              onChange={this.handleInputChangeFor('date')}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <Tooltip title="Click to submit change">
-              <IconButton
-                onClick={this.submitChangeForDate}
-              >
-                <CheckCircleIcon/>
-              </IconButton>
-            </Tooltip>
-          </li>
-          <li className="removeBullets">
-            <Typography>
-              {this.props.walk.street} {this.props.walk.city}, {this.props.walk.state} {this.props.walk.zip}
-              <Tooltip 
-              title="Edit" 
-              placement="left">
-                <IconButton 
-                  aria-label="edit"
-                  onClick={this.editOnClick}
+            <li 
+            className="removeBullets">
+              <Typography>
+                {this.props.walk.name}
+              </Typography>
+            </li>
+            <li className="editDateInput">
+              <TextField
+                id="date"
+                label="Date"
+                type="date"
+                variant="outlined"
+                size="small"
+                required
+                value={this.state.date}
+                onChange={this.handleInputChangeFor('date')}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+              <Tooltip title="Click to submit change">
+                <IconButton
+                  onClick={this.submitChangeForDate}
                 >
-                  <EditIcon fontSize="small"/>
+                  <CheckCircleIcon/>
                 </IconButton>
               </Tooltip>
-            </Typography>
-          </li>
-            </Card>
-          </Grid>
-        </Grid> 
-      }
-      </Container>
+            </li>
+            <li className="removeBullets">
+              <Typography>
+                {this.props.walk.street} {this.props.walk.city}, {this.props.walk.state} {this.props.walk.zip}
+                <Tooltip 
+                title="Edit" 
+                placement="left">
+                  <IconButton 
+                    aria-label="edit"
+                    onClick={this.editOnClick}
+                  >
+                    <EditIcon fontSize="small"/>
+                  </IconButton>
+                </Tooltip>
+              </Typography>
+            </li>
+              </Card>
+            </Grid>
+          </Grid> 
+        }
+        </Container>
+      </Slide>
     );
   }
 }
