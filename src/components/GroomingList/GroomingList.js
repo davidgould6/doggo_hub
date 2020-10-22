@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
+import {
+  Card, Container, Grid, Typography, 
+}
+from '@material-ui/core/';
+
+import './GroomingList.css';
+
 class GroomingList extends Component {
 
   componentDidMount(){
@@ -12,18 +19,22 @@ class GroomingList extends Component {
 
   render() {
     return (
-      <div>
-        <ul className="upcomingEventUl">
-          Groomings
+      <Container>
+      Groomings
+      <Grid container spacing={0}>
+        <Grid item md={12}>
           {this.props.store.groomingReducer.map((grooming, i) =>
-            <div className="upcomingEventChild" key={i}>
-              <li>{grooming.name}</li>
-              <li>{grooming.time.split( 'T' )[0]}</li>
-              <li>{grooming.drop_off_address}</li>
+          <Card variant="outlined" style={{marginBottom: 10,}}>
+            <div className="groomingListItem">
+              <li className="removeBullets"><Typography>{grooming.name}</Typography></li>
+              <li className="removeBullets"><Typography>{grooming.time.split( 'T' )[0]}</Typography></li>
+              <li className="removeBullets"><Typography>{grooming.drop_off_address}</Typography></li>
             </div>
+          </Card>
           )}
-        </ul>
-      </div>
+          </Grid>
+      </Grid>
+    </Container>
     );
   }
 }

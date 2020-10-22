@@ -78,32 +78,31 @@ class UserPage extends Component {
               <Typography variant="h5" gutterBottom onClick={this.goToUpcomingEvents}>
                 Upcoming Events
               </Typography>
-                <Accordion>
-                  <AccordionSummary
-                    expandIcon={ 
-                      <Tooltip title="Click to expand" placement="right">
-                        <ExpandMoreIcon />
-                      </Tooltip>}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <Typography>Groomings</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <ul>
-                  {this.props.store.groomingReducer.map((grooming, i) =>
-                    <Tooltip key={i} title="Click to go to upcoming events">
-                      <Card key={i} variant="outlined" style={{marginBottom: 12}} onClick={this.goToUpcomingEvents}>
-                      <li><Typography>{grooming.name}</Typography></li>
-                      <li><Typography>{grooming.time.split( 'T' )[0]}</Typography></li>
-                      <li><Typography>{grooming.drop_off_address}</Typography></li>
-                      </Card>
-                    </Tooltip> 
-                  )}
-                  </ul>
-                  </AccordionDetails>
-                </Accordion>
-              
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={ 
+                    <Tooltip title="Click to expand" placement="right">
+                      <ExpandMoreIcon />
+                    </Tooltip>}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography>Groomings</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <ul>
+                {this.props.store.groomingReducer.map((grooming, i) =>
+                  <Tooltip key={i} title="Click to go to upcoming events">
+                    <Card key={i} variant="outlined" style={{marginBottom: 12}} onClick={this.goToUpcomingEvents}>
+                    <li><Typography>{grooming.name}</Typography></li>
+                    <li><Typography>{grooming.time.split( 'T' )[0]}</Typography></li>
+                    <li><Typography>{grooming.drop_off_address}</Typography></li>
+                    </Card>
+                  </Tooltip> 
+                )}
+                </ul>
+                </AccordionDetails>
+              </Accordion>
               <Accordion>
                 <AccordionSummary
                   expandIcon={ 

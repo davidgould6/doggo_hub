@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
+import {
+  Card, Container, Grid, Typography, 
+}
+from '@material-ui/core/';
+
+import './WalkList.css';
+
 class WalkList extends Component {
 
   componentDidMount(){
@@ -12,18 +19,22 @@ class WalkList extends Component {
   
   render() {
     return (
-      <div>
-          <ul className="upcomingEventUl">
-            Walks
+      <Container>
+         Walks
+        <Grid container spacing={0}>
+          <Grid item md={12}>
             {this.props.store.walkReducer.map((walk, i) =>
-            <div className="upcomingEventChild" key={i}>
-              <li className="topListItem">{walk.name}</li>
-              <li>{walk.time.split( 'T' )[0]}</li>
-              <li className="bottomListItem">{walk.street} {walk.city}, {walk.state} {walk.zip}</li>
-            </div>
+            <Card key ={i} variant="outlined" style={{marginBottom: 10,}}>
+              <div className="walkListItem">
+                <li className="removeBullets"><Typography>{walk.name}</Typography></li>
+                <li className="removeBullets"><Typography>{walk.time.split( 'T' )[0]}</Typography></li>
+                <li className="removeBullets"><Typography>{walk.street} {walk.city}, {walk.state} {walk.zip}</Typography></li>
+              </div>
+            </Card>
             )}
-          </ul>
-      </div>
+            </Grid>
+        </Grid>
+      </Container>
     );
   }
 }

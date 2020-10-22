@@ -1,0 +1,13 @@
+.walkListItem {
+  margin-left: 20px;
+}
+
+.removeBullets {
+  list-style-type: none;
+}
+
+.editDateInput {
+  list-style-type: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
