@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
+// Import material ui components from library core
 import {
   Card, Container, Grid, Typography, 
 }

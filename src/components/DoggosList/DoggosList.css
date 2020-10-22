@@ -1,3 +1,13 @@
 .doggoList {
-  margin-left: 15px;
+  display: inline-block;
+}
+
+.doggoListItem {
+  padding: 12.5px;
+}
+
+.removeBulletsDoggo {
+  list-style-type: none;
+  padding: 5px;
+  margin-left: 5px;
 }

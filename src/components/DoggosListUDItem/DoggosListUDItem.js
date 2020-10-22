@@ -12,10 +12,15 @@ import SaveIcon from '@material-ui/icons/Save';
 
 // Import material ui components from library core
 import {
-  Button, FormControl, FormHelperText, 
+  Button, Card, Container, 
+  Grid, FormControl, FormHelperText, 
   IconButton, InputLabel, MenuItem, 
-  Select, TextField, Tooltip, } 
+  Select, TextField, Tooltip, 
+  Typography} 
 from '@material-ui/core/';
+
+// Import css
+import './DoggosListUDItem.css';
 
 class DoggosListUDItem extends Component {
 
@@ -101,84 +106,108 @@ class DoggosListUDItem extends Component {
 
   render() {
     return (
-      <div className="outsideDivLists">
+      <Container>
         {this.state.isEdit === false ?
-        <div className="doggoList">
-          <img className="userPetImage" src={this.props.pet.image_url} alt="oops"/>
-          <div className="imageBullets">
-            <ul>
-              <li>Name: {this.props.pet.name}</li>
-              <li>Age: {this.props.pet.age}</li>
-              <li>Size: {this.props.pet.size}</li>
-            </ul>
-          </div>
-        </div>:
-        <div className="doggoList">
-          <img className="userPetImage" src={this.props.pet.image_url} alt="oops"/>
-          <div className="imageBullets">
-            <ul>
-              <div>
-                <TextField 
-                  id="standard-basic"  
-                  type="text" 
-                  label="Name:" 
-                  value={this.state.petName} 
-                  onChange={this.handleInputChangeFor("petName")}/>
-              </div>
-              <div>
-                <TextField 
-                  id="standard-basic" 
-                  type="number" 
-                  label="Age:" 
-                  value={this.state.age} 
-                  onChange={this.handleInputChangeFor("age")}/>
-              </div>
-              <div>
-                <FormControl>
-                  <InputLabel>
-                      Size:
-                  </InputLabel>
-                  <Select value={this.state.size} onChange={this.handleInputChangeFor("size")}>   
-                    <MenuItem value="Small">Small</MenuItem>
-                    <MenuItem value="Medium">Medium</MenuItem>
-                    <MenuItem value="Large">Large</MenuItem>
-                  </Select>
-                  <FormHelperText>
-                      Please Select a size
-                  </FormHelperText>
-                  <Button
-                    variant="contained"
-                    size="small"
-                    startIcon={<SaveIcon />}
-                    onClick={this.submitChangeForPet}
-                  >
-                    Save
-                  </Button>
-                </FormControl>
+          <Grid container spacing={0}>
+            <Grid item md={12}>
+              <Card variant="outlined" style={{marginBottom: 10}}>
+                <div className="doggoListItem">
+                  <img className="userPetImage" src={this.props.pet.image_url} alt="oops"/>
+                  <div className="doggoList">
+                    <li className="removeBulletsDoggo">
+                      <Typography>
+                        Name: {this.props.pet.name}
+                      </Typography>
+                    </li>
+                    <li className="removeBulletsDoggo">
+                      <Typography>
+                        Age: {this.props.pet.age}
+                      </Typography>
+                    </li>
+                    <li className="removeBulletsDoggo">
+                      <Typography>
+                        Size: {this.props.pet.size}
+                        <Tooltip title="Edit" placement="left">
+                          <IconButton 
+                            aria-label="edit"
+                            onClick={this.editOnClick}
+                            >
+                            <EditIcon fontSize="small"/>
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Delete" placement="right">
+                          <IconButton 
+                            aria-label="delete"
+                            onClick={() => this.delete(this.props.pet.id)}
+                          >
+                            <DeleteIcon fontSize="small"/>
+                          </IconButton>
+                        </Tooltip>
+                      </Typography>
+                    </li>
+                  </div>
                 </div>
-            </ul>
-          </div>
-        </div>
+              </Card>
+            </Grid>
+          </Grid>:
+          <Grid container spacing={0}>
+            <Grid item md={12}>
+              <Card variant="outlined" style={{marginBottom: 10}}>
+                <div className="doggoListItem">
+                    <img className="userPetImage" src={this.props.pet.image_url} alt="oops"/>
+                    <div className="doggoList">
+                      <div className="doggoFields">
+                        <TextField 
+                          id="standard-basic"  
+                          type="text" 
+                          label="Name:" 
+                          value={this.state.petName} 
+                          onChange={this.handleInputChangeFor("petName")}/>
+                      </div>
+                      <div className="doggoFields">
+                        <TextField 
+                          id="standard-basic" 
+                          type="number" 
+                          label="Age:" 
+                          value={this.state.age} 
+                          onChange={this.handleInputChangeFor("age")}/>
+                      </div>
+                      <div className="doggoFields">
+                        <FormControl>
+                          <InputLabel>
+                              Size:
+                          </InputLabel>
+                          <Select value={this.state.size} onChange={this.handleInputChangeFor("size")}>   
+                            <MenuItem value="Small">Small</MenuItem>
+                            <MenuItem value="Medium">Medium</MenuItem>
+                            <MenuItem value="Large">Large</MenuItem>
+                          </Select>
+                          <div>
+                            <Button
+                              variant="contained"
+                              size="small"
+                              style={{marginTop: 3.5}}
+                              startIcon={<SaveIcon />}
+                              onClick={this.submitChangeForPet}
+                            >
+                              Save
+                            </Button>
+                            <IconButton 
+                              aria-label="edit"
+                              onClick={this.editOnClick}
+                              >
+                              <EditIcon fontSize="small"/>
+                            </IconButton>
+                          </div>
+                        </FormControl>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </Grid>
+          </Grid>
         }
-        <div className="editDeleteTools">
-        <Tooltip title="Edit" placement="left">
-          <IconButton 
-            aria-label="edit"
-            onClick={this.editOnClick}
-            >
-            <EditIcon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="Delete" placement="right">
-          <IconButton 
-            aria-label="delete"
-            onClick={() => this.delete(this.props.pet.id)}
-          >
-              <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-        </div>
-      </div>
+      </Container>
     );
   }
 }

@@ -20,10 +20,8 @@ class UserDoggos extends Component {
   };
 
   render() {
-    console.log('this is state', this.state);
     return (
       <div>
-        <h2>Your Doggos</h2>
         <Tooltip title="Toggle to edit." placement="right">
           <Switch 
             checked={this.state.checkedA}

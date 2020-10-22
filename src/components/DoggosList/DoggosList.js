@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
+// Import material ui components from library core
+import {
+  Card, Container, Grid, Typography, 
+}
+from '@material-ui/core/';
+
 // Import css
 import './DoggosList.css';
 
@@ -14,20 +20,25 @@ class DoggosList extends Component {
 
   render() {
     return (
-      <div className="outsideDivLists">
-        {this.props.store.petReducer.map((pet, i) =>
-        <div className="doggoList" key={i}>
-          <img className="userPetImage" src={pet.image_url} alt="oops"/>
-          <div className="imageBullets">
-            <ul>
-              <li>Name: {pet.name}</li>
-              <li>Age: {pet.age}</li>
-              <li>Size: {pet.size}</li>
-            </ul>
-          </div>
-        </div>
-        )}
-      </div>
+      <Container>
+        Your Doggos
+        <Grid container spacing={0}>
+          <Grid item md={12}>
+          {this.props.store.petReducer.map((pet, i) =>
+          <Card key={i} variant="outlined" style={{marginBottom: 10}}>
+            <div className="doggoListItem">
+              <img className="userPetImage" src={pet.image_url} alt="oops"/>
+              <div className="doggoList">
+                <li className="removeBulletsDoggo"><Typography>Name: {pet.name}</Typography></li>
+                <li className="removeBulletsDoggo"><Typography>Age: {pet.age}</Typography></li>
+                <li className="removeBulletsDoggo"><Typography>Size: {pet.size}</Typography></li>
+              </div>
+            </div>
+          </Card>
+          )}
+          </Grid>
+        </Grid>
+      </Container> 
     );
   }
 }

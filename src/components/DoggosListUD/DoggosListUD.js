@@ -15,14 +15,13 @@ class DoggosListUD extends Component {
   render() {
     return (
       <div>
-        <ul>
+        Edit Doggos
           {this.props.store.petReducer.map((pet, i) =>
           <DoggosListUDItem 
             key={i}
             pet={pet}
           />
           )}
-        </ul>
       </div>
     );
   }
