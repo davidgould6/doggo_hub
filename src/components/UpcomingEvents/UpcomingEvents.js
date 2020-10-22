@@ -46,12 +46,12 @@ class UpcomingEvents extends Component {
         </Tooltip>
         {this.state.checkedA === false ?
           <div>
-            <WalkList />
             <GroomingList />
+            <WalkList />
           </div>:
           <div>
-            <WalkListUD />
             <GroomingListUD />
+            <WalkListUD />
           </div>
         }
       </div>

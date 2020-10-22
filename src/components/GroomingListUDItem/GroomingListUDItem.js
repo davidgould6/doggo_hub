@@ -6,12 +6,16 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import swal from 'sweetalert';
 
 // Import Icons from material ui
-import EditIcon from '@material-ui/icons/Edit';
-import IconButton from '@material-ui/core/IconButton';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 // Import material ui components from library core
-import Tooltip from '@material-ui/core/Tooltip';
+import {
+  IconButton, Tooltip, Card, 
+  Container, Grid, Typography,
+  TextField} 
+from '@material-ui/core'
 
 class GroomingListUDItem extends Component {
 
@@ -87,51 +91,102 @@ class GroomingListUDItem extends Component {
 
   render() {
     return (
-      <div className="outsideDivLists">
+      <Container>
         {this.state.isEdit === false ?
-        <div className="upcomingEventChild">
-          <li>{this.props.grooming.name}</li>
-          <li>{this.props.grooming.time.split( 'T' )[0]}</li>
-          <li>{this.props.grooming.drop_off_address}</li>
-        </div> :
-        <div className="upcomingEventChild">
-          <li>{this.props.grooming.name}</li>
-          <li>
-            <input 
-              type="date" 
-              name="date" 
-              value={this.state.date}
-              onChange={this.handleInputChangeFor('date')}
-              >
-            </input>
-            <button
-              onClick={this.submitChangeForDate}
-            >
-              Submit Change
-            </button>
-          </li>
-          <li>{this.props.grooming.drop_off_address}</li>
-        </div>
+        <Grid container spacing={0}>
+          <Grid item md={12}>
+            <Card variant="outlined" style={{marginBottom: 10}}>
+              <li 
+              className="removeBullets">
+                <Typography>
+                  {this.props.grooming.name}
+                </Typography>
+              </li>
+              <li 
+              className="removeBullets">
+                <Typography>
+                  {this.props.grooming.time.split( 'T' )[0]}
+                </Typography>
+              </li>
+              <li 
+              className="removeBullets">
+                <Typography>
+                  {this.props.grooming.drop_off_address}
+                  <Tooltip 
+                  title="Edit" 
+                  placement="left">
+                    <IconButton 
+                      aria-label="edit"
+                      onClick={this.editOnClick}
+                    >
+                      <EditIcon fontSize="small"/>
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Delete" placement="right">
+                    <IconButton 
+                      aria-label="delete"
+                      onClick={() => this.delete(this.props.grooming.id)}
+                    >
+                      <DeleteIcon fontSize="small"/>
+                    </IconButton>
+                  </Tooltip>
+                </Typography>
+              </li>
+            </Card>
+          </Grid>
+        </Grid>: 
+        // End Ternary
+        <Grid container spacing={0}>
+          <Grid item md={12}>
+            <Card variant="outlined" style={{marginBottom: 10}}>
+              <li 
+              className="removeBullets">
+                <Typography>
+                  {this.props.grooming.name}
+                </Typography>
+              </li>
+              <li className="editDateInput">
+                <TextField
+                  id="date"
+                  label="Date"
+                  type="date"
+                  variant="outlined"
+                  size="small"
+                  required
+                  value={this.state.date}
+                  onChange={this.handleInputChangeFor('date')}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+                <Tooltip title="Click to submit change">
+                  <IconButton
+                    onClick={this.submitChangeForDate}
+                  >
+                    <CheckCircleIcon/>
+                  </IconButton>
+                </Tooltip>
+              </li>
+              <li className="removeBullets">
+                <Typography>
+                  {this.props.grooming.drop_off_address}
+                  <Tooltip 
+                  title="Edit" 
+                  placement="left">
+                    <IconButton 
+                      aria-label="edit"
+                      onClick={this.editOnClick}
+                    >
+                      <EditIcon fontSize="small"/>
+                    </IconButton>
+                  </Tooltip>
+                </Typography>
+              </li>
+            </Card>
+          </Grid>
+        </Grid>
         }
-        <div className="editDeleteTools">
-        <Tooltip title="Edit" placement="left">
-          <IconButton 
-            aria-label="edit"
-            onClick={this.editOnClick}
-            >
-            <EditIcon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="Delete" placement="right">
-          <IconButton 
-            aria-label="delete"
-            onClick={() => this.delete(this.props.grooming.id)}
-          >
-              <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-        </div>
-      </div>
+      </Container>
     );
   }
 }

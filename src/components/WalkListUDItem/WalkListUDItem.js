@@ -6,9 +6,9 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import swal from 'sweetalert';
 
 // Import Icons from material ui
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 // Import material ui components from library core
 import {
