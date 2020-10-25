@@ -26,7 +26,7 @@ class GroomingList extends Component {
     return (
       <Slide direction="up" in={this.state.isChecked}>
         <Container>
-          Groomings
+          <div className="groomingWalkDoggo">Groomings</div>
           <Grid container spacing={0}>
             <Grid item md={12}>
               {this.props.store.groomingReducer.map((grooming, i) =>

@@ -1,3 +1,4 @@
+-- Create the five tables below (user, address, pet, walk, grooming) --
 CREATE TABLE "user" (
 "id" SERIAL PRIMARY KEY,
 "username" VARCHAR (80) UNIQUE NOT NULL,
@@ -38,3 +39,22 @@ CREATE TABLE "grooming" (
 "pet_id" INT,
 "drop_off_address" VARCHAR (300) DEFAULT '101 Doggo ln Blaine, MN 55449'
 );
+
+-- Run query creates user, username = davidgould; password = 123 --
+INSERT INTO "user" ("username", "password", "first_name", "last_name")
+VALUES ('davidgould', '$2a$10$8azn12gOR16X7fVQT7zDgO/a2bWoJlZCzLjB3aHEMzSCYjzJG3Zwm', 'David', 'Gould');
+
+INSERT INTO "address" ("street", "city", "state", "zip", "user_id")
+VALUES ('999 Paw lane', 'Pawville', 'MN', '55449', 1);
+
+INSERT INTO "pet" ("name", "age", "size", "image_url", "user_id", "address_id")
+VALUES ('Schmake', 2, 'Small', 'https://i.imgur.com/JCKyAPl.png', 1, 1);
+
+INSERT INTO "grooming" ("time", "pet_id")
+VALUES 
+('2020-10-27', 1),
+('2020-10-28', 1);
+
+INSERT INTO "walk" ("time", "pet_id", "address_id")
+VALUES
+('2020-10-29', 1, 1);

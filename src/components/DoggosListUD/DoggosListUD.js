@@ -15,7 +15,7 @@ class DoggosListUD extends Component {
   render() {
     return (
       <div>
-        Edit Doggos
+        <div className="edit">Edit Doggos</div>
           {this.props.store.petReducer.map((pet, i) =>
           <DoggosListUDItem 
             key={i}

@@ -8,6 +8,9 @@ import LandingPageCarousel from '../LandingPageCarousel/LandingPageCarousel';
 // Import css
 import './LandingPage.css';
 
+// Import Typography from material ui
+import Typography from '@material-ui/core/Typography';
+
 class LandingPage extends Component {
 
   state = {
@@ -17,14 +20,16 @@ class LandingPage extends Component {
   render() {
     return (
       <div className="container">
-        <h2>{this.state.heading}</h2>
+        <Typography variant="h2" gutterBottom>Welcome to Doggo Hub!</Typography>
 
         <div className="grid">
           <div className="grid-col grid-col_8">
-            <p>
+            <Typography variant="h6">
               Doggo Hub is an app designed for dog owners who may not have time to take their doggo
               for a walk or to schedule a grooming for their doggo in person or on the phone via voice.
-            </p>
+              We will pick up your doggo from your address for the walk!
+              Currently there is only one location to schedule groomings for your doggo. 
+            </Typography>
 
           </div>
           <div className="grid-col grid-col_4">

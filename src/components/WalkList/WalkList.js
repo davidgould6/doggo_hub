@@ -26,7 +26,7 @@ class WalkList extends Component {
     return (
       <Slide direction="up" in={this.state.isChecked}>
         <Container>
-          Walks
+          <div className="groomingWalkDoggo">Walks</div>
           <Grid container spacing={0}>
             <Grid item md={12}>
               {this.props.store.walkReducer.map((walk, i) =>

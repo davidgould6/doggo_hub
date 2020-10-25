@@ -147,3 +147,17 @@ input {
 .scheduleFormContainer {
   display: inline-block;
 }
+
+.edit {
+  padding-left: 155px;
+  padding-bottom: 10px;
+}
+
+.editUpcoming {
+  padding-left: 148px;
+  padding-bottom: 10px;
+}
+
+.groomingWalkDoggo {
+  padding-bottom: 10px;
+}

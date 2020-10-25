@@ -10,7 +10,7 @@ class GroomingListUD extends Component {
   render() {
     return (
       <div>
-          Edit Groomings
+          <div className="editUpcoming">Edit Groomings</div>
           {this.props.store.groomingReducer.map((grooming, i) =>
           <GroomingListUDItem 
             key={i}
