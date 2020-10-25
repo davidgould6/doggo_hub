@@ -40,6 +40,8 @@ CREATE TABLE "grooming" (
 "drop_off_address" VARCHAR (300) DEFAULT '101 Doggo ln Blaine, MN 55449'
 );
 
+-- Below will be starter data
+
 -- Run query creates user, username = davidgould; password = 123 --
 INSERT INTO "user" ("username", "password", "first_name", "last_name")
 VALUES ('davidgould', '$2a$10$8azn12gOR16X7fVQT7zDgO/a2bWoJlZCzLjB3aHEMzSCYjzJG3Zwm', 'David', 'Gould');
@@ -48,7 +50,7 @@ INSERT INTO "address" ("street", "city", "state", "zip", "user_id")
 VALUES ('999 Paw lane', 'Pawville', 'MN', '55449', 1);
 
 INSERT INTO "pet" ("name", "age", "size", "image_url", "user_id", "address_id")
-VALUES ('Schmake', 2, 'Small', 'https://i.imgur.com/JCKyAPl.png', 1, 1);
+VALUES ('Shmake', 2, 'Small', 'https://i.imgur.com/JCKyAPl.png', 1, 1);
 
 INSERT INTO "grooming" ("time", "pet_id")
 VALUES 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import {Switch, Tooltip} from '@material-ui/core';
+import {Switch, Tooltip, Typography} from '@material-ui/core';
 import DoggoList from '../DoggosList/DoggosList';
 import DoggoListUD from '../DoggosListUD/DoggosListUD';
 
@@ -22,6 +22,9 @@ class UserDoggos extends Component {
   render() {
     return (
       <div>
+        <div className="userTitles">
+          <Typography variant="h4" gutterBottom>Your Doggos</Typography>
+        </div>
         <Tooltip title="Toggle to edit." placement="right">
           <Switch 
             checked={this.state.checkedA}
@@ -32,7 +35,7 @@ class UserDoggos extends Component {
         {this.state.checkedA === false ?
         <DoggoList /> :
         <DoggoListUD />
-      }
+        }
       </div>
     );
   }

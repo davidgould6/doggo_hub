@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // Import material ui components from library core
-import {Switch, Tooltip} from '@material-ui/core';
+import {Switch, Tooltip, Typography} from '@material-ui/core';
 
 // Import custom components
 import GroomingList from '../GroomingList/GroomingList';
@@ -36,7 +36,9 @@ class UpcomingEvents extends Component {
   render() {
     return (
       <div>
-        <h2>Upcoming Events</h2>
+        <div className="userTitles">
+          <Typography variant="h4" gutterBottom>Upcoming Events</Typography>
+        </div>
         <Tooltip title="Toggle to edit." placement="right">
           <Switch 
             checked={this.state.checkedA}
