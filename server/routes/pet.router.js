@@ -58,18 +58,22 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   console.log('This is our req.body in pet.router PUT', req.body);
   console.log('This is our req.params.id in /pet PUT', req.params.id);
+  console.log('This is req.user', req.user);
   const petName = req.body.petName;
   const petAge = req.body.age;
   const petSize = req.body.size;
   const petId = req.params.id;
+  const userId = req.user.id;
+  console.log('zzzzz', userId)
   const queryText = `
     UPDATE "pet" 
     SET 
     "name" = $1,
     "age" = $2,
     "size" = $3
-    WHERE "id" = $4;`;
-  pool.query(queryText, [petName, petAge, petSize, petId])
+    WHERE "id" = $4
+    AND "user_id" = $5 ;`;
+  pool.query(queryText, [petName, petAge, petSize, petId, userId])
   .then(result => {
     res.sendStatus(200);
   })

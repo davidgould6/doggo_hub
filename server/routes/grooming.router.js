@@ -6,7 +6,7 @@ const router = express.Router();
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   console.log('this is our req.params', req.params.id);
   const queryText = `
-  DELETE FROM "grooming" WHERE "id" = $1;`;
+  DELETE FROM "grooming" WHERE "id" = $1 `;
   pool.query(queryText, [req.params.id])
   .then(result => {
     res.sendStatus(200);
@@ -24,7 +24,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     JOIN "pet"
     ON "grooming"."pet_id" = "pet"."id"
     WHERE "pet"."user_id" = $1
-    ORDER BY "grooming"."id" ASC`;
+    ORDER BY "grooming"."time" ASC`;
   pool.query(queryText, [req.user.id])
   .then(result => {
     res.send(result.rows);
