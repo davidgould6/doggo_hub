@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+
+// Import material ui components from library core
 import {Switch, Tooltip, Typography} from '@material-ui/core';
+
+// Import custom components
 import DoggoList from '../DoggosList/DoggosList';
 import DoggoListUD from '../DoggosListUD/DoggosListUD';
 

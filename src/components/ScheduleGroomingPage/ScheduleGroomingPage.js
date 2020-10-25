@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import swal from 'sweetalert';
 import {withRouter} from 'react-router-dom'
 
 // Import material ui components from library core
@@ -10,6 +9,9 @@ import {
   MenuItem, Select, TextField, 
   Typography, Slide} 
 from '@material-ui/core/'
+
+// Import sweet alert
+import swal from 'sweetalert';
 
 // Import custom material ui styled button.
 import StyledButton from '../../MaterialUiStyles/StyledButton';

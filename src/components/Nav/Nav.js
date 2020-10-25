@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // Import material ui components from library core
 import { AppBar, Button, ButtonGroup, Toolbar, Typography } from '@material-ui/core/';
+
+// Import custom component
+import LogOutButton from '../LogOutButton/LogOutButton';
+
+// Import css
+import './Nav.css';
 
 const Nav = (props) => {
 

@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // Import material ui components from library core
-import {
-  Card, Container, Grid, Typography, Slide
-}
-from '@material-ui/core/';
+import {Card, Container, Grid, Typography, Slide}from '@material-ui/core/';
 
+// Import css
 import './GroomingList.css';
 
 class GroomingList extends Component {

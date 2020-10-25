@@ -8,6 +8,7 @@ import {
 }
 from '@material-ui/core/';
 
+// Import css
 import './WalkList.css';
 
 class WalkList extends Component {
