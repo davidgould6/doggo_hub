@@ -56,12 +56,17 @@ router.post('/register', (req, res, next) => {
 
     // Second query for address table. 
     let queryText = `INSERT INTO "address" ("street", "city", "state", "zip", "user_id")
-      VALUES ($1, $2, $3, $4, $5)`
+      VALUES ($1, $2, $3, $4, $5) RETURNING "id"`
     pool.query(queryText, [street, city, state, zip, userId])
       // Then for second query
       .then(result => {
         console.log('this is user', user);
-        res.status(201).send(user);
+        const dataToReturn = {
+          user,
+          addressId: result.rows[0]
+        }
+        console.log('this is what we are going to send back for test', dataToReturn);
+        res.status(201).send(dataToReturn);
       })
       // Catch for second query
       .catch(error => {

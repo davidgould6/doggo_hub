@@ -11,8 +11,9 @@ const pool = require('../server/modules/pool');
 
 describe('Updating user pet', () => {
   let user;
+  let address;
 
-  test('',async() => {
+  beforeEach(async() => {
     
     await pool.query('DELETE FROM "user"')
 
@@ -29,7 +30,8 @@ describe('Updating user pet', () => {
         zip: '55449',
       });
     expect(registerResponse.statusCode).toBe(201);
-    user = registerResponse.body;
+    user = registerResponse.body.user;
+    address = registerResponse.body.addressId;
     expect(user.username).toBe('davidgould');
 
     let loginResponse = await agent
@@ -46,8 +48,8 @@ describe('Updating user pet', () => {
         age: '3',
         size: 'Small',
         image_url: 'www.test.com/test',
-        dogAddress: `${user.id}`
+        dogAddress: `${address.id}`
       });
     expect(postResponse.statusCode).toBe(201);
-  })
+  });
 });
