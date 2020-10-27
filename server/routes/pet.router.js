@@ -40,9 +40,10 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   const image_url = req.body.image_url
   const addressId = req.body.dogAddress
   const userId = req.user.id;
-  console.log('these are our variables', petName, petAge, petSize, image_url, userId);
   const queryText = `INSERT INTO "pet" ("name", "age", "size", "image_url", "user_id", "address_id")
   VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;`;
+
+  console.log(petName, petAge, petSize, image_url, addressId, userId);
 
   pool.query(queryText, [petName, petAge, petSize, image_url, userId, addressId])
   .then(result => {
@@ -64,7 +65,6 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   const petSize = req.body.size;
   const petId = req.params.id;
   const userId = req.user.id;
-  console.log('zzzzz', userId)
   const queryText = `
     UPDATE "pet" 
     SET 

@@ -12,7 +12,7 @@ const pool = require('../server/modules/pool');
 describe('Updating user pet', () => {
   let user;
 
-  test('testing register and login', async() => {
+  test('',async() => {
     
     await pool.query('DELETE FROM "user"')
 
@@ -37,4 +37,17 @@ describe('Updating user pet', () => {
       .send({username: 'davidgould', password: '123'});
     expect(loginResponse.statusCode).toBe(200);
   });
+
+  test('should add pet to user profile', async() => {
+    let postResponse = await agent
+      .post(`/api/pet`)
+      .send({
+        petName: 'Jake',
+        age: '3',
+        size: 'Small',
+        image_url: 'www.test.com/test',
+        dogAddress: `${user.id}`
+      });
+    expect(postResponse.statusCode).toBe(201);
+  })
 });
