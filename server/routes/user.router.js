@@ -42,12 +42,13 @@ router.post('/register', (req, res, next) => {
   // Creating a query string to enter user information into user table and returning id.
   // First Query for user table.
   const queryText = `INSERT INTO "user" (username, password, first_name, last_name)
-    VALUES ($1, $2, $3, $4) RETURNING id;`;
+    VALUES ($1, $2, $3, $4) RETURNING *;`;
   pool.query(queryText, [username, password, firstName, lastName])
   // Then for first query
   .then((result) => {
     // console.log('Is this our id??', result.rows[0].id);
     const userId = result.rows[0].id;
+    const user = result.rows[0];
     const street = req.body.street;
     const city = req.body.city;
     const state = req.body.state;
@@ -59,7 +60,8 @@ router.post('/register', (req, res, next) => {
     pool.query(queryText, [street, city, state, zip, userId])
       // Then for second query
       .then(result => {
-        res.sendStatus(201);
+        console.log('this is user', user);
+        res.status(201).send(user);
       })
       // Catch for second query
       .catch(error => {
