@@ -28,7 +28,7 @@ class DoggosListUDItem extends Component {
   // dispatch if disired change, also holds boolean for toggle feature.
   state = {
     isEdit: false,
-    petName: this.props.pet.name,
+    petName: this.props.pet.name,   // Jake , Joe 
     age: this.props.pet.age,
     size: this.props.pet.size,
     isChecked: true
