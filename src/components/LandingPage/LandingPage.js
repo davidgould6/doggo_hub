@@ -12,7 +12,6 @@ import './LandingPage.css';
 import Typography from '@material-ui/core/Typography';
 
 class LandingPage extends Component {
-
   state = {
     heading: 'About Doggo Hub',
   };
@@ -21,7 +20,6 @@ class LandingPage extends Component {
     return (
       <div className="container">
         <Typography variant="h2" gutterBottom>Welcome to Doggo Hub!</Typography>
-
         <div className="grid">
           <div className="grid-col grid-col_8">
             <Typography variant="h6">
@@ -30,7 +28,6 @@ class LandingPage extends Component {
               We will pick up your doggo from your address for the walk!
               Currently there is only one location to schedule groomings for your doggo. 
             </Typography>
-
           </div>
           <div className="grid-col grid-col_4">
             <LandingPageCarousel />

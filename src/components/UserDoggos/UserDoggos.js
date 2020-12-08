@@ -10,7 +10,6 @@ import DoggoList from '../DoggosList/DoggosList';
 import DoggoListUD from '../DoggosListUD/DoggosListUD';
 
 class UserDoggos extends Component {
-
   // Local state to hold a boolean value for the toggle featue for edit.
   state = {
     checkedA: false,

@@ -63,7 +63,6 @@ class GroomingListUDItem extends Component {
 
   // Function sends dispatch to grooming saga for update/put with confirmations and sets isEdit state back to false
   submitChangeForDate = () => {
-    // console.log('in submitchangefordate click function');
     swal({
       text: "Is the selected date correct?",
       buttons: {

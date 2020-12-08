@@ -16,7 +16,6 @@ import StyledButton from '../../MaterialUiStyles/StyledButton';
 import swal from 'sweetalert';
 
 class RegisterForm extends Component {
-
   state = {
     username: '',
     password: '',
@@ -127,7 +126,7 @@ class RegisterForm extends Component {
             </FormControl>
           </div>
           <div className="inputContainer">
-          <FormControl style={{margin: 3}}>
+            <FormControl style={{margin: 3}}>
               <TextField
                 label="Street Address"
                 id="outlined-size-small"

@@ -13,7 +13,6 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
 const Nav = (props) => {
-
   return (
     <div>
       <AppBar position="static" style={{background: 'linear-gradient(45deg, #FF8E53 30%, #FE6B8B 90%)'}}>
@@ -24,44 +23,44 @@ const Nav = (props) => {
           
           {props.store.user.id === undefined ? 
           <ButtonGroup variant="text">
-          <Button color="inherit">
-            <Link className="links" to="/login">
-              Login
-            </Link>
-          </Button>
+            <Button color="inherit">
+              <Link className="links" to="/login">
+                Login
+              </Link>
+            </Button>
 
-          <Button color="inherit">
-            <Link className="links" to="/registration">
-              Register
-            </Link>
-          </Button>
+            <Button color="inherit">
+              <Link className="links" to="/registration">
+                Register
+              </Link>
+            </Button>
           </ButtonGroup>:
           null
           }
           {props.store.user.id && (
             <>
             <ButtonGroup variant="text">
-            <Button color="inherit">
-              <Link className="links" to="/user">
-                My Hub
-              </Link>
-            </Button>
-            <Button color="inherit">
-              <Link className="links" to="/walk">
-                Schedule Walk
-              </Link>
-            </Button>
-            <Button color="inherit">
-              <Link className="links" to="/grooming">
-                Schedule Grooming
-              </Link>
-            </Button>
-            <Button color="inherit">
-              <Link className="links" to="/addpet">
-                Add Pet
-              </Link>
-            </Button>
-            <LogOutButton className="links" />
+              <Button color="inherit">
+                <Link className="links" to="/user">
+                  My Hub
+                </Link>
+              </Button>
+              <Button color="inherit">
+                <Link className="links" to="/walk">
+                  Schedule Walk
+                </Link>
+              </Button>
+              <Button color="inherit">
+                <Link className="links" to="/grooming">
+                  Schedule Grooming
+                </Link>
+              </Button>
+              <Button color="inherit">
+                <Link className="links" to="/addpet">
+                  Add Pet
+                </Link>
+              </Button>
+              <LogOutButton className="links" />
             </ButtonGroup>
             </>
           )}

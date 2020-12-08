@@ -14,11 +14,9 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 router.get('/address', rejectUnauthenticated, (req, res) => {
   const userId = req.user.id;
-
   const queryText = `
     SELECT * FROM "address"
     WHERE "user_id" = $1;`;
-  
   pool.query(queryText, [userId])
   .then(result => {
     res.send(result.rows);
@@ -32,8 +30,6 @@ router.get('/address', rejectUnauthenticated, (req, res) => {
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
 router.post('/register', (req, res, next) => {
-  // console.log(req.body);
-  // console.log(req.user);
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
   const firstName = req.body.firstName;
@@ -46,7 +42,6 @@ router.post('/register', (req, res, next) => {
   pool.query(queryText, [username, password, firstName, lastName])
   // Then for first query
   .then((result) => {
-    // console.log('Is this our id??', result.rows[0].id);
     const userId = result.rows[0].id;
     const user = result.rows[0];
     const street = req.body.street;
@@ -60,12 +55,10 @@ router.post('/register', (req, res, next) => {
     pool.query(queryText, [street, city, state, zip, userId])
       // Then for second query
       .then(result => {
-        console.log('this is user', user);
         const dataToReturn = {
           user,
           addressId: result.rows[0]
         }
-        console.log('this is what we are going to send back for test', dataToReturn);
         res.status(201).send(dataToReturn);
       })
       // Catch for second query

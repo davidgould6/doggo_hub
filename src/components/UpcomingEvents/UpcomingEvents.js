@@ -13,7 +13,6 @@ import WalkListUD from '../WalkListUD/WalkListUD';
 
 
 class UpcomingEvents extends Component {
-
   componentDidMount(){
     this.props.dispatch({ type: `FETCH_PETS`});
     this.props.dispatch({ type: `FETCH_ADDRESS` });

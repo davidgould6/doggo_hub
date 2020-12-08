@@ -6,7 +6,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import DoggosListUDItem from '../DoggosListUDItem/DoggosListUDItem';
 
 class DoggosListUD extends Component {
-
   componentDidMount(){
     this.props.dispatch({ type: `FETCH_ADDRESS` });
     this.props.dispatch({ type: `FETCH_PETS`});
@@ -15,12 +14,12 @@ class DoggosListUD extends Component {
   render() {
     return (
       <div>
-          {this.props.store.petReducer.map((pet, i) =>
-          <DoggosListUDItem 
-            key={i}
-            pet={pet}
-          />
-          )}
+        {this.props.store.petReducer.map((pet, i) =>
+        <DoggosListUDItem 
+          key={i}
+          pet={pet}
+        />
+        )}
       </div>
     );
   }

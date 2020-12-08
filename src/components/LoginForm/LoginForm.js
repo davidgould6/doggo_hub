@@ -12,7 +12,6 @@ import {TextField, Typography, Slide} from '@material-ui/core/';
 import StyledButton from '../../MaterialUiStyles/StyledButton';
 
 class LoginForm extends Component {
-
   state = {
     username: '',
     password: '',

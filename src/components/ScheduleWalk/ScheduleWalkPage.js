@@ -31,7 +31,6 @@ const classes = makeStyles((theme) => ({
 }));
 
 class ScheduleWalkPage extends Component {
-
   componentDidMount(){
     this.props.dispatch({ type: 'FETCH_ADDRESS' });
     this.props.dispatch({ type: `FETCH_PETS`});
@@ -118,7 +117,7 @@ class ScheduleWalkPage extends Component {
         <div>
           <FormControl>
             <InputLabel required>
-                Your Doggo
+              Your Doggo
             </InputLabel>
             <Select 
               value={this.state.dogToWalk} 
@@ -128,7 +127,7 @@ class ScheduleWalkPage extends Component {
                 )}
             </Select>
             <FormHelperText>
-                Please select a doggo to walk.
+              Please select a doggo to walk.
             </FormHelperText>
           </FormControl>
         </div>

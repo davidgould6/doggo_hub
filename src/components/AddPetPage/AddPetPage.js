@@ -6,7 +6,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import AddPetForm from '../AddPetForm/AddPetForm';
 
 class AddPetPage extends Component {
-
   render() {
     return (
       <div>

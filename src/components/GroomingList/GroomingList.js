@@ -9,7 +9,6 @@ import {Card, Container, Grid, Typography, Slide}from '@material-ui/core/';
 import './GroomingList.css';
 
 class GroomingList extends Component {
-
   componentDidMount(){
     this.props.dispatch({ type: `FETCH_ADDRESS` });
     this.props.dispatch({ type: `FETCH_GROOMING`});

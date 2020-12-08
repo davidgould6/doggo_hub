@@ -17,7 +17,6 @@ import swal from 'sweetalert';
 import StyledButton from '../../MaterialUiStyles/StyledButton';
 
 class ScheduleGroomingPage extends Component {
-  
   componentDidMount(){
     this.props.dispatch({ type: `FETCH_PETS`});
     this.props.dispatch({ type: 'FETCH_ADDRESS' });
@@ -99,7 +98,7 @@ class ScheduleGroomingPage extends Component {
           <div>
             <FormControl>
               <InputLabel required>
-                  Your Doggo
+                Your Doggo
               </InputLabel>
               <Select 
                 value={this.state.dogToGroom} 
@@ -109,21 +108,21 @@ class ScheduleGroomingPage extends Component {
                   )}
               </Select>
               <FormHelperText>
-                  Please select a doggo for the grooming.
+                Please select a doggo for the grooming.
               </FormHelperText>
             </FormControl>
           </div>
           <div className="scheduleContainerItem">
             <TextField
-                id="date"
-                label="Date"
-                type="date"
-                required
-                value={this.state.date}
-                onChange={this.handleInputChangeFor('date')}
-                InputLabelProps={{
-                  shrink: true,
-                }}
+              id="date"
+              label="Date"
+              type="date"
+              required
+              value={this.state.date}
+              onChange={this.handleInputChangeFor('date')}
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
           </div>
           <div className="scheduleContainerItem">
@@ -137,7 +136,7 @@ class ScheduleGroomingPage extends Component {
                   <MenuItem value={1}>101 Doggo Lane Blaine, MN 55449</MenuItem>
               </Select>
               <FormHelperText>
-                  Please select a grooming location.
+                Please select a grooming location.
               </FormHelperText>
             </FormControl>
           </div>

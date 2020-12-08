@@ -12,7 +12,6 @@ from '@material-ui/core/';
 import './WalkList.css';
 
 class WalkList extends Component {
-
   componentDidMount(){
     this.props.dispatch({ type: `FETCH_ADDRESS` });
     this.props.dispatch({ type: `FETCH_PETS`});

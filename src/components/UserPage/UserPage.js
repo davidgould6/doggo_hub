@@ -24,7 +24,6 @@ import './UserPage.css';
 import Carousel from 'react-material-ui-carousel'
 
 class UserPage extends Component {
-
   componentDidMount(){
     this.props.dispatch({ type: `FETCH_ADDRESS` });
     this.props.dispatch({ type: `FETCH_PETS`});

@@ -9,7 +9,6 @@ import {Card, Container, Grid, Typography, Slide}from '@material-ui/core/';
 import './DoggosList.css';
 
 class DoggosList extends Component {
-
   componentDidMount(){
     this.props.dispatch({ type: `FETCH_ADDRESS` });
     this.props.dispatch({ type: `FETCH_PETS`});
@@ -26,16 +25,16 @@ class DoggosList extends Component {
           <Grid container spacing={0}>
             <Grid item md={12}>
             {this.props.store.petReducer.map((pet, i) =>
-            <Card key={i} variant="outlined" style={{marginBottom: 10}}>
-              <div className="doggoListItem">
-                <img className="userPetImage" src={pet.image_url} alt="oops"/>
-                <div className="doggoList">
-                  <li className="removeBulletsDoggo"><Typography>Name: {pet.name}</Typography></li>
-                  <li className="removeBulletsDoggo"><Typography>Age: {pet.age}</Typography></li>
-                  <li className="removeBulletsDoggo"><Typography>Size: {pet.size}</Typography></li>
+              <Card key={i} variant="outlined" style={{marginBottom: 10}}>
+                <div className="doggoListItem">
+                  <img className="userPetImage" src={pet.image_url} alt="oops"/>
+                  <div className="doggoList">
+                    <li className="removeBulletsDoggo"><Typography>Name: {pet.name}</Typography></li>
+                    <li className="removeBulletsDoggo"><Typography>Age: {pet.age}</Typography></li>
+                    <li className="removeBulletsDoggo"><Typography>Size: {pet.size}</Typography></li>
+                  </div>
                 </div>
-              </div>
-            </Card>
+              </Card>
             )}
             </Grid>
           </Grid>

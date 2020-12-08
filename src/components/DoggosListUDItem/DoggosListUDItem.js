@@ -23,12 +23,11 @@ from '@material-ui/core/';
 import './DoggosListUDItem.css';
 
 class DoggosListUDItem extends Component {
-
   // Local state to for this specific doggo has it's name, age, and size to keep same values on edit click
   // dispatch if disired change, also holds boolean for toggle feature.
   state = {
     isEdit: false,
-    petName: this.props.pet.name,   // Jake , Joe 
+    petName: this.props.pet.name,
     age: this.props.pet.age,
     size: this.props.pet.size,
     isChecked: true
@@ -49,7 +48,8 @@ class DoggosListUDItem extends Component {
           icon: "success",
         });
         this.props.dispatch({type: 'DELETE_PET', payload: idToDelete});
-      } else {
+      } 
+      else {
         swal("Your doggo is safe!");
       }
     });
@@ -133,7 +133,7 @@ class DoggosListUDItem extends Component {
                             <IconButton 
                               aria-label="edit"
                               onClick={this.editOnClick}
-                              >
+                            >
                               <EditIcon fontSize="small"/>
                             </IconButton>
                           </Tooltip>

@@ -36,7 +36,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.post('/', rejectUnauthenticated, (req, res) => {
-  // console.log('This is our req.body in walk.router POST', req.body);
   const date = req.body.date;
   const petToGroomId = req.body.dogToGroom;
   console.log('these are our variables', petToGroomId, date);
@@ -54,8 +53,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  console.log('this is req.params', req.params.id);
-  console.log('this is req.body', req.body);
   const id = req.params.id;
   const date = req.body.date;
   const queryText = `UPDATE "grooming" SET "time" = $1 WHERE "id" = $2;`;

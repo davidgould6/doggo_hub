@@ -4,7 +4,6 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
-  console.log('this is req.params', req.params.id);
   const walkId = req.params.id
   const queryText = `
     DELETE FROM "walk" WHERE "id" = $1;`;
@@ -39,15 +38,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.post('/', rejectUnauthenticated, (req, res) => {
-    console.log('This is our req.body in walk.router POST', req.body);
     const date = req.body.date;
     const petToWalkId = req.body.dogToWalk;
     const addressId = req.body.address;
-    console.log('these are our variables', petToWalkId, date, addressId);
-
     const queryText = `INSERT INTO "walk" ("time", "pet_id", "address_id")
-    VALUES ($1, $2, $3);`
-
+    VALUES ($1, $2, $3);`;
     pool.query(queryText, [date, petToWalkId, addressId])
     .then(result => {
         res.sendStatus(201);
@@ -59,8 +54,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  console.log('this is req.params', req.params.id);
-  console.log('this is req.body', req.body);
   const id = req.params.id;
   const date = req.body.date;
   const queryText =`UPDATE "walk" SET "time" = $1 WHERE "id" = $2;`

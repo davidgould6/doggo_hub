@@ -4,7 +4,6 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
-  console.log('This is our req.params.id in /pet DELETE', req.params.id);
   const petId = req.params.id
   const queryText = `DELETE FROM "pet" WHERE "id" = $1;`;
   pool.query(queryText, [petId])
@@ -18,7 +17,6 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-  console.log('this is req.user in pet get', req.user);
   const queryText = `
   SELECT * FROM "pet" WHERE "user_id" = $1 ORDER BY "id" ASC;`;
   pool.query(queryText, [req.user.id])
@@ -32,7 +30,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.post('/', rejectUnauthenticated, (req, res) => {
-  console.log('This is our req.body in pet.router POST', req.body);
   console.log(req.user);
   const petName = req.body.petName;
   const petAge = req.body.age;
@@ -42,9 +39,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   const userId = req.user.id;
   const queryText = `INSERT INTO "pet" ("name", "age", "size", "image_url", "user_id", "address_id")
   VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;`;
-
-  console.log(petName, petAge, petSize, image_url, addressId, userId);
-
   pool.query(queryText, [petName, petAge, petSize, image_url, userId, addressId])
   .then(result => {
     console.log(result.rows[0].id);
@@ -57,9 +51,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  console.log('This is our req.body in pet.router PUT', req.body);
-  console.log('This is our req.params.id in /pet PUT', req.params.id);
-  console.log('This is req.user', req.user);
   const petName = req.body.petName;
   const petAge = req.body.age;
   const petSize = req.body.size;
