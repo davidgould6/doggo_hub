@@ -1,14 +1,12 @@
 # Doggo Hub
 
-![doggogif](./screencaps/doggo.gif)
-
 ## Description
 _Duration: Two Week Sprint_
 
 This app is designed to be an all in one place for your doggos!
 
 ## Screencap
-Enter Screen caps here
+![doggohub](./screencaps/doggohub.png)
 
 ## Technologies Used
 
