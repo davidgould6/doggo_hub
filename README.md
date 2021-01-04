@@ -4,6 +4,7 @@
 _Duration: Two Week Sprint_
 
 This app is designed to be an all in one place for your doggos!
+You can find a deployed version of the application [here] (https://hidden-garden-55391.herokuapp.com/#/user)
 
 ## Screencap
 ![doggohub](./screencaps/doggohub.png)
